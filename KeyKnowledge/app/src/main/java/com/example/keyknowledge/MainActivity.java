@@ -28,9 +28,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void write(View view) {
-        User user =new User(us.getText().toString(),pw.getText().toString(),"email a caso");
+        User user =new User(us.getText().toString(),pw.getText().toString(),"email a caso","offline");
         userControl.addUser(user);
 
+    }
+
+    public void aggiorna(View view){
+        User user=userControl.searchUser(us.getText().toString(),pw.getText().toString());
+        userControl.setOnline(user);
     }
 
 
