@@ -14,6 +14,6 @@ public class UserControl {
     }
 
     public void addUser(User a){
-        mDatabase.child("utenti").setValue(a);
+        mDatabase.child("users").child(a.getNickname()).setValue(a);
     }
 }
