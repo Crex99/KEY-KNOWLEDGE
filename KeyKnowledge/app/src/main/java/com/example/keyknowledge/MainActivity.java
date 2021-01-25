@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.keyknowledge.control.UserControl;
+import com.example.keyknowledge.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     EditText us,pw;
-    DatabaseReference myRef;
+    UserControl userControl=new UserControl();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +28,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void write(View view) {
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("message");
+        User user =new User(us.getText().toString(),pw.getText().toString(),"email a caso");
+        userControl.addUser(user);
 
-        myRef.setValue("Hello, World!");
     }
 
 
     public void read(View view){
+        /*
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -50,5 +52,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.w("TAG", "Failed to read value.", error.toException());
             }
         });
-    }
+    */}
 }
