@@ -5,15 +5,17 @@ public class User {
     private String nickname;
     private String email;
     private String password;
+    private String state;
 
     public User(){
 
     }
 
-    public User(String a,String b,String c){
+    public User(String a,String b,String c,String d){
         nickname=a;
         email=c;
         password=b;
+        state=d;
     }
 
     public String getNickname() {
@@ -28,6 +30,8 @@ public class User {
         return password;
     }
 
+    public String getState(){ return state;}
+
     public void setNickname(String x){
         nickname=x;
     }
@@ -40,12 +44,15 @@ public class User {
         password=x;
     }
 
+    public void setState(String x){ state=x;}
+
     @Override
     public String toString() {
         return "User{" +
                 "nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", state='" + state + '\'' +
                 '}';
     }
 }
