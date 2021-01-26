@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.keyknowledge.control.UserControl;
 import com.example.keyknowledge.model.User;
@@ -34,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aggiorna(View view){
+        if(userControl.setUserOnline(us.getText().toString(),pw.getText().toString())){
+            Toast.makeText(this,"utente aggiornato", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this,"utente non aggiornato", Toast.LENGTH_LONG).show();
+        }
 
     }
 
