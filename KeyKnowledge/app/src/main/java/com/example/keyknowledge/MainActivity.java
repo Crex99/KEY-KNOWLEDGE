@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     EditText us,pw;
-    UserControl userControl=new UserControl();
+    UserControl userControl=new UserControl(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +35,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aggiorna(View view){
-        if(userControl.setUserOnline(us.getText().toString(),pw.getText().toString())){
-            Toast.makeText(this,"utente aggiornato", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this,"utente non aggiornato", Toast.LENGTH_LONG).show();
-        }
+        userControl.setUserOnline(us.getText().toString(),pw.getText().toString());
+    }
 
+    public void message(String x){
+        Toast.makeText(this,x, Toast.LENGTH_LONG).show();
     }
 
 
