@@ -1,7 +1,6 @@
 package com.example.keyknowledge.model;
 
 
-import androidx.annotation.NonNull;
 
 import com.example.keyknowledge.control.UserControl;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +42,7 @@ public class UserManager {
 
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled( DatabaseError error) {
 
             }
         });

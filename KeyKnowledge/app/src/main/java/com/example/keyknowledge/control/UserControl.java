@@ -1,8 +1,6 @@
 package com.example.keyknowledge.control;
 
 
-
-
 import com.example.keyknowledge.MainActivity;
 import com.example.keyknowledge.model.*;
 
