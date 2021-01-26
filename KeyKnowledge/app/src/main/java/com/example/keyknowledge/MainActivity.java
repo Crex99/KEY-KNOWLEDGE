@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.keyknowledge.control.UserControl;
 import com.example.keyknowledge.model.User;
@@ -18,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     EditText us,pw;
-    UserControl userControl=new UserControl();
+    UserControl userControl=new UserControl(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +35,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aggiorna(View view){
-        User user=userControl.searchUser(us.getText().toString(),pw.getText().toString());
-        userControl.setOnline(user);
+        userControl.setUserOnline(us.getText().toString(),pw.getText().toString());
+    }
+
+    public void message(String x){
+        Toast.makeText(this,x, Toast.LENGTH_LONG).show();
     }
 
 
