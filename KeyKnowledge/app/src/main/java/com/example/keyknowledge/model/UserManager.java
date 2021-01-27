@@ -2,7 +2,7 @@ package com.example.keyknowledge.model;
 
 
 
-import com.example.keyknowledge.control.UserControl;
+import com.example.keyknowledge.control.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
