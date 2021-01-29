@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void ciao(){
+        Log.d("CIAO");
+    }
+
     public void aggiorna(View view){
         userControl.setUserOnline(us.getText().toString(),pw.getText().toString());
     }
