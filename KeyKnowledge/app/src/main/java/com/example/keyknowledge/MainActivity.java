@@ -2,6 +2,7 @@ package com.example.keyknowledge;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import com.example.keyknowledge.model.*;
 
 public class MainActivity extends AppCompatActivity {
 
+//ciao
     EditText us,pw;
     UserControl userControl=new UserControl(this);
     @Override
@@ -24,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         User user =new User(us.getText().toString(),pw.getText().toString(),"email a caso","offline");
         userControl.addUser(user);
 
+    }
+
+    //pigliat sta modific
+
+    public void ciao(){
+        Log.d("TAG","CIAO");
     }
 
     public void aggiorna(View view){
