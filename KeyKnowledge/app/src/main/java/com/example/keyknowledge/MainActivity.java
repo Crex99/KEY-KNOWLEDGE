@@ -2,6 +2,7 @@ package com.example.keyknowledge;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     //pigliat sta modific
 
     public void ciao(){
-        Log.d("CIAO");
+        Log.d("INFO", "BOHHHHHH");
     }
 
     public void aggiorna(View view){
