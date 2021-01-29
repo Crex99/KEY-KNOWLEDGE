@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //pigliat sta modific
+
     public void ciao(){
         Log.d("CIAO");
     }
