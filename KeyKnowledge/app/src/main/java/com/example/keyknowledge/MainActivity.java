@@ -31,11 +31,7 @@ public class MainActivity extends AppCompatActivity {
     //pigliat sta modific
 
     public void ciao(){
-<<<<<<< HEAD
         Log.d("INFO", "BOHHHHHH");
-=======
-        Log.d("TAG","CIAO");
->>>>>>> 83596cd0ad384544c13a07ecd097fcd31e5a62f0
     }
 
     public void aggiorna(View view){
