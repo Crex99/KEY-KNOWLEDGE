@@ -4,8 +4,8 @@ package com.example.keyknowledge.control;
 import com.example.keyknowledge.MainActivity;
 import com.example.keyknowledge.model.*;
 
-
 public class UserControl {
+
 
     private UserManager userManager;
     private MainActivity activity;
@@ -27,9 +27,8 @@ public class UserControl {
         activity.message(x);
     }
 
-
-
     public void setUserOnline(String nick,String pass){
         userManager.setUserOnline(nick,pass,this);
+
     }
 }
