@@ -30,13 +30,10 @@ public class User {
         return password;
     }
 
-<<<<<<< HEAD
     public String getState(){
         return state;
     }
-=======
-    public String getState(){ return state;}
->>>>>>> workspace_crex
+
 
     public void setNickname(String x){
         nickname=x;
@@ -50,13 +47,11 @@ public class User {
         password=x;
     }
 
-<<<<<<< HEAD
+
     public void setState(String x){
         state=x;
     }
-=======
-    public void setState(String x){ state=x;}
->>>>>>> workspace_crex
+
 
     @Override
     public String toString() {
