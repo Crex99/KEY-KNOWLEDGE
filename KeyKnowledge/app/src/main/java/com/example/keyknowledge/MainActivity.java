@@ -1,6 +1,8 @@
 package com.example.keyknowledge;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +12,7 @@ import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
 
 public class MainActivity extends AppCompatActivity {
+    Intent i=new Intent();
 
 //ciao
     EditText us,pw;
@@ -62,4 +65,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     */}
+
+    public void login(View view) {
+
+    }
+
+    public void register(View view) {
+
+        Toast.makeText(this,"funzionalità ancora non disponibile", Toast.LENGTH_LONG).show();
+    }
 }
