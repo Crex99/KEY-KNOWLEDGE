@@ -5,7 +5,10 @@ public class User {
     private String nickname;
     private String email;
     private String password;
-    private String state;
+    private String stato;
+    private String ruolo;
+    private int numPartiteVinte;
+    private int numPartiteGiocate;
 
     public User(){
 
@@ -15,7 +18,10 @@ public class User {
         nickname=a;
         email=c;
         password=b;
-        state=d;
+        stato=d;
+        ruolo="giocatore";
+        numPartiteVinte=0;
+        numPartiteGiocate=0;
     }
 
     public String getNickname() {
@@ -31,7 +37,19 @@ public class User {
     }
 
     public String getState(){
-        return state;
+        return stato;
+    }
+
+    public String getRuolo(){
+        return ruolo;
+    }
+
+    public int getPartite(){
+        return numPartiteGiocate;
+    }
+
+    public int getVittorie(){
+        return numPartiteVinte;
     }
 
 
@@ -49,7 +67,19 @@ public class User {
 
 
     public void setState(String x){
-        state=x;
+        stato=x;
+    }
+
+    public void setRuolo(String x){
+        ruolo=x;
+    }
+
+    public void setPartite(int x){
+        numPartiteGiocate=x;
+    }
+
+    public void setVittorie(int x){
+        numPartiteVinte=x;
     }
 
 
@@ -59,7 +89,7 @@ public class User {
                 "nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", state='" + state + '\'' +
+                ", state='" + stato + '\'' +
                 '}';
     }
 }

@@ -3,71 +3,41 @@ package com.example.keyknowledge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
-import com.example.keyknowledge.control.*;
-import com.example.keyknowledge.model.*;
+
+import com.example.keyknowledge.control.UserControl;
+
 
 public class MainActivity extends AppCompatActivity {
-    Intent i=new Intent();
-
-//ciao
-    EditText us,pw;
-    UserControl userControl=new UserControl(this);
+    UserControl control=new UserControl();
+    Intent i;
+    SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        prefs=getSharedPreferences("profile",MODE_PRIVATE);
+        controlAccess();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        us=findViewById(R.id.user);
-        pw=findViewById(R.id.pass);
     }
 
-    public void write(View view) {
-        User user =new User(us.getText().toString(),pw.getText().toString(),"email a caso","offline");
-        userControl.addUser(user);
-
-    }
-
-    //pigliat sta modific
-
-    public void ciao(){
-        Log.d("TAG","CIAO");
-    }
-
-    public void aggiorna(View view){
-        userControl.setUserOnline(us.getText().toString(),pw.getText().toString());
+    private void controlAccess() {
+        String nick=prefs.getString("id","null");
+        System.out.println(nick);
+        if(!nick.equals("null")){
+            control.backHome(nick);
+        }
     }
 
     public void message(String x){
         Toast.makeText(this,x, Toast.LENGTH_LONG).show();
     }
 
-
-    public void read(View view){
-        /*
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("TAG", "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        });
-    */}
-
     public void login(View view) {
-
+        i=new Intent(this,Login.class);
+        startActivity(i);
     }
 
     public void register(View view) {
