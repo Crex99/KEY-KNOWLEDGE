@@ -36,7 +36,7 @@ public class User {
         return password;
     }
 
-    public String getState(){
+    public String getStato(){
         return stato;
     }
 
@@ -44,11 +44,11 @@ public class User {
         return ruolo;
     }
 
-    public int getPartite(){
+    public int getNumPartiteGiocate(){
         return numPartiteGiocate;
     }
 
-    public int getVittorie(){
+    public int getNumPartiteVinte(){
         return numPartiteVinte;
     }
 
@@ -66,7 +66,7 @@ public class User {
     }
 
 
-    public void setState(String x){
+    public void setStato(String x){
         stato=x;
     }
 
@@ -74,11 +74,11 @@ public class User {
         ruolo=x;
     }
 
-    public void setPartite(int x){
+    public void setNumPartiteGiocate(int x){
         numPartiteGiocate=x;
     }
 
-    public void setVittorie(int x){
+    public void setNumPartiteVinte(int x){
         numPartiteVinte=x;
     }
 
@@ -89,7 +89,10 @@ public class User {
                 "nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", state='" + stato + '\'' +
+                ", stato='" + stato + '\'' +
+                ", ruolo='" + ruolo + '\'' +
+                ", partite vinte='" + numPartiteVinte + '\'' +
+                ", partite giocate='" + numPartiteGiocate + '\'' +
                 '}';
     }
 }

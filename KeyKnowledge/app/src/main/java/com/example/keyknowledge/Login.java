@@ -42,7 +42,8 @@ public class Login extends Activity {
     }
 
     public void goHome(User user){
-        i=new Intent(this,HomeScreen.class);
+        i=new Intent(this,MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }
 }

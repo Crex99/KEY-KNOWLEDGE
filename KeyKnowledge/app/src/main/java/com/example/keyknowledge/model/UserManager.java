@@ -3,6 +3,8 @@ package com.example.keyknowledge.model;
 
 
 import android.content.SharedPreferences;
+
+import com.example.keyknowledge.R;
 import com.example.keyknowledge.control.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -84,7 +86,8 @@ public class UserManager {
                 if(user==null){
                     control.setMessage("L'utente "+nick+" non esiste");
                 }else{
-                   control.goHome(user);
+                    control.setView(R.layout.home,user);
+                   //control.setHome(user);
                 }
             }
 

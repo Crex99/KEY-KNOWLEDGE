@@ -6,9 +6,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/profile"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:text="prova"
+        />
+    <TextView
+        android:id="@+id/testo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="HOME"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:onClick="logout"
         />
 
 </RelativeLayout>

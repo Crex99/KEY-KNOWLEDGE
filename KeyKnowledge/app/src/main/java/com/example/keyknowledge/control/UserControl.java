@@ -7,7 +7,7 @@ import com.example.keyknowledge.*;
 import com.example.keyknowledge.model.*;
 public class UserControl {
 
-
+    private MainActivity main;
     private UserManager userManager;
     private Login activity;
     public UserControl(){
@@ -17,6 +17,11 @@ public class UserControl {
     public UserControl(Login a){
         activity=a;
         userManager =new UserManager();
+    }
+
+    public UserControl(MainActivity a){
+        main=a;
+        userManager=new UserManager();
     }
 
     public void setMessage(String x){
@@ -36,5 +41,20 @@ public class UserControl {
 
     public void goHome(User user) {
         activity.goHome(user);
+    }
+
+    public void controlAccess(String nick) {
+        System.out.println(nick);
+        if(nick!=null){
+            backHome(nick);
+        }else{
+            System.out.println("falso0");
+            main.setContent(R.layout.activity_main,null);
+            System.out.println("falso");
+        }
+    }
+
+    public void setView(int x,User user){
+        main.setContent(x,user);
     }
 }
