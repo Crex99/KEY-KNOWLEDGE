@@ -6,30 +6,36 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.keyknowledge.control.UserControl;
+import com.example.keyknowledge.control.MainControl;
 import com.example.keyknowledge.model.User;
 
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
+
+    public static final String RESTART_MODE="RESTART_MODE",MISC_MODE="MISC_MODE",CLASSIC_MODE="CLASSIC_MODE";
     User user;
-    UserControl control=new UserControl(this);
-    Intent i;
-    SharedPreferences prefs;
+    MainControl control=new MainControl(this);
     TextView textView;
+    GestureDetector detector;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        prefs=getSharedPreferences("profile",MODE_PRIVATE);
         System.out.println("main");
-        control.controlAccess(prefs.getString("id",null));
+        control.controlAccess();
         super.onCreate(savedInstanceState);
     }
 
     public void setContent(int x,User y) {
         setContentView(x);
+        if(x==R.layout.home){
+            System.out.println("home");
+            detector=new GestureDetector(this,this);
+        }
         textView=findViewById(R.id.profile);
         user=y;
         if(user!=null) {
@@ -45,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        i=new Intent(this,Login.class);
-        startActivity(i);
+        control.goLogin();
     }
 
     public void register(View view) {
@@ -55,18 +60,64 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout(View view){
-        Editor editor=prefs.edit();
-        editor.remove("id");
-        editor.commit();
-        i = new Intent(getApplicationContext(), MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
-    }
-/*
-    public void goHome(User user){
-        i=new Intent(this,HomeScreen.class);
-        startActivity(i);
+        control.logout(user);
     }
 
- */
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        detector.onTouchEvent(event);
+        return true;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        if (e1.getX()>e2.getX()) {
+            //swipe verso sinistra
+        }else {
+            //swipe verso destra
+            control.goKnowledge(user);
+        }
+        return true;
+    }
+    public void startMatch1(View view){
+        //CLASSIC MODE
+        control.searchOpponent(CLASSIC_MODE,user);
+
+    }
+    public void startMatch2(View view){
+
+        //RESTART MODE
+        control.searchOpponent(RESTART_MODE,user);
+    }
+    public void startMatch3(View view){
+        //MISC MODE
+        control.searchOpponent(MISC_MODE,user);
+
+    }
 }

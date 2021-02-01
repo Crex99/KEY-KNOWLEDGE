@@ -12,11 +12,11 @@ import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.User;
 
 public class Login extends Activity {
-    Intent i;
+
     SharedPreferences pref;
     EditText us,pass;
 
-    UserControl userControl=new UserControl(this);
+    LoginControl control=new LoginControl(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         pref=getSharedPreferences("profile",MODE_PRIVATE);
@@ -30,20 +30,8 @@ public class Login extends Activity {
     }
 
     public void access(View view) {
-        userControl.access(us.getText().toString(),pass.getText().toString());
+        control.access(us.getText().toString(),pass.getText().toString());
     }
 
-    public void saveUser(User user) {
-        System.out.println(user.getNickname());
-        SharedPreferences.Editor editor=pref.edit();
-        editor.putString("id",user.getNickname());
-        editor.commit();
-        goHome(user);
-    }
 
-    public void goHome(User user){
-        i=new Intent(this,MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
-    }
 }
