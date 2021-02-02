@@ -1,5 +1,6 @@
 package com.example.keyknowledge.control;
 
+import com.example.keyknowledge.Pairing;
 import com.example.keyknowledge.model.PairingManager;
 import com.example.keyknowledge.model.User;
 import com.google.firebase.database.DataSnapshot;
@@ -9,8 +10,10 @@ import com.google.firebase.database.ValueEventListener;
 public class PairingControl {
 
     PairingManager manager;
+    Pairing pairing;
 
-    public PairingControl(){
+    public PairingControl(Pairing p){
+        pairing=p;
         manager=new PairingManager();
     }
 
@@ -20,6 +23,6 @@ public class PairingControl {
     }
 
     public void startMatch(String mode, User user, String opponent) {
-        
+        pairing.message("PARTITA DA INIZIARE");
     }
 }

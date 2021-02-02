@@ -3,13 +3,14 @@ package com.example.keyknowledge;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.keyknowledge.control.PairingControl;
 import com.example.keyknowledge.model.User;
 
 public class Pairing extends Activity {
 
-    PairingControl control;
+    PairingControl control=new PairingControl(this);
     User user;
     String mode;
     @Override
@@ -20,5 +21,9 @@ public class Pairing extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_player);
         control.createMatch(user,mode);
+    }
+
+    public void message(String x){
+        Toast.makeText(this,x, Toast.LENGTH_LONG).show();
     }
 }
