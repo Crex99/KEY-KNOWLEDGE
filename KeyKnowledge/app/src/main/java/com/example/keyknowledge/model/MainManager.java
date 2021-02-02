@@ -1,42 +1,36 @@
 package com.example.keyknowledge.model;
 
-
-
-import com.example.keyknowledge.control.*;
+import com.example.keyknowledge.R;
+import com.example.keyknowledge.control.MainControl;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class UserManager {
+public class MainManager {
 
     private static final String TABLE="users",OFFLINE="offline",ONLINE="online";
 
     private DatabaseReference mDatabase;
 
-
-    public UserManager(){
+    public MainManager(){
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
-    public void addUser(User a){
-        mDatabase.child(TABLE).child(a.getNickname()).setValue(a);
-    }
 
-    public void setUserOnline(String nick, String pass,UserControl control){
+    public void accessUser(String nick, MainControl control) {
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
 
 
             @Override
             public void onDataChange( DataSnapshot snapshot) {
 
-                String current=snapshot.child(nick).child("password").getValue(String.class);
-
-                if(current.equals(pass)){
-                    mDatabase.child(TABLE).child(nick).child("state").setValue(ONLINE);
-                    control.setMessage("utente aggiornato");
+                User user=snapshot.child(nick).getValue(User.class);
+                if(user==null){
+                    control.setMessage("L'utente "+nick+" non esiste");
                 }else{
-                    control.setMessage("utente non aggiornato");
+                    control.setView(R.layout.home,user);
+                    //control.setHome(user);
                 }
             }
 
@@ -46,5 +40,9 @@ public class UserManager {
 
             }
         });
+    }
+
+    public void logout(User user) {
+        mDatabase.child(TABLE).child(user.getNickname()).child("stato").setValue(OFFLINE);
     }
 }
