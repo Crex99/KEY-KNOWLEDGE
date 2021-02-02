@@ -14,7 +14,7 @@ public class PairingControl {
 
     public PairingControl(Pairing p){
         pairing=p;
-        manager=new PairingManager();
+        manager=new PairingManager(this);
     }
 
 

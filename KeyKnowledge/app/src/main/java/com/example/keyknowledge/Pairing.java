@@ -4,9 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-
-import com.example.keyknowledge.control.PairingControl;
-import com.example.keyknowledge.model.User;
+import com.example.keyknowledge.control.*;
+import com.example.keyknowledge.model.*;
 
 public class Pairing extends Activity {
 

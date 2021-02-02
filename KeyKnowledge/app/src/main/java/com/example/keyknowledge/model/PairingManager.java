@@ -1,8 +1,7 @@
 package com.example.keyknowledge.model;
 
 import androidx.annotation.NonNull;
-
-import com.example.keyknowledge.control.PairingControl;
+import com.example.keyknowledge.control.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,7 +15,8 @@ public class PairingManager {
     private DatabaseReference mDatabase;
     private PairingControl control;
 
-    public PairingManager(){
+    public PairingManager(PairingControl c){
+        control=c;
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
