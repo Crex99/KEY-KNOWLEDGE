@@ -14,7 +14,6 @@ public class LoginControl {
     Intent i;
     private Login login;
     private LoginManager manager;
-    SharedPreferences pref=login.getSharedPreferences("profile",MODE_PRIVATE);
     public LoginControl(Login x){
         login=x;
         manager=new LoginManager();
@@ -29,9 +28,7 @@ public class LoginControl {
     }
 
     public void saveUser(User user){
-        SharedPreferences.Editor editor=pref.edit();
-        editor.putString("id",user.getNickname());
-        editor.commit();
+        login.saveUser(user);
         goHome();
     }
 

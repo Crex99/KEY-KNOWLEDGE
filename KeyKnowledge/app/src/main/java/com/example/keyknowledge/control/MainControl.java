@@ -2,7 +2,6 @@ package com.example.keyknowledge.control;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-
 import com.example.keyknowledge.Knowledge;
 import com.example.keyknowledge.Login;
 import com.example.keyknowledge.MainActivity;
@@ -20,7 +19,6 @@ public class MainControl {
     private Intent i;
     private MainActivity main;
     private MainManager manager;
-    SharedPreferences pref=main.getSharedPreferences("profile",MODE_PRIVATE);
     public MainControl(MainActivity a){
         main=a;
         manager=new MainManager();
@@ -36,8 +34,7 @@ public class MainControl {
 
 
 
-    public void controlAccess() {
-        String nick=pref.getString("id",null);
+    public void controlAccess(String nick) {
         System.out.println(nick);
         if(nick!=null){
             backHome(nick);
@@ -63,9 +60,6 @@ public class MainControl {
 
     public void logout(User user){
         manager.logout(user);
-        SharedPreferences.Editor editor=pref.edit();
-        editor.remove("id");
-        editor.commit();
         i = new Intent(main.getApplicationContext(), MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         main.startActivity(i);
