@@ -5,12 +5,17 @@ public class Quiz {
     private int id;
     private String mode;
     private int numQuesiti;
-    private User user1;
-    private User user2;
+    private String user1;
+    private String user2;
     private int punteggioG1;
     private int punteggioG2;
+    private String status;
 
-    public Quiz(int a,String b,int c,User d,User e){
+    public Quiz(){
+
+    }
+
+    public Quiz(int a,String b,int c,String d,String e){
         id=a;
         mode=b;
         numQuesiti=c;
@@ -32,11 +37,11 @@ public class Quiz {
         return numQuesiti;
     }
 
-    public User getUser1() {
+    public String getUser1() {
         return user1;
     }
 
-    public User getUser2() {
+    public String getUser2() {
         return user2;
     }
 
@@ -46,6 +51,10 @@ public class Quiz {
 
     public int getPunteggioG2() {
         return punteggioG2;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public void setId(int id) {
@@ -60,11 +69,11 @@ public class Quiz {
         this.numQuesiti = numQuesiti;
     }
 
-    public void setUser1(User user1) {
+    public void setUser1(String user1) {
         this.user1 = user1;
     }
 
-    public void setUser2(User user2) {
+    public void setUser2(String user2) {
         this.user2 = user2;
     }
 
@@ -76,16 +85,21 @@ public class Quiz {
         this.punteggioG2 = punteggioG2;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Quiz{" +
                 "id=" + id +
                 ", mode='" + mode + '\'' +
                 ", numQuesiti=" + numQuesiti +
-                ", user1=" + user1 +
-                ", user2=" + user2 +
+                ", user1='" + user1 + '\'' +
+                ", user2='" + user2 + '\'' +
                 ", punteggioG1=" + punteggioG1 +
                 ", punteggioG2=" + punteggioG2 +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
