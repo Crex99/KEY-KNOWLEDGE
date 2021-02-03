@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 public class PairingControl {
-
+    int x=0;
     PairingManager manager;
     Pairing pairing;
 
@@ -23,6 +23,17 @@ public class PairingControl {
     }
 
     public void startMatch(String mode, User user, String opponent) {
-        pairing.message("PARTITA DA INIZIARE");
+        x++;
+        pairing.message("PARTITA DA INIZIARE "+x);
+        manager.resetMatch();
+    }
+
+    public void message(String x){
+        pairing.message(x);
+    }
+
+
+    public void resetMatch() {
+        manager.resetMatch();
     }
 }

@@ -25,4 +25,10 @@ public class Pairing extends Activity {
     public void message(String x){
         Toast.makeText(this,x, Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        control.resetMatch();
+        super.onBackPressed();
+    }
 }
