@@ -9,18 +9,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.keyknowledge.control.*;
-import com.example.keyknowledge.model.User;
+import com.example.keyknowledge.model.*;
 
 public class Login extends Activity {
 
     SharedPreferences pref;
     EditText us,pass;
-
     LoginControl control=new LoginControl(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        pref=getSharedPreferences("profile",MODE_PRIVATE);
         super.onCreate(savedInstanceState);
+        pref=getSharedPreferences("profile",MODE_PRIVATE);
         setContentView(R.layout.login);
         us=findViewById(R.id.user);
         pass=findViewById(R.id.pass);
@@ -34,4 +33,9 @@ public class Login extends Activity {
     }
 
 
+    public void saveUser(User user) {
+        SharedPreferences.Editor editor=pref.edit();
+        editor.putString("id",user.getNickname());
+        editor.commit();
+    }
 }

@@ -25,7 +25,16 @@
             android:name=".Login"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".Knowledge"
+        <activity
+            android:name=".Knowledge"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".Pairing"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".Match"
             android:screenOrientation="portrait"
             />
     </application>

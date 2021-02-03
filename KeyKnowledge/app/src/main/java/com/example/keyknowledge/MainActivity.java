@@ -11,13 +11,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.keyknowledge.control.MainControl;
-import com.example.keyknowledge.model.User;
+import com.example.keyknowledge.control.*;
+import com.example.keyknowledge.model.*;
 
 
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
-
+    SharedPreferences pref;
     public static final String RESTART_MODE="RESTART_MODE",MISC_MODE="MISC_MODE",CLASSIC_MODE="CLASSIC_MODE";
     User user;
     MainControl control=new MainControl(this);
@@ -26,8 +26,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("main");
-        control.controlAccess();
         super.onCreate(savedInstanceState);
+        pref=getSharedPreferences("profile",MODE_PRIVATE);
+        control.controlAccess(pref.getString("id",null));
     }
 
     public void setContent(int x,User y) {
@@ -60,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     public void logout(View view){
+
+        Editor editor=pref.edit();
+        editor.remove("id");
+        editor.commit();
         control.logout(user);
     }
 

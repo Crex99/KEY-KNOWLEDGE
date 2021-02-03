@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.keyknowledge.model.User;
+import com.example.keyknowledge.model.*;
 
 public class Match extends Activity {
 

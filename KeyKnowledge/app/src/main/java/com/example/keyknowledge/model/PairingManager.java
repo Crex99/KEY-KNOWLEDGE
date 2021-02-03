@@ -1,8 +1,7 @@
 package com.example.keyknowledge.model;
 
-import androidx.annotation.NonNull;
 
-import com.example.keyknowledge.control.PairingControl;
+import com.example.keyknowledge.control.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,7 +15,8 @@ public class PairingManager {
     private DatabaseReference mDatabase;
     private PairingControl control;
 
-    public PairingManager(){
+    public PairingManager(PairingControl c){
+        control=c;
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -25,33 +25,54 @@ public class PairingManager {
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
 
 
+
             @Override
             public void onDataChange( DataSnapshot snapshot) {
-                String status=snapshot.child(mode).child("status").getValue(String.class);
-                if(status.equals("void")){
+                int status =snapshot.child(mode).child("status").getValue(int.class);
+                if(status==0){
                     mDatabase.child(TABLE).child(mode).child("status").setValue("wait");
                     mDatabase.child(TABLE).child(mode).child("waiter").setValue(user.getNickname());
                     mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener(){
 
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        public void onDataChange( DataSnapshot snapshot) {
                             String opponent=snapshot.child("arrived").getValue(String.class);
-                            if(!opponent.equals("void")){
-                                control.startMatch(mode,user,opponent);
+                            if(opponent!=null) {
+                                if (!opponent.equals("void")) {
+                                    control.startMatch(mode, user, opponent);
+                                    mDatabase.child(TABLE).child(mode).removeEventListener(this);
+                                    //mDatabase.removeEventListener(this);
+                                }
                             }
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                        public void onCancelled(DatabaseError error) {
 
                         }
                     });
-                }else if(status.equals("wait")){
+                }else{
                     mDatabase.child(TABLE).child(mode).child("arrived").setValue(user.getNickname());
-                    String opponent=snapshot.child(mode).child("waiter").getValue(String.class);
-                    if(!opponent.equals("void")){
-                        control.startMatch(mode,user,opponent);
-                    }
+                    mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener(){
+
+                        @Override
+                        public void onDataChange( DataSnapshot snapshot) {
+                            String opponent=snapshot.child("waiter").getValue(String.class);
+                            if(opponent!=null) {
+                                if (!opponent.equals("void")) {
+                                    control.startMatch(mode, user, opponent);
+                                    mDatabase.child(TABLE).child(mode).removeEventListener(this);
+                                    //mDatabase.child(TABLE).removeEventListener(this);
+                                    //mDatabase.removeEventListener(this);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled( DatabaseError error) {
+
+                        }
+                    });
                 }
             }
 
@@ -61,5 +82,11 @@ public class PairingManager {
 
             }
         });
+    }
+
+    public void resetMatch() {
+        mDatabase.child(TABLE).child("RESTART_MODE").child("status").setValue("void");
+        mDatabase.child(TABLE).child("RESTART_MODE").child("arrived").setValue("void");
+        mDatabase.child(TABLE).child("RESTART_MODE").child("waiter").setValue("void");
     }
 }
