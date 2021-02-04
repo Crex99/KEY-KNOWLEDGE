@@ -12,9 +12,7 @@ public class User implements Serializable {
     private int numPartiteVinte;
     private int numPartiteGiocate;
 
-    public User(){
-
-    }
+    public User(){ }
 
     public User(String a,String b,String c,String d){
         nickname=a;
@@ -81,7 +79,7 @@ public class User implements Serializable {
     public void setNumPartiteVinte(int x){
         numPartiteVinte=x;
     }
-    
+
     @Override
     public String toString() {
         return "User{" +
