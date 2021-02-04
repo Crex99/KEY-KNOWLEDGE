@@ -25,7 +25,7 @@ public class PairingControl {
     public void startMatch(String mode, User user, String opponent) {
         x++;
         pairing.message("PARTITA DA INIZIARE "+x);
-        manager.resetMatch();
+       // manager.resetMatch();
     }
 
     public void message(String x){
