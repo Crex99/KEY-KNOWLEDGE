@@ -34,7 +34,6 @@ public class MainManager {
                 }
             }
 
-
             @Override
             public void onCancelled( DatabaseError error) {
 

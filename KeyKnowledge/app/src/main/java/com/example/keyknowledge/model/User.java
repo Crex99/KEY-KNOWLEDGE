@@ -54,7 +54,6 @@ public class User implements Serializable {
         return numPartiteVinte;
     }
 
-
     public void setNickname(String x){
         nickname=x;
     }
@@ -66,7 +65,6 @@ public class User implements Serializable {
     public void setPassword(String x){
         password=x;
     }
-
 
     public void setStato(String x){
         stato=x;
@@ -83,8 +81,7 @@ public class User implements Serializable {
     public void setNumPartiteVinte(int x){
         numPartiteVinte=x;
     }
-
-
+    
     @Override
     public String toString() {
         return "User{" +
