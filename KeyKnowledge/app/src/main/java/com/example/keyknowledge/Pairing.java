@@ -28,7 +28,7 @@ public class Pairing extends Activity {
 
     @Override
     public void onBackPressed() {
-        control.resetMatch();
+        //control.resetMatch();
         super.onBackPressed();
     }
 }
