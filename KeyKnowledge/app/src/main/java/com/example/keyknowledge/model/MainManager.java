@@ -33,7 +33,6 @@ public class MainManager {
                     //control.setHome(user);
                 }
             }
-
             @Override
             public void onCancelled( DatabaseError error) {
 
