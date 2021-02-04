@@ -1,6 +1,10 @@
 package com.example.keyknowledge.model;
 
-public class Quiz {
+import java.io.Serializable;
+
+public class Quiz implements Serializable {
+
+    public static final String RESTART_MODE="RESTART_MODE",CLASSIC_MODE="CLASSIC_MODE",MISC_MODE="MISC_MODE";
 
     private int id;
     private String mode;

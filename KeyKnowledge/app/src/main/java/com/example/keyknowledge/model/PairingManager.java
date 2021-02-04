@@ -1,9 +1,9 @@
 package com.example.keyknowledge.model;
 
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
+
+import androidx.annotation.NonNull;
 import com.example.keyknowledge.control.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,10 +13,10 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 
 public class PairingManager {
     private static final int MAX_ROOMS=100;
+    private static final int LAST_ROOM=0;
     private static final String TABLE="matches";
 
     private DatabaseReference mDatabase;
@@ -46,9 +46,13 @@ public class PairingManager {
 
                                     @Override
                                     public void onDataChange(DataSnapshot snapshot) {
-                                        String opponent = snapshot.child(id).child("user2").getValue(String.class);
-                                        control.startMatch(mode, user, opponent);
-                                        mDatabase.child(TABLE).child(mode).child(id).removeEventListener(this);
+                                        control.setQuiz(snapshot.child(id).getValue(Quiz.class));
+                                        String status = snapshot.child(id).child("status").getValue(String.class);
+                                        if(status.equals("full")) {
+                                            Quiz quiz=snapshot.child(id).getValue(Quiz.class);
+                                            control.startMatch(quiz);
+                                            mDatabase.child(TABLE).child(mode).removeEventListener(this);
+                                        }
                                     }
 
                                     @Override
@@ -60,9 +64,25 @@ public class PairingManager {
                             } else if (status.equals("wait")) {
                                 mDatabase.child(TABLE).child(mode).child(id).child("status").setValue("full");
                                 mDatabase.child(TABLE).child(mode).child(id).child("user2").setValue(user.getNickname());
-                                String opponent = currentData.child(id).child("user2").getValue(String.class);
-                                control.startMatch(mode, user, opponent);
-                                //mDatabase.child(TABLE).child(mode).child(id).removeEventListener(this);
+                                String opponent = currentData.child(id).child("user1").getValue(String.class);
+                                mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener() {
+
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        String status=snapshot.child(id).child("status").getValue(String.class);
+                                        if(status.equals("full")){
+                                            Quiz quiz=snapshot.child(id).getValue(Quiz.class);
+                                            control.startMatch(quiz);
+                                            mDatabase.child(TABLE).child(mode).removeEventListener(this);
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
                                 break;
                             }
                         }else{
@@ -74,8 +94,26 @@ public class PairingManager {
                             quiz.setUser1(us);
                             quiz.setMode(mode);
                             quiz.setNumQuesiti(30);
-                            //mDatabase.child(TABLE).child(mode).child("2").setValue(quiz);
-                            mDatabase.child(TABLE).child(mode).child(id).removeValue();
+                            mDatabase.child(TABLE).child(mode).child(""+quiz.getId()+"").setValue(quiz);
+                            mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener() {
+
+                                @Override
+                                public void onDataChange(DataSnapshot snapshot) {
+                                    control.setQuiz(snapshot.child(id).getValue(Quiz.class));
+                                    String status = snapshot.child(id).child("status").getValue(String.class);
+                                    if(status.equals("full")) {
+                                        Quiz quiz=snapshot.child(id).getValue(Quiz.class);
+                                        control.startMatch(quiz);
+                                        mDatabase.child(TABLE).child(mode).removeEventListener(this);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError error) {
+
+                                }
+                            });
+                            //mDatabase.child(TABLE).child(mode).child(id).removeValue();
                             break;
                         }
                     }
@@ -90,175 +128,9 @@ public class PairingManager {
 
         });
     }
-
-/*
-    public void create(User user, String mode) {
-
-
-        mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
-            @Override
-            public void onDataChange( DataSnapshot snapshot) {
-                 String status=snapshot.child(mode).child("0").child("status").getValue(String.class);
-                if (status.equals("void")) {
-                    mDatabase.child(TABLE).child(mode).child("0").child("status").setValue("wait");
-                    mDatabase.child(TABLE).child(mode).child("0").child("user1").setValue(user.getNickname());
-                    mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener(){
-
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String opponent=snapshot.child("0").child("user2").getValue(String.class);
-                            if(!opponent.equals("void")){
-                                control.startMatch(mode, user, opponent);
-                                mDatabase.child(TABLE).child(mode).removeEventListener(this);
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-                    if (mode.equals("RESTART_MODE")) {
-                        String us=user.getNickname();
-                        Quiz quiz = new Quiz();
-                        quiz.setId(1);
-                        quiz.setUser1(us);
-                        quiz.setMode(mode);
-                        quiz.setNumQuesiti(30);
-                        mDatabase.child(TABLE).child(mode).push().setValue(quiz);
-                    }
-
-                }else if(status.equals("wait")){
-                    mDatabase.child(TABLE).child(mode).child("0").child("status").setValue("full");
-                    mDatabase.child(TABLE).child(mode).child("0").child("user2").setValue(user.getNickname());
-                    String opponent=snapshot.child("0").child("user2").getValue(String.class);
-                    control.startMatch(mode, user, opponent);
-                    mDatabase.child(TABLE).child(mode).child("0").removeEventListener(this);
-
-
-                    DataSnapshot ref=snapshot.child(mode);
-                    for(DataSnapshot snap:ref.getChildren()){
-                        String key=snap.getKey();
-                    }
-
-                }else if(status.equals("full")){
-                    long n=snapshot.getChildrenCount();
-                    long c=0;
-                    System.out.println(n);
-                    System.out.println(c);
-                    for(DataSnapshot snap:snapshot.getChildren()){
-                        c++;
-                        System.out.println(c);
-                        if(c>=n){
-                            String us=user.getNickname();
-                            Quiz quiz = new Quiz();
-                            quiz.setId(1);
-                            quiz.setUser1(us);
-                            quiz.setMode(mode);
-                            quiz.setNumQuesiti(30);
-                            quiz.setStatus("wait");
-                            mDatabase.child(TABLE).child(mode).push().setValue(quiz);
-                        }
-                        Quiz curr=snap.getValue(Quiz.class);
-                        String current_status=curr.getStatus();
-                        int id=curr.getId();
-                        System.out.println(id);
-                        switch(current_status){
-                            case "void":
-                                mDatabase.child(TABLE).child(mode).child(key).child("status").setValue("wait");
-                                mDatabase.child(TABLE).child(mode).child(key).child("user1").setValue(user.getNickname());
-                                mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener(){
-
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        String opponent=snapshot.child(key).child("user2").getValue(String.class);
-                                        control.startMatch(mode, user, opponent);
-                                        mDatabase.child(TABLE).child(mode).child(key).removeEventListener(this);
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                                break;
-                            case "wait":
-                                mDatabase.child(TABLE).child(mode).child(key).child("status").setValue("full");
-                                mDatabase.child(TABLE).child(mode).child(key).child("user2").setValue(user.getNickname());
-                                String opponent=snapshot.child(key).child("user2").getValue(String.class);
-                                control.startMatch(mode, user, opponent);
-                                mDatabase.child(TABLE).child(mode).child(key).removeEventListener(this);
-                                break;
-                        }
-                    }
-
-                }
-            }
-
-                    control2.createMatch(1,user,mode);
-                    mDatabase.child(TABLE).child(mode).child("waiter").setValue(user.getNickname());
-                    mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener(){
-
-                        @Override
-                        public void onDataChange( DataSnapshot snapshot) {
-                            String opponent=snapshot.child("arrived").getValue(String.class);
-                            if(opponent!=null) {
-                                if (!opponent.equals("void")) {
-                                    control.startMatch(mode, user, opponent);
-                                    mDatabase.child(TABLE).child(mode).removeEventListener(this);
-                                    //mDatabase.removeEventListener(this);
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError error) {
-
-                        }
-                    });
-                }
-
-                else{
-                    mDatabase.child(TABLE).child(mode).child("arrived").setValue(user.getNickname());
-                    mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener(){
-
-                        @Override
-                        public void onDataChange( DataSnapshot snapshot) {
-                            String opponent=snapshot.child("waiter").getValue(String.class);
-                            if(opponent!=null) {
-                                if (!opponent.equals("void")) {
-                                    control.startMatch(mode, user, opponent);
-                                    mDatabase.child(TABLE).child(mode).removeEventListener(this);
-                                    //mDatabase.child(TABLE).removeEventListener(this);
-                                    //mDatabase.removeEventListener(this);
-                                }
-                            }
-                        }
-
-
-                        @Override
-                        public void onCancelled( DatabaseError error) {
-
-                        }
-                    });
-                }
-            }
-
-
-
-
-            @Override
-            public void onCancelled( DatabaseError error) {
-
-            }
-        });
-        }
-*/
-    public void resetMatch() {
-        mDatabase.child(TABLE).child("RESTART_MODE").child("status").setValue("void");
-        mDatabase.child(TABLE).child("RESTART_MODE").child("arrived").setValue("void");
-        mDatabase.child(TABLE).child("RESTART_MODE").child("waiter").setValue("void");
+    public void resetMatch(Quiz quiz) {
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("void");
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("user1").setValue("void");
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("user2").setValue("void");
     }
 }

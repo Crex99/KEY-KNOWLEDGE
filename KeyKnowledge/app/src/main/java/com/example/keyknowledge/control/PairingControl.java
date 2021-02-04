@@ -1,11 +1,8 @@
 package com.example.keyknowledge.control;
 
-import com.example.keyknowledge.Pairing;
-import com.example.keyknowledge.model.PairingManager;
-import com.example.keyknowledge.model.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
+import android.content.Intent;
+import com.example.keyknowledge.*;
+import com.example.keyknowledge.model.*;
 
 public class PairingControl {
     int x=0;
@@ -22,10 +19,14 @@ public class PairingControl {
         manager.createMatch(user,mode);
     }
 
-    public void startMatch(String mode, User user, String opponent) {
-        x++;
-        pairing.message("PARTITA DA INIZIARE "+x);
-       // manager.resetMatch();
+    public void startMatch(Quiz quiz) {
+
+        Intent i=new Intent(pairing.getApplicationContext(), Match.class);
+        i.putExtra("quiz",quiz);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        pairing.startActivity(i);
+        //x++;
+        //pairing.message("PARTITA DA INIZIARE "+x);
     }
 
     public void message(String x){
@@ -33,7 +34,11 @@ public class PairingControl {
     }
 
 
-    public void resetMatch() {
-        manager.resetMatch();
+    public void resetMatch(Quiz quiz) {
+        manager.resetMatch(quiz);
+    }
+
+    public void setQuiz(Quiz quiz){
+        pairing.setQuiz(quiz);
     }
 }

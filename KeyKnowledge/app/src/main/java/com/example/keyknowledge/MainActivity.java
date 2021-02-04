@@ -14,33 +14,33 @@ import android.widget.Toast;
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
 
+import static com.example.keyknowledge.model.Quiz.CLASSIC_MODE;
+import static com.example.keyknowledge.model.Quiz.MISC_MODE;
+import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
 
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
     SharedPreferences pref;
-    public static final String RESTART_MODE="RESTART_MODE",MISC_MODE="MISC_MODE",CLASSIC_MODE="CLASSIC_MODE";
     User user;
     MainControl control=new MainControl(this);
     TextView textView;
     GestureDetector detector;
+    int layout=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("main");
+        //System.out.println("main");
         super.onCreate(savedInstanceState);
         pref=getSharedPreferences("profile",MODE_PRIVATE);
         control.controlAccess(pref.getString("id",null));
     }
 
     public void setContent(int x,User y) {
+        layout=x;
         setContentView(x);
-        if(x==R.layout.home){
-            System.out.println("home");
-            detector=new GestureDetector(this,this);
-        }
+        detector=new GestureDetector(this,this);
         textView=findViewById(R.id.profile);
         user=y;
         if(user!=null) {
-            System.out.println(user);
             if(textView!=null) {
                 textView.setText(user.getNickname());
             }
@@ -106,7 +106,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             //swipe verso sinistra
         }else {
             //swipe verso destra
-            control.goKnowledge(user);
+            if(layout==R.layout.home) {
+                control.goKnowledge(user);
+            }
         }
         return true;
     }
