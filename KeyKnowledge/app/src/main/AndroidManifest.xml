@@ -37,6 +37,10 @@
             android:name=".Match"
             android:screenOrientation="portrait"
             />
+        <activity
+            android:name=".EndMatch"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

@@ -24,7 +24,6 @@ public class PairingManager {
     private MatchControl control2;
 
     public PairingManager(PairingControl c){
-        control2=new MatchControl();
         control=c;
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
@@ -50,7 +49,7 @@ public class PairingManager {
                                         String status = snapshot.child(id).child("status").getValue(String.class);
                                         if(status.equals("full")) {
                                             Quiz quiz=snapshot.child(id).getValue(Quiz.class);
-                                            control.startMatch(quiz);
+                                            control.startMatch(quiz,1);
                                             mDatabase.child(TABLE).child(mode).removeEventListener(this);
                                         }
                                     }
@@ -72,7 +71,7 @@ public class PairingManager {
                                         String status=snapshot.child(id).child("status").getValue(String.class);
                                         if(status.equals("full")){
                                             Quiz quiz=snapshot.child(id).getValue(Quiz.class);
-                                            control.startMatch(quiz);
+                                            control.startMatch(quiz,2);
                                             mDatabase.child(TABLE).child(mode).removeEventListener(this);
                                         }
 
@@ -103,7 +102,7 @@ public class PairingManager {
                                     String status = snapshot.child(id).child("status").getValue(String.class);
                                     if(status.equals("full")) {
                                         Quiz quiz=snapshot.child(id).getValue(Quiz.class);
-                                        control.startMatch(quiz);
+                                        control.startMatch(quiz,1);
                                         mDatabase.child(TABLE).child(mode).removeEventListener(this);
                                     }
                                 }

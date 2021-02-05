@@ -25,8 +25,8 @@ public class Quiz implements Serializable {
         numQuesiti=c;
         user1=d;
         user2=e;
-        punteggioG1=0;
-        punteggioG2=0;
+        punteggioG1=-1;
+        punteggioG2=-1;
     }
 
     public int getId() {

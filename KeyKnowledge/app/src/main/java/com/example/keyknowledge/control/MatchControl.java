@@ -1,5 +1,8 @@
 package com.example.keyknowledge.control;
 
+import android.content.Intent;
+
+import com.example.keyknowledge.EndMatch;
 import com.example.keyknowledge.Match;
 import com.example.keyknowledge.model.*;
 
@@ -24,4 +27,9 @@ public class MatchControl {
     }
 
 
+    public void endMatch(Quiz quiz, int player) {
+        Intent i=new Intent(match.getApplicationContext(), EndMatch.class);
+        i.putExtra("quiz",quiz);
+        i.putExtra("player",player);
+    }
 }
