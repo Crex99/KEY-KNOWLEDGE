@@ -1,6 +1,9 @@
 package com.example.keyknowledge.model;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.example.keyknowledge.control.MatchControl;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +25,7 @@ public class MatchManager {
     private static final String TABLE="questions";
     private static final int CATEGORIES=5, LEVELS=4, QUESTIONS=4;
     private String[] categories={"arte","cultura generale","geografia","scienze","storia"};
+    private String[] questions={"arte","generale","geo","scienze","storia"};
     private String[] levels={"livello1","livello2","livello3","livello4"};
     private Quiz quiz;
     private DatabaseReference mDatabase;
@@ -39,11 +43,17 @@ public class MatchManager {
                 Random r=new Random();
                 int categoria=r.nextInt(CATEGORIES-1);
                 int level=r.nextInt(LEVELS-1);
-                int domanda=r.nextInt(QUESTIONS-1);
+                int max=(level+1)*4;
+                int min=(level+1)*4-(QUESTIONS-1);
+                int domanda=r.nextInt((max-min)+1)+min;
                 mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String question=categories[categoria]+domanda;
+                        String question=questions[categoria]+domanda;
+                        //System.out.println(categories[categoria]);
+                        //System.out.println(levels[level]);
+                        //System.out.println(question);
                         Question q=snapshot.child(categories[categoria]).child(levels[level]).child(question).getValue(Question.class);
                         control.setQuestion(q);
                     }

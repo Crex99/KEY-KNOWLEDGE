@@ -2,12 +2,20 @@ package com.example.keyknowledge;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.BlendMode;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
@@ -17,7 +25,7 @@ import java.util.ArrayList;
 public class Match extends Activity {
 
     private GridLayout grid;
-    private TextView text;
+    private TextView text,numero,categoria,livello;
     private Button b1,b2,b3,b4,confirm;
     private int currentQuestion=0,risposta_corrente=0,player;
     private Quiz quiz;
@@ -28,6 +36,7 @@ public class Match extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent i=getIntent();
         quiz=(Quiz)i.getSerializableExtra("quiz");
+        System.out.println(quiz.getNumQuesiti());
         player=i.getIntExtra("player",-1);
         control=new MatchControl(quiz,this);
         control.getQuestion();
@@ -37,89 +46,120 @@ public class Match extends Activity {
         grid=findViewById(R.id.answers);
         text=findViewById(R.id.domanda);
         b1=findViewById(R.id.b1);
-        b1.setText(question.getRisposta1());
         b2=findViewById(R.id.b2);
-        b2.setText(question.getRisposta2());
         b3=findViewById(R.id.b3);
-        b3.setText(question.getRisposta3());
         b4=findViewById(R.id.b4);
-        b4.setText(question.getRisposta4());
+        numero=findViewById(R.id.numDomanda);
+        categoria=findViewById(R.id.catDomanda);
+        livello=findViewById(R.id.livDomanda);
         list=grid.getTouchables();
         for(View v:list){
             Button b=(Button)v;
             int id=Integer.parseInt(b.getTag().toString());
             b.setOnClickListener(new View.OnClickListener(){
 
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void onClick(View v) {
                     risposta_corrente=id;
                     for(View c:list){
                         Button b2=(Button)c;
-                        b2.setBackgroundColor(Color.WHITE);
+                        if(risposta_corrente==Integer.parseInt(b2.getTag().toString())){
+                            b2.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellow)));
+                        }else{
+                            b2.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+
+                        }
                     }
-                    b.setBackgroundColor(Color.YELLOW);
                 }
             });
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setQuestion(Question q){
         question=q;
+        b1.setText(question.getRisposta1());
+        b2.setText(question.getRisposta2());
+        b3.setText(question.getRisposta3());
+        b4.setText(question.getRisposta4());
+        text.setText(question.getTesto());
+        categoria.setText(question.getCategoria());
+        livello.setText("LIVELLO "+question.getLivello());
+        numero.setText("DOMANDA n."+currentQuestion);
+        risposta_corrente=0;
+        for(View c:list){
+            Button b2=(Button)c;
+            b2.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+        }
     }
 
-    public void next(View view){
+    public void message(String x){
+        Toast.makeText(this,x,Toast.LENGTH_LONG).show();
+    }
 
-        if(risposta_corrente==question.getRisposta_corretta()){
-            if(player==1){
-                if(quiz.getPunteggioG1()<0){
-                    quiz.setPunteggioG1(0);
-                }
-                quiz.setPunteggioG1(quiz.getPunteggioG1()+1);
-            }else if(player==2){
-                if(quiz.getPunteggioG2()<0){
-                    quiz.setPunteggioG2(0);
-                }
-                quiz.setPunteggioG2(quiz.getPunteggioG2()+1);
-            }
-            int color=Color.GREEN;
-            switch(risposta_corrente){
-                case 1:
-                    b1.setBackgroundColor(color);
-                    break;
-                case 2:
-                    b2.setBackgroundColor(color);
-                    break;
-                case 3:
-                    b3.setBackgroundColor(color);
-                    break;
-                case 4:
-                    b4.setBackgroundColor(color);
-                    break;
-            }
-            //fare animazione di risposta giusta
-        }else{
-            int color=Color.RED;
-            switch(risposta_corrente){
-                case 1:
-                    b1.setBackgroundColor(color);
-                    break;
-                case 2:
-                    b2.setBackgroundColor(color);
-                    break;
-                case 3:
-                    b3.setBackgroundColor(color);
-                    break;
-                case 4:
-                    b4.setBackgroundColor(color);
-                    break;
-            }
-            //fare animazione di risposta sbagliata
-        }
-        if(currentQuestion==quiz.getNumQuesiti()){
-            control.endMatch(quiz,player);
-        }
-        control.getQuestion();
-        currentQuestion++;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void next(View view) {
+        if (quiz.getPunteggioG1() < 0) {
+                        quiz.setPunteggioG1(0);
+                    }
+        if (quiz.getPunteggioG2() < 0) {
+                        quiz.setPunteggioG2(0);
+                    }
+        if (risposta_corrente == 0) {
+            message("SELEZIONARE UNA RISPOSTA PRIMA DI ANDARE AVANTI");
+        } else {
 
+            if (risposta_corrente == question.getRisposta_esatta()) {
+                if (player == 1) {
+                    quiz.setPunteggioG1(quiz.getPunteggioG1() + 1);
+                } else if (player == 2) {
+                    quiz.setPunteggioG2(quiz.getPunteggioG2() + 1);
+                }
+                int color=getResources().getColor(R.color.green);
+                switch (risposta_corrente) {
+                    case 1:
+                        b1.setBackgroundTintList(ColorStateList.valueOf(color));
+                        break;
+                    case 2:
+                        b2.setBackgroundTintList(ColorStateList.valueOf(color));
+                        break;
+                    case 3:
+                        b3.setBackgroundTintList(ColorStateList.valueOf(color));
+                        break;
+                    case 4:
+                        b4.setBackgroundTintList(ColorStateList.valueOf(color));
+                        break;
+                }
+                //fare animazione di risposta giusta
+            } else {
+                int color = getResources().getColor(R.color.red);
+                switch (risposta_corrente) {
+                    case 1:
+                        b1.setBackgroundTintList(ColorStateList.valueOf(color));
+                        break;
+                    case 2:
+                        b2.setBackgroundTintList(ColorStateList.valueOf(color));
+                        break;
+                    case 3:
+                        b3.setBackgroundTintList(ColorStateList.valueOf(color));
+                        break;
+                    case 4:
+                        b4.setBackgroundTintList(ColorStateList.valueOf(color));
+                        break;
+                }
+                //fare animazione di risposta sbagliata
+            }
+            if (currentQuestion == quiz.getNumQuesiti()) {
+                control.endMatch(quiz, player);
+            }
+            control.getQuestion();
+            currentQuestion++;
+
+        }
+        //System.out.println(question.getRisposta_esatta());
+        //System.out.println(risposta_corrente);
+        //System.out.println(quiz.getPunteggioG1());
+        //System.out.println(quiz.getPunteggioG2());
     }
 }

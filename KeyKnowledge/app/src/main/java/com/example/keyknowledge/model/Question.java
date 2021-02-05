@@ -8,21 +8,23 @@ public class Question {
     private String risposta2;
     private String risposta3;
     private String risposta4;
-    private int risposta_corretta;
+    private int risposta_esatta;
     private String categoria;
+    private int livello;
 
     public Question() {
     }
 
-    public Question(String id,String testo,String risposta1,String risposta2,String risposta3,String risposta4,int risposta_corretta,String categoria) {
+    public Question(String id,String testo,String risposta1,String risposta2,String risposta3,String risposta4,int risposta_corretta,String categoria,int livello) {
         this.testo = testo;
         this.id=id;
         this.risposta1=risposta1;
         this.risposta2=risposta2;
         this.risposta3=risposta3;
         this.risposta4=risposta4;
-        this.risposta_corretta=risposta_corretta;
+        this.risposta_esatta=risposta_corretta;
         this.categoria=categoria;
+        this.livello=livello;
     }
 
     public String getCategoria() {
@@ -49,8 +51,12 @@ public class Question {
         return risposta4;
     }
 
-    public int getRisposta_corretta() {
-        return risposta_corretta;
+    public int getRisposta_esatta() {
+        return risposta_esatta;
+    }
+
+    public int getLivello(){
+        return livello;
     }
 
     public String getTesto() {
@@ -81,12 +87,16 @@ public class Question {
         this.risposta4 = risposta4;
     }
 
-    public void setRisposta_corretta(int risposta_corretta) {
-        this.risposta_corretta = risposta_corretta;
+    public void setRisposta_esatta(int risposta_corretta) {
+        this.risposta_esatta = risposta_corretta;
     }
 
     public void setTesto(String testo) {
         this.testo = testo;
+    }
+
+    public void setLivello(int livello){
+        this.livello=livello;
     }
 
     @Override
@@ -98,8 +108,9 @@ public class Question {
                 ", risposta2='" + risposta2 + '\'' +
                 ", risposta3='" + risposta3 + '\'' +
                 ", risposta4='" + risposta4 + '\'' +
-                ", risposta_corretta=" + risposta_corretta +
+                ", risposta_esatta=" + risposta_esatta +
                 ", categoria='" + categoria + '\'' +
+                ", livello='" + livello + '\'' +
                 '}';
     }
 }

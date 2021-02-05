@@ -16,7 +16,8 @@ public class Quiz implements Serializable {
     private String status;
 
     public Quiz(){
-
+        punteggioG1=-1;
+        punteggioG2=-1;
     }
 
     public Quiz(int a,String b,int c,String d,String e){

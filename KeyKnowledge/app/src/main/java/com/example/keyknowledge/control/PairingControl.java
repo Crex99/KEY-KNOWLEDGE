@@ -20,14 +20,12 @@ public class PairingControl {
     }
 
     public void startMatch(Quiz quiz,int player) {
-
+        System.out.println("boh");
         Intent i=new Intent(pairing.getApplicationContext(), Match.class);
         i.putExtra("quiz",quiz);
         i.putExtra("player",player);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         pairing.startActivity(i);
-        //x++;
-        //pairing.message("PARTITA DA INIZIARE "+x);
     }
 
     public void message(String x){

@@ -30,9 +30,9 @@ public class EndMatch extends Activity {
 
     public void waitOpponent() {
         if(player==1){
-            text.setText("aspettando il giocatore "+quiz.getUser2());
+            setText("aspettando il giocatore "+quiz.getUser2());
         }else{
-            text.setText("aspettando il giocatore "+quiz.getUser1());
+            setText("aspettando il giocatore "+quiz.getUser1());
         }
 
     }
@@ -40,21 +40,31 @@ public class EndMatch extends Activity {
     public void end(Quiz q) {
         if(player==1){
             if(quiz.getPunteggioG1()>quiz.getPunteggioG2()){
-                text.setText("VITTORIA!!!");
+                setText("VITTORIA!!!");
             }else if(quiz.getPunteggioG1()<quiz.getPunteggioG2()){
-                text.setText("HAI PERSO!!!");
+                setText("HAI PERSO!!!");
             }else{
-                text.setText("PAREGGIO!!!");
+                setText("PAREGGIO!!!");
             }
         }else{
             if(quiz.getPunteggioG2()>quiz.getPunteggioG1()){
-                text.setText("VITTORIA!!!");
+                setText("VITTORIA!!!");
             }else if(quiz.getPunteggioG2()<quiz.getPunteggioG1()){
-                text.setText("HAI PERSO!!!");
+                setText("HAI PERSO!!!");
             }else{
-                text.setText("PAREGGIO!!!");
+                setText("PAREGGIO!!!");
             }
         }
 
     }
+
+    public void setText(String x){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                text.setText(x);
+            }
+        });
+    }
+
 }

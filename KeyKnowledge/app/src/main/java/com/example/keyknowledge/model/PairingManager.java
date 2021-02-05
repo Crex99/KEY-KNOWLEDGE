@@ -92,7 +92,7 @@ public class PairingManager {
                             quiz.setUser2("void");
                             quiz.setUser1(us);
                             quiz.setMode(mode);
-                            quiz.setNumQuesiti(30);
+                            quiz.setNumQuesiti(10);
                             mDatabase.child(TABLE).child(mode).child(""+quiz.getId()+"").setValue(quiz);
                             mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener() {
 

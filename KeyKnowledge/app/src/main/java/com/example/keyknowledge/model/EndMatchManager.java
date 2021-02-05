@@ -26,8 +26,12 @@ public class EndMatchManager {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData currentData) {
-                if(currentData!=null){
+                if(currentData.getValue()!=null){
                     Quiz current=currentData.getValue(Quiz.class);
+                    System.out.println(current);
+                    System.out.println(quiz.getPunteggioG1());
+                    System.out.println(player);
+                    System.out.println(quiz.getPunteggioG2());
                     if(player==1){
                         currentData.child("punteggioG1").setValue(quiz.getPunteggioG1());
                     }else if(player==2){
@@ -40,10 +44,13 @@ public class EndMatchManager {
                              @Override
                              public void onDataChange(@NonNull DataSnapshot snapshot) {
                                  Quiz q=snapshot.getValue(Quiz.class);
-                                 if(q.getStatus().equals("finished")){
-                                     control.finish(q);
-                                     mDatabase.child("mathes").child(quiz.getMode()).child(""+quiz.getId()+"").removeEventListener(this);
-                                     mDatabase.child("mathes").child(quiz.getMode()).child(""+quiz.getId()+"").removeValue();
+                                 if(q!=null) {
+                                     System.out.println("MAMMA MIA");
+                                     if (q.getStatus().equals("finished")) {
+                                         control.finish(q);
+                                         mDatabase.child("mathes").child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
+                                         mDatabase.child("mathes").child(quiz.getMode()).child("" + quiz.getId() + "").removeValue();
+                                     }
                                  }
                              }
 

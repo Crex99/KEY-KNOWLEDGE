@@ -1,7 +1,6 @@
 package com.example.keyknowledge.control;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import com.example.keyknowledge.Knowledge;
 import com.example.keyknowledge.Login;
 import com.example.keyknowledge.MainActivity;
@@ -9,11 +8,10 @@ import com.example.keyknowledge.Pairing;
 import com.example.keyknowledge.R;
 import com.example.keyknowledge.model.MainManager;
 import com.example.keyknowledge.model.User;
+import static com.example.keyknowledge.model.Quiz.CLASSIC_MODE;
+import static com.example.keyknowledge.model.Quiz.MISC_MODE;
+import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.example.keyknowledge.MainActivity.CLASSIC_MODE;
-import static com.example.keyknowledge.MainActivity.MISC_MODE;
-import static com.example.keyknowledge.MainActivity.RESTART_MODE;
 
 public class MainControl {
     private Intent i;

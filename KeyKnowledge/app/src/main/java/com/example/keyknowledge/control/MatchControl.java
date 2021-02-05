@@ -1,6 +1,9 @@
 package com.example.keyknowledge.control;
 
 import android.content.Intent;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.keyknowledge.EndMatch;
 import com.example.keyknowledge.Match;
@@ -22,6 +25,7 @@ public class MatchControl {
         manager.getQuestion();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setQuestion(Question question){
         match.setQuestion(question);
     }
@@ -31,5 +35,7 @@ public class MatchControl {
         Intent i=new Intent(match.getApplicationContext(), EndMatch.class);
         i.putExtra("quiz",quiz);
         i.putExtra("player",player);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        match.startActivity(i);
     }
 }
