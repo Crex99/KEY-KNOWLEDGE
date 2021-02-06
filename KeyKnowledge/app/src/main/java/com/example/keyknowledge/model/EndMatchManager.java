@@ -16,13 +16,14 @@ public class EndMatchManager {
 
     private EndMatchControl control;
     private DatabaseReference mDatabase;
+    private static final String TABLE="matches";
     public EndMatchManager(EndMatchControl endMatchControl) {
         this.control=endMatchControl;
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void updateMatch(Quiz quiz,int player) {
-        mDatabase.child("matches").child(quiz.getMode()).child(""+quiz.getId()+"").runTransaction(new Transaction.Handler() {
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData currentData) {
@@ -40,18 +41,19 @@ public class EndMatchManager {
                      if(current.getStatus().equals("full")){
                          currentData.child("status").setValue("finishing");
                          control.waitOpponent();
-                         mDatabase.child("mathes").child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(new ValueEventListener() {
+                         System.out.println(quiz.getMode());
+                         System.out.println(quiz.getId());
+                         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(new ValueEventListener() {
                              @Override
                              public void onDataChange(@NonNull DataSnapshot snapshot) {
                                  Quiz q=snapshot.getValue(Quiz.class);
-                                 if(q!=null) {
                                      System.out.println("MAMMA MIA");
                                      if (q.getStatus().equals("finished")) {
                                          control.finish(q);
-                                         mDatabase.child("mathes").child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
-                                         mDatabase.child("mathes").child(quiz.getMode()).child("" + quiz.getId() + "").removeValue();
+                                         mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
+                                         mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeValue();
                                      }
-                                 }
+
                              }
 
                              @Override
@@ -60,13 +62,13 @@ public class EndMatchManager {
                              }
                          });
                      }else if(current.getStatus().equals("finishing")){
-                         mDatabase.child("mathes").child(quiz.getMode()).child(""+quiz.getId()+"").addListenerForSingleValueEvent(new ValueEventListener(){
+                         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addListenerForSingleValueEvent(new ValueEventListener(){
 
                              @Override
                              public void onDataChange(@NonNull DataSnapshot snapshot) {
                                  Quiz q=snapshot.getValue(Quiz.class);
                                  control.finish(q);
-                                 mDatabase.child("matches").child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("finished");
+                                 mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("finished");
                              }
 
                              @Override

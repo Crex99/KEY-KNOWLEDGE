@@ -19,6 +19,7 @@ public class EndMatch extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent i=getIntent();
         quiz=(Quiz)i.getSerializableExtra("quiz");
+        System.out.println(quiz);
         player=i.getIntExtra("player",-1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_match);
@@ -31,13 +32,18 @@ public class EndMatch extends Activity {
     public void waitOpponent() {
         if(player==1){
             setText("aspettando il giocatore "+quiz.getUser2());
+            System.out.println(quiz.getUser2());
         }else{
             setText("aspettando il giocatore "+quiz.getUser1());
+            System.out.println(quiz.getUser1());
         }
 
     }
 
     public void end(Quiz q) {
+        quiz=q;
+        System.out.println(quiz.getPunteggioG1());
+        System.out.println(quiz.getPunteggioG2());
         if(player==1){
             if(quiz.getPunteggioG1()>quiz.getPunteggioG2()){
                 setText("VITTORIA!!!");

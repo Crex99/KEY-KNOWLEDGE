@@ -11,7 +11,7 @@ public class Question {
     private int risposta_esatta;
     private String categoria;
     private int livello;
-//
+
     public Question() {
     }
 
