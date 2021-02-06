@@ -9,26 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2bd1a36-b4ed-422a-b71e-6348c3f2866b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/generated/res/google-services/debug/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/res/google-services/debug/values/values.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/example/keyknowledge/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/example/keyknowledge/BuildConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/EndMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/EndMatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/control/MainControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/control/MainControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/control/MatchControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/control/MatchControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/control/PairingControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/control/PairingControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/EndMatchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/EndMatchManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/MatchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/MatchManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/PairingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/PairingManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/keyknowledge/model/Quiz.java" afterDir="false" />
-    </list>
+    <list default="true" id="f2bd1a36-b4ed-422a-b71e-6348c3f2866b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -174,21 +155,21 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="463" y="139" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1612522339748" />
-    <state width="1322" height="390" key="GridCell.Tab.0.bottom" timestamp="1612553292928">
+    <state width="1322" height="390" key="GridCell.Tab.0.bottom" timestamp="1612567607045">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1322" height="390" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1612553292928" />
-    <state width="1322" height="390" key="GridCell.Tab.0.center" timestamp="1612553292928">
+    <state width="1322" height="390" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1612567607045" />
+    <state width="1322" height="390" key="GridCell.Tab.0.center" timestamp="1612567607044">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1322" height="390" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1612553292928" />
-    <state width="1322" height="390" key="GridCell.Tab.0.left" timestamp="1612553292928">
+    <state width="1322" height="390" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1612567607044" />
+    <state width="1322" height="390" key="GridCell.Tab.0.left" timestamp="1612567607041">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1322" height="390" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1612553292928" />
-    <state width="1322" height="390" key="GridCell.Tab.0.right" timestamp="1612553292928">
+    <state width="1322" height="390" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1612567607041" />
+    <state width="1322" height="390" key="GridCell.Tab.0.right" timestamp="1612567607045">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1322" height="390" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1612553292928" />
+    <state width="1322" height="390" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1612567607045" />
   </component>
 </project>
