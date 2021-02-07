@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
 
@@ -38,6 +40,10 @@ public class Login extends Activity {
         control.access(us.getText().toString(),pass.getText().toString());
     }
 
+
+    public void register(View view) {
+        Toast.makeText(this,"funzionalità ancora non disponibile", Toast.LENGTH_LONG).show();
+    }
 
     public void saveUser(User user) {
         SharedPreferences.Editor editor=pref.edit();

@@ -17,10 +17,8 @@ public class LoginManager {
             mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-
     public void accessUser(String nick, String pass, LoginControl control) {
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
-
 
             @Override
             public void onDataChange( DataSnapshot snapshot) {

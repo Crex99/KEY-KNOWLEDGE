@@ -12,9 +12,7 @@ public class User implements Serializable {
     private int numPartiteVinte;
     private int numPartiteGiocate;
 
-    public User(){
-
-    }
+    public User(){ }
 
     public User(String a,String b,String c,String d){
         nickname=a;
@@ -54,7 +52,6 @@ public class User implements Serializable {
         return numPartiteVinte;
     }
 
-
     public void setNickname(String x){
         nickname=x;
     }
@@ -66,7 +63,6 @@ public class User implements Serializable {
     public void setPassword(String x){
         password=x;
     }
-
 
     public void setStato(String x){
         stato=x;
@@ -83,7 +79,6 @@ public class User implements Serializable {
     public void setNumPartiteVinte(int x){
         numPartiteVinte=x;
     }
-
 
     @Override
     public String toString() {

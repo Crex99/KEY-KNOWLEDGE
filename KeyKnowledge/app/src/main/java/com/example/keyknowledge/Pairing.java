@@ -3,6 +3,7 @@ package com.example.keyknowledge;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
@@ -17,6 +18,7 @@ public class Pairing extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent i=getIntent();
         user=(User)i.getSerializableExtra("user");
+        Log.d("INFO", "USER: " + user);
         mode=i.getStringExtra("mode");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_player);
