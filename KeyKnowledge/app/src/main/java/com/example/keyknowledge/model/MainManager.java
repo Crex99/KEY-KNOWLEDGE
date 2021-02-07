@@ -29,6 +29,7 @@ public class MainManager {
                 if(user==null){
                     control.setMessage("L'utente "+nick+" non esiste");
                 }else{
+                    mDatabase.child(TABLE).child(user.getNickname()).child("stato").setValue(ONLINE);
                     control.setView(R.layout.home,user);
                     //control.setHome(user);
                 }

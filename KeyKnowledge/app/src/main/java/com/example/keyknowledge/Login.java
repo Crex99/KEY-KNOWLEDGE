@@ -11,16 +11,22 @@ import android.widget.Toast;
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
 
-public class Login extends Activity {
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
+public class Login extends Activity {
     SharedPreferences pref;
     EditText us,pass;
     LoginControl control=new LoginControl(this);
+
+    public Login()  {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pref=getSharedPreferences("profile",MODE_PRIVATE);
         setContentView(R.layout.login);
+        pref=getSharedPreferences("profile",MODE_PRIVATE);
         us=findViewById(R.id.user);
         pass=findViewById(R.id.pass);
     }

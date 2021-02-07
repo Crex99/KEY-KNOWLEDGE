@@ -45,8 +45,6 @@ com/example/keyknowledge/model/MatchManager.java
 com/example/keyknowledge/EndMatch.java
  com.example.keyknowledge.EndMatch
  com.example.keyknowledge.EndMatch$1
-com/example/keyknowledge/control/MatchControl.java
- com.example.keyknowledge.control.MatchControl
 com/example/keyknowledge/control/EndMatchControl.java
  com.example.keyknowledge.control.EndMatchControl
 com/example/keyknowledge/model/EndMatchManager.java
@@ -54,3 +52,5 @@ com/example/keyknowledge/model/EndMatchManager.java
  com.example.keyknowledge.model.EndMatchManager$1
  com.example.keyknowledge.model.EndMatchManager$1$1
  com.example.keyknowledge.model.EndMatchManager$1$2
+com/example/keyknowledge/control/MatchControl.java
+ com.example.keyknowledge.control.MatchControl
