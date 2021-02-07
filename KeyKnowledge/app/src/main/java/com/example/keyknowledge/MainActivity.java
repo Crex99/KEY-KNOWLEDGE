@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
     ImageView logo;
     GestureDetector detector;
     Animation zoom;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("main");
