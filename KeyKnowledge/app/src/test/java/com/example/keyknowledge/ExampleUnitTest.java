@@ -15,8 +15,8 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
+    //test di prova
     @Test
     public void login_isCorrect(){ assertEquals(1, 1); }
-
 
 }
