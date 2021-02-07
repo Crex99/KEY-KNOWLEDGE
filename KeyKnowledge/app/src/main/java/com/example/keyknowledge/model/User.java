@@ -1,21 +1,27 @@
 package com.example.keyknowledge.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String nickname;
     private String email;
     private String password;
-    private String state;
+    private String stato;
+    private String ruolo;
+    private int numPartiteVinte;
+    private int numPartiteGiocate;
 
-    public User(){
-
-    }
+    public User(){ }
 
     public User(String a,String b,String c,String d){
         nickname=a;
         email=c;
         password=b;
-        state=d;
+        stato=d;
+        ruolo="giocatore";
+        numPartiteVinte=0;
+        numPartiteGiocate=0;
     }
 
     public String getNickname() {
@@ -30,13 +36,21 @@ public class User {
         return password;
     }
 
-<<<<<<< HEAD
-    public String getState(){
-        return state;
+    public String getStato(){
+        return stato;
     }
-=======
-    public String getState(){ return state;}
->>>>>>> workspace_crex
+
+    public String getRuolo(){
+        return ruolo;
+    }
+
+    public int getNumPartiteGiocate(){
+        return numPartiteGiocate;
+    }
+
+    public int getNumPartiteVinte(){
+        return numPartiteVinte;
+    }
 
     public void setNickname(String x){
         nickname=x;
@@ -50,13 +64,21 @@ public class User {
         password=x;
     }
 
-<<<<<<< HEAD
-    public void setState(String x){
-        state=x;
+    public void setStato(String x){
+        stato=x;
     }
-=======
-    public void setState(String x){ state=x;}
->>>>>>> workspace_crex
+
+    public void setRuolo(String x){
+        ruolo=x;
+    }
+
+    public void setNumPartiteGiocate(int x){
+        numPartiteGiocate=x;
+    }
+
+    public void setNumPartiteVinte(int x){
+        numPartiteVinte=x;
+    }
 
     @Override
     public String toString() {
@@ -64,7 +86,10 @@ public class User {
                 "nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", state='" + state + '\'' +
+                ", stato='" + stato + '\'' +
+                ", ruolo='" + ruolo + '\'' +
+                ", partite vinte='" + numPartiteVinte + '\'' +
+                ", partite giocate='" + numPartiteGiocate + '\'' +
                 '}';
     }
 }
