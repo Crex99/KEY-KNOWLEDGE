@@ -8,6 +8,7 @@ MERGED from [com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.g
 MERGED from [com.google.firebase:firebase-analytics:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\c94fbdd07101ddb671d338fd41eee386\jetified-firebase-analytics-18.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\a662a09f936ef9769e962d90fad0478e\material-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\e9a7396e1444c212720c909ece4c39d7\constraintlayout-2.0.4\AndroidManifest.xml:2:1-11:12
+MERGED from [com.airbnb.android:lottie:3.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\9760954ba9203448ad2af3fb13e37b42\jetified-lottie-3.6.0\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\f65e7d690d0436991c66205f0487ed30\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:17:1-36:12
 MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\ce9c1c22fab5d58895273b0322acf1df\jetified-firebase-auth-interop-18.0.0\AndroidManifest.xml:2:1-10:12
@@ -83,6 +84,8 @@ MERGED from [com.google.android.material:material:1.2.1] C:\Users\Crescenzo\.gra
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\a662a09f936ef9769e962d90fad0478e\material-1.2.1\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\e9a7396e1444c212720c909ece4c39d7\constraintlayout-2.0.4\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\e9a7396e1444c212720c909ece4c39d7\constraintlayout-2.0.4\AndroidManifest.xml:9:5-20
+MERGED from [com.airbnb.android:lottie:3.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\9760954ba9203448ad2af3fb13e37b42\jetified-lottie-3.6.0\AndroidManifest.xml:9:5-20
+MERGED from [com.airbnb.android:lottie:3.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\9760954ba9203448ad2af3fb13e37b42\jetified-lottie-3.6.0\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:26:5-34:19
 MERGED from [com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:26:5-34:19
 MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\ce9c1c22fab5d58895273b0322acf1df\jetified-firebase-auth-interop-18.0.0\AndroidManifest.xml:7:5-8:19
@@ -187,6 +190,8 @@ MERGED from [com.google.android.material:material:1.2.1] C:\Users\Crescenzo\.gra
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\a662a09f936ef9769e962d90fad0478e\material-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\e9a7396e1444c212720c909ece4c39d7\constraintlayout-2.0.4\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\e9a7396e1444c212720c909ece4c39d7\constraintlayout-2.0.4\AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie:3.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\9760954ba9203448ad2af3fb13e37b42\jetified-lottie-3.6.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie:3.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\9760954ba9203448ad2af3fb13e37b42\jetified-lottie-3.6.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\f65e7d690d0436991c66205f0487ed30\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\f65e7d690d0436991c66205f0487ed30\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:20:5-44
