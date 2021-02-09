@@ -22,7 +22,7 @@ import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
 
 public class MatchManager {
 
-    private static final String TABLE="questions";
+    private static final String TABLE="matches";
     private static final int CATEGORIES=5, LEVELS=4, QUESTIONS=4;
     private String[] categories={"arte","cultura generale","geografia","scienze","storia"};
     private String[] questions={"arte","generale","geo","scienze","storia"};
@@ -30,39 +30,31 @@ public class MatchManager {
     private Quiz quiz;
     private DatabaseReference mDatabase;
     private MatchControl control;
-
+    private IaModule module;
+    private QuestionManager managerQuestion;
     public MatchManager(Quiz q,MatchControl c){
         control=c;
         quiz=q;
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        module=new IaModule(quiz);
+        managerQuestion=new QuestionManager(c);
     }
 
     public void getQuestion(){
+        Random r=new Random();
+        int categoria=r.nextInt(CATEGORIES-1);
+        int level=r.nextInt(LEVELS-1);
+        int max=(level+1)*4;
+        int min=(level+1)*4-(QUESTIONS-1);
+        int domanda=r.nextInt((max-min)+1)+min;
+        String question=questions[categoria]+domanda;
+        managerQuestion.getQuestion(categories[categoria],levels[level],question);
+    }
+
+    public void getQuestion(int current,Boolean resp){
         switch(quiz.getMode()){
             case RESTART_MODE:
-                Random r=new Random();
-                int categoria=r.nextInt(CATEGORIES-1);
-                int level=r.nextInt(LEVELS-1);
-                int max=(level+1)*4;
-                int min=(level+1)*4-(QUESTIONS-1);
-                int domanda=r.nextInt((max-min)+1)+min;
-                mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String question=questions[categoria]+domanda;
-                        //System.out.println(categories[categoria]);
-                        //System.out.println(levels[level]);
-                        //System.out.println(question);
-                        Question q=snapshot.child(categories[categoria]).child(levels[level]).child(question).getValue(Question.class);
-                        control.setQuestion(q);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                module.nextQuestion(current,resp);
                 break;
             case MISC_MODE:
             case CLASSIC_MODE:
@@ -70,5 +62,33 @@ public class MatchManager {
                 break;
         }
 
+    }
+
+    public void setQuitListener(Quiz quiz,int player) {
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot snapshot) {
+                String status = snapshot.child("status").getValue(String.class);
+                System.out.println(status+"quitted");
+                if (status.equals("quit")) {
+                    System.out.println(status+"quitted");
+                    //mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("finished");
+                    control.endMatch(quiz,player*-1);
+                    mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").removeEventListener(this);
+                }
+            }
+
+            @Override
+            public void onCancelled( DatabaseError error) {
+
+            }
+
+        });
+        }
+
+
+
+    public void quit(Quiz quiz) {
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("quit");
     }
 }

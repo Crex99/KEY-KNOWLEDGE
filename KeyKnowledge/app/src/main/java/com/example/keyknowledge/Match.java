@@ -39,8 +39,10 @@ public class Match extends Activity {
         Intent i=getIntent();
         quiz=(Quiz)i.getSerializableExtra("quiz");
         System.out.println(quiz.getNumQuesiti());
-        player=i.getIntExtra("player",-1);
+        player=i.getIntExtra("player",0);
         control=new MatchControl(quiz,this);
+        control.setQuitListener(quiz,player);
+        //control.getQuestion(currentQuestion,false);
         control.getQuestion();
         currentQuestion++;
         super.onCreate(savedInstanceState);
@@ -102,6 +104,7 @@ public class Match extends Activity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void next(View view) {
+        System.out.println(quiz);
         if (quiz.getPunteggioG1() < 0) {
                         quiz.setPunteggioG1(0);
                     }
@@ -133,6 +136,7 @@ public class Match extends Activity {
                         b4.setBackgroundTintList(ColorStateList.valueOf(color));
                         break;
                 }
+                //control.getQuestion(currentQuestion,true);
                 //fare animazione di risposta giusta
             } else {
                 int color = getResources().getColor(R.color.red);
@@ -150,13 +154,14 @@ public class Match extends Activity {
                         b4.setBackgroundTintList(ColorStateList.valueOf(color));
                         break;
                 }
+                //control.getQuestion(currentQuestion,false);
                 //fare animazione di risposta sbagliata
             }
             if (currentQuestion == quiz.getNumQuesiti()) {
                 control.endMatch(quiz, player);
             }
-            control.getQuestion();
             currentQuestion++;
+            control.getQuestion();
 
         }
         //System.out.println(question.getRisposta_esatta());
@@ -164,4 +169,39 @@ public class Match extends Activity {
         //System.out.println(quiz.getPunteggioG1());
         //System.out.println(quiz.getPunteggioG2());
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("LIFECYCLE","onRestart()");
+        System.out.println("restart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("LIFECYCLE","onResume()");
+        System.out.println("resume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("LIFECYCLE","onPause()");
+        System.out.println("pause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("LIFECYCLE","onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("LIFECYCLE","onDestroy()");
+        control.quit(quiz);
+    }
+
 }

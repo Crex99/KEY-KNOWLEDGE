@@ -24,6 +24,9 @@ public class MatchControl {
     public void getQuestion(){
         manager.getQuestion();
     }
+    public void getQuestion(int current,Boolean resp){
+        manager.getQuestion(current,resp);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setQuestion(Question question){
@@ -37,5 +40,22 @@ public class MatchControl {
         i.putExtra("player",player);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         match.startActivity(i);
+    }
+
+    public void endMatchForQuit(Quiz quiz, int player) {
+        Intent i=new Intent(match.getApplicationContext(), EndMatch.class);
+        i.putExtra("quiz",quiz);
+        i.putExtra("player",player);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        match.startActivity(i);
+    }
+
+
+    public void setQuitListener(Quiz quiz,int player) {
+        manager.setQuitListener(quiz,player);
+    }
+
+    public void quit(Quiz quiz) {
+        manager.quit(quiz);
     }
 }

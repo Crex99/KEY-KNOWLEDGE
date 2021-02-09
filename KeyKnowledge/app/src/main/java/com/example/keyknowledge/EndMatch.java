@@ -52,7 +52,7 @@ public class EndMatch extends Activity {
             }else{
                 setText("PAREGGIO!!!");
             }
-        }else{
+        }else if(player==2){
             if(quiz.getPunteggioG2()>quiz.getPunteggioG1()){
                 setText("VITTORIA!!!");
             }else if(quiz.getPunteggioG2()<quiz.getPunteggioG1()){
@@ -60,6 +60,10 @@ public class EndMatch extends Activity {
             }else{
                 setText("PAREGGIO!!!");
             }
+        }else if(player==-2){
+            setText("VITTORIA PER ABBANDONO!!!/n Il giocatore "+quiz.getUser1()+" ha abbandonato");
+        }else if(player==-1){
+            setText("VITTORIA PER ABBANDONO!!!/n Il giocatore "+quiz.getUser2()+" ha abbandonato");
         }
 
     }

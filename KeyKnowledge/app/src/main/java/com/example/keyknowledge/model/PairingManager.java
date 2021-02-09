@@ -47,7 +47,8 @@ public class PairingManager {
                                     public void onDataChange(DataSnapshot snapshot) {
                                         control.setQuiz(snapshot.child(id).getValue(Quiz.class));
                                         String status = snapshot.child(id).child("status").getValue(String.class);
-                                        if(status.equals("full")) {
+                                        String opponent=snapshot.child(id).child("user2").getValue(String.class);
+                                        if(status.equals("full")&&(!(opponent).equals("void"))) {
                                             Quiz quiz=snapshot.child(id).getValue(Quiz.class);
                                             control.startMatch(quiz,1);
                                             mDatabase.child(TABLE).child(mode).removeEventListener(this);
@@ -100,7 +101,8 @@ public class PairingManager {
                                 public void onDataChange(DataSnapshot snapshot) {
                                     control.setQuiz(snapshot.child(id).getValue(Quiz.class));
                                     String status = snapshot.child(id).child("status").getValue(String.class);
-                                    if(status.equals("full")) {
+                                    String opponent=snapshot.child(id).child("user2").getValue(String.class);
+                                    if(status.equals("full")&&(!(opponent).equals("void"))) {
                                         Quiz quiz=snapshot.child(id).getValue(Quiz.class);
                                         control.startMatch(quiz,1);
                                         mDatabase.child(TABLE).child(mode).removeEventListener(this);

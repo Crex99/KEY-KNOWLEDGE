@@ -12,6 +12,8 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
+
 public class EndMatchManager {
 
     private EndMatchControl control;
@@ -51,7 +53,18 @@ public class EndMatchManager {
                                      if (q.getStatus().equals("finished")) {
                                          control.finish(q);
                                          mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
-                                         mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeValue();
+                                         if(quiz.getId()==0){
+                                             Quiz quiz=new Quiz();
+                                             quiz.setId(0);
+                                             quiz.setStatus("wait");
+                                             quiz.setUser2("void");
+                                             quiz.setUser1("void");
+                                             quiz.setMode(RESTART_MODE);
+                                             quiz.setNumQuesiti(10);
+                                             mDatabase.child(TABLE).child(RESTART_MODE).child(""+quiz.getId()+"").setValue(quiz);
+                                         }else {
+                                             mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeValue();
+                                         }
                                      }
 
                              }
@@ -77,7 +90,33 @@ public class EndMatchManager {
                              }
                          });
 
-                    }
+                    }else if(current.getStatus().equals("quit")){
+                         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addListenerForSingleValueEvent(new ValueEventListener(){
+
+                             @Override
+                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                 Quiz q=snapshot.getValue(Quiz.class);
+                                 control.finish(q);
+                                 Quiz current=new Quiz();
+                                 if(q.getId()==0){
+                                     current.setId(0);
+                                     current.setStatus("wait");
+                                     current.setUser2("void");
+                                     current.setUser1("void");
+                                     current.setMode(RESTART_MODE);
+                                     current.setNumQuesiti(10);
+                                     mDatabase.child(TABLE).child(RESTART_MODE).child(""+current.getId()+"").setValue(current);
+                                 }else {
+                                     mDatabase.child(TABLE).child(current.getMode()).child("" + current.getId() + "").removeValue();
+                                 }
+                             }
+
+                             @Override
+                             public void onCancelled(@NonNull DatabaseError error) {
+
+                             }
+                         });
+                     }
                 }
                 return Transaction.success(currentData);
             }
