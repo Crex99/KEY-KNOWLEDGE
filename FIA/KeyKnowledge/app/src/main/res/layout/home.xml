@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:text="prova"
+        />
+    <TextView
+        android:id="@+id/testo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOME"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:onClick="logout"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+    <Button
+        android:id="@+id/playModes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startMatch1"
+        android:layout_weight="1"
+        android:text="CLASSIC MODE"
+        />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startMatch2"
+            android:layout_weight="1"
+            android:text="RESTART MODE"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startMatch3"
+            android:layout_weight="1"
+            android:text="MISC MODE"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
