@@ -56,7 +56,7 @@ public class EndMatchManager {
                                          if(quiz.getId()==0){
                                              Quiz quiz=new Quiz();
                                              quiz.setId(0);
-                                             quiz.setStatus("wait");
+                                             quiz.setStatus("void");
                                              quiz.setUser2("void");
                                              quiz.setUser1("void");
                                              quiz.setMode(RESTART_MODE);
@@ -100,7 +100,7 @@ public class EndMatchManager {
                                  Quiz current=new Quiz();
                                  if(q.getId()==0){
                                      current.setId(0);
-                                     current.setStatus("wait");
+                                     current.setStatus("void");
                                      current.setUser2("void");
                                      current.setUser1("void");
                                      current.setMode(RESTART_MODE);

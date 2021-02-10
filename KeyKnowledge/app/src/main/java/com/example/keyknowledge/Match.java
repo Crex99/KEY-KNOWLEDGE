@@ -136,7 +136,7 @@ public class Match extends Activity {
                         b4.setBackgroundTintList(ColorStateList.valueOf(color));
                         break;
                 }
-                //control.getQuestion(currentQuestion,true);
+                control.getQuestion(currentQuestion,true);
                 //fare animazione di risposta giusta
             } else {
                 int color = getResources().getColor(R.color.red);
@@ -154,20 +154,16 @@ public class Match extends Activity {
                         b4.setBackgroundTintList(ColorStateList.valueOf(color));
                         break;
                 }
-                //control.getQuestion(currentQuestion,false);
+                control.getQuestion(currentQuestion,false);
                 //fare animazione di risposta sbagliata
             }
             if (currentQuestion == quiz.getNumQuesiti()) {
                 control.endMatch(quiz, player);
+            }else {
+                currentQuestion++;
+                //control.getQuestion();
             }
-            currentQuestion++;
-            control.getQuestion();
-
         }
-        //System.out.println(question.getRisposta_esatta());
-        //System.out.println(risposta_corrente);
-        //System.out.println(quiz.getPunteggioG1());
-        //System.out.println(quiz.getPunteggioG2());
     }
 
     @Override
@@ -201,7 +197,13 @@ public class Match extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d("LIFECYCLE","onDestroy()");
-        control.quit(quiz);
+        System.out.println(currentQuestion);
+        System.out.println(quiz.getNumQuesiti());
+        if (currentQuestion != quiz.getNumQuesiti()) {
+            control.quit(quiz);
+        }
+
+
     }
 
 }

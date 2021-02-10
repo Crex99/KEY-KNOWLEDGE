@@ -69,13 +69,16 @@ public class MatchManager {
         listener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String status = snapshot.child("status").getValue(String.class);
-                System.out.println(status+"quitted");
-                if (status.equals("quit")) {
-                    System.out.println(status+"quitted");
-                    //mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("finished");
-                    control.endMatch(quiz,player*-1);
-                    mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").removeEventListener(this);
+                Quiz q=snapshot.child(""+quiz.getId()+"").getValue(Quiz.class);
+                if(q!=null&&!q.getStatus().equals("void")) {
+                    String status = snapshot.child("" + quiz.getId() + "").child("status").getValue(String.class);
+                    if (status.equals("quit")) {
+                        //mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("finished");
+                        control.endMatch(quiz, player * -1);
+                        //mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
+                    }
+                }else{
+                    mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
                 }
             }
 
@@ -84,19 +87,22 @@ public class MatchManager {
 
             }
         };
-        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(listener);
+        mDatabase.child(TABLE).child(quiz.getMode()).addValueEventListener(listener);
         }
 
 
 
     public void quit(Quiz quiz) {
-        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").removeEventListener(listener);
+        mDatabase.child(TABLE).child(quiz.getMode()).removeEventListener(listener);
         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addListenerForSingleValueEvent(new ValueEventListener(){
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue(Quiz.class)!=null){
-                    mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").child("status").setValue("quit");
+                    String control=snapshot.child("status").getValue(String.class);
+                    if(!control.equals("void")){
+                        mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").child("status").setValue("quit");
+                    }
                 }
             }
 
