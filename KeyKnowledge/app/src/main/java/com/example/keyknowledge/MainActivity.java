@@ -29,7 +29,9 @@ import static com.example.keyknowledge.model.Quiz.MISC_MODE;
 import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
 
 
-public class MainActivity extends Activity  {
+
+public class MainActivity extends Activity {
+
     SharedPreferences pref;
     User user;
     MainControl control=new MainControl(this);
@@ -38,6 +40,8 @@ public class MainActivity extends Activity  {
     private GestureDetector detector;
     int layout=0;
     Animation zoom;
+
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
