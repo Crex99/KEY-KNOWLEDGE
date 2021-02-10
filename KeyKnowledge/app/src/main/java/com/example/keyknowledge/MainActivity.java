@@ -24,66 +24,84 @@ import android.widget.Toast;
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
 
+import static com.example.keyknowledge.model.Quiz.CLASSIC_MODE;
+import static com.example.keyknowledge.model.Quiz.MISC_MODE;
+import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
 
 
 
-public class MainActivity extends Activity implements GestureDetector.OnGestureListener {
+public class MainActivity extends Activity {
+
     SharedPreferences pref;
-    public static final String RESTART_MODE="RESTART_MODE",MISC_MODE="MISC_MODE",CLASSIC_MODE="CLASSIC_MODE";
     User user;
     MainControl control=new MainControl(this);
     TextView textView;
     ImageView logo;
-    GestureDetector detector;
+    private GestureDetector detector;
+    int layout=0;
     Animation zoom;
+
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("main");
+        //System.out.println("main");
         super.onCreate(savedInstanceState);
         pref=getSharedPreferences("profile",MODE_PRIVATE);
         control.controlAccess(pref.getString("id",null));
+        detector = new GestureDetector(this,
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velx, float vely) {
+                        if (e1.getX()>e2.getX()) {
+                            //swipe verso sinistra
+                        }else {
+                            //swipe verso destra
+                            if(layout==R.layout.home) {
+                                control.goKnowledge(user);
+                            }
+                        }
+                        return true;
+                    }
+                });
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart(){
         super.onStart();
         if(!InternetConnection.haveInternetConnection(this)){
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
-                    builder.setTitle("ATTENZIONE!");
-                    builder.setCancelable(false);
-                    builder.setIcon(R.drawable.ic_baseline_signal_cellular_connected_no_internet_4_bar_24);
-                    builder.setMessage("Nessuna connessione rilevata.\nRiconnettere il dispositivo");
-                    builder.setPositiveButton("RIPROVA", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            if(!InternetConnection.haveInternetConnection(getApplicationContext())){
-                                builder.show();
-                            }
-                        }
-                    });
-                    builder.setNegativeButton("CHIUDI", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    });
+            builder.setTitle("ATTENZIONE!");
+            builder.setCancelable(false);
+            builder.setIcon(R.drawable.ic_baseline_signal_cellular_connected_no_internet_4_bar_24);
+            builder.setMessage("Nessuna connessione rilevata.\nRiconnettere il dispositivo");
+            builder.setPositiveButton("RIPROVA", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(!InternetConnection.haveInternetConnection(getApplicationContext())){
+                        builder.show();
+                    }
+                }
+            });
+            builder.setNegativeButton("CHIUDI", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
 
-                    builder.show();
+            builder.show();
         }
     }
 
 
     public void setContent(int x, User y) {
+        System.out.println("boh");
         setContentView(x);
-        if(x==R.layout.home){
-            System.out.println("home");
-            detector=new GestureDetector(this,this);
-        }
+        layout=x;
         textView=findViewById(R.id.profile);
         user=y;
         if(user!=null) {
-            System.out.println(user);
             if(textView!=null) {
                 textView.setText(user.getNickname());
             }
@@ -110,43 +128,7 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
-        //detector.onTouchEvent(event);
-        return true;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        if (e1.getX()>e2.getX()) {
-            //swipe verso sinistra
-        }else {
-            //swipe verso destra
-            control.goKnowledge(user);
-        }
+        detector.onTouchEvent(event);
         return true;
     }
     public void startMatch1(View view){
