@@ -61,9 +61,9 @@ public class EndMatch extends Activity {
                 setText("PAREGGIO!!!");
             }
         }else if(player==-2){
-            setText("VITTORIA PER ABBANDONO!!!/n Il giocatore "+quiz.getUser1()+" ha abbandonato");
+            setText("VITTORIA PER ABBANDONO!!!\n Il giocatore "+quiz.getUser1()+" ha abbandonato");
         }else if(player==-1){
-            setText("VITTORIA PER ABBANDONO!!!/n Il giocatore "+quiz.getUser2()+" ha abbandonato");
+            setText("VITTORIA PER ABBANDONO!!!\n Il giocatore "+quiz.getUser2()+" ha abbandonato");
         }
 
     }
@@ -75,6 +75,10 @@ public class EndMatch extends Activity {
                 text.setText(x);
             }
         });
+    }
+
+    public void returnHome(){
+        control.returnHome();
     }
 
 }

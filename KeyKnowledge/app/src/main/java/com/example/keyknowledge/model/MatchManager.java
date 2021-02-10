@@ -32,6 +32,7 @@ public class MatchManager {
     private MatchControl control;
     private IaModule module;
     private QuestionManager managerQuestion;
+    private ValueEventListener listener;
     public MatchManager(Quiz q,MatchControl c){
         control=c;
         quiz=q;
@@ -65,9 +66,9 @@ public class MatchManager {
     }
 
     public void setQuitListener(Quiz quiz,int player) {
-        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(new ValueEventListener() {
+        listener=new ValueEventListener() {
             @Override
-            public void onDataChange( DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String status = snapshot.child("status").getValue(String.class);
                 System.out.println(status+"quitted");
                 if (status.equals("quit")) {
@@ -79,16 +80,30 @@ public class MatchManager {
             }
 
             @Override
-            public void onCancelled( DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-        });
+        };
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(listener);
         }
 
 
 
     public void quit(Quiz quiz) {
-        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("quit");
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").removeEventListener(listener);
+        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue(Quiz.class)!=null){
+                    mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").child("status").setValue("quit");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

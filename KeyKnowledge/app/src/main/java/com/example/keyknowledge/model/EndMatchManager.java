@@ -107,7 +107,7 @@ public class EndMatchManager {
                                      current.setNumQuesiti(10);
                                      mDatabase.child(TABLE).child(RESTART_MODE).child(""+current.getId()+"").setValue(current);
                                  }else {
-                                     mDatabase.child(TABLE).child(current.getMode()).child("" + current.getId() + "").removeValue();
+                                     mDatabase.child(TABLE).child(RESTART_MODE).child("" +q.getId()+ "").removeValue();
                                  }
                              }
 

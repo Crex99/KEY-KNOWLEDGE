@@ -1,8 +1,8 @@
 package com.example.keyknowledge.control;
 
-import com.example.keyknowledge.EndMatch;
-import com.example.keyknowledge.model.EndMatchManager;
-import com.example.keyknowledge.model.Quiz;
+import android.content.Intent;
+import com.example.keyknowledge.*;
+import com.example.keyknowledge.model.*;
 
 public class EndMatchControl {
 
@@ -23,5 +23,11 @@ public class EndMatchControl {
 
     public void finish(Quiz q) {
         endMatch.end(q);
+    }
+
+    public void returnHome() {
+        Intent i=new Intent(endMatch.getApplicationContext(),MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        endMatch.startActivity(i);
     }
 }

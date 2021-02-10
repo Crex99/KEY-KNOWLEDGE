@@ -13,12 +13,60 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 
 public class IaModule {
 
+    private class Nodo{
 
-    private static final int MAX_STREAK=2;
+        private String id;
+        private String categoria;
+        private int livello;
+
+        public Nodo(String a,String b,int c){
+            id=a;
+            categoria=b;
+            livello=c;
+        }
+
+        public String getId(){
+            return id;
+        }
+
+        public String getCategoria(){
+            return categoria;
+        }
+
+        public int getLivello(){
+            return livello;
+        }
+
+        public void setId(String x){
+            id=x;
+        }
+
+        public void setCategoria(String x){
+            categoria=x;
+        }
+
+        public void setLivello(int x){
+            livello=x;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == null || getClass() != o.getClass()) return false;
+            Nodo nodo = (Nodo) o;
+            if(nodo.getId().equals(id)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+
     private Quiz quiz;
     private DatabaseReference mDatabase;
     private QuestionManager manager;
@@ -27,13 +75,15 @@ public class IaModule {
     private HashMap<String,Integer> sbagliate;
     private String[] questions={"arte","generale","geo","scienze","storia"};
     private String[] levels={"livello1","livello2","livello3","livello4"};
-    private HashMap<String,Boolean> risposte;
+    private ArrayList<Nodo> risposte;
+    private String id="",categoria="",livello="";
+    private int level=0;
 
     public IaModule(Quiz q){
         manager=new QuestionManager();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         quiz=q;
-        risposte=new HashMap<String,Boolean>();
+        risposte=new ArrayList<Nodo>();
         giuste=new HashMap<String,Integer>();
         sbagliate=new HashMap<String,Integer>();
         categories.add("arte");
@@ -49,23 +99,23 @@ public class IaModule {
     }
 
     public  void nextQuestion(int current_question,boolean risposta){
-        String id="";
-        String categoria="";
-        String livello="";
-        int level=0;
+        if(!id.equals("")){
+            Nodo pre=new Nodo(id,categoria,level);
+            risposte.add(pre);
+        }
         Random r=new Random();
         if(current_question==0){
             int cat=r.nextInt(categories.size()-1);
-             level=r.nextInt(questions.length-1);
-            int max=(level+1)*4;
-            int min=(level+1)*4-(questions.length-1);
+            level=randInt(1,4);
+            int max=(level)*4;
+            int min=(level)*4-(questions.length-1);
             int domanda=randInt(min,max);
             categoria=categories.get(cat);
-            livello=levels[level];
             id=questions[cat]+domanda;
+            livello="livello"+level;
             manager.getQuestion(categoria,livello,id);
+            return;
         }else{
-            risposte.put(id,risposta);
             if(risposta){
                 giuste.put(categoria,giuste.get(categoria)+1);
                 sbagliate.put(categoria,0);
@@ -82,30 +132,36 @@ public class IaModule {
                     }
                     if(id==null){
                             String category=getRandomCategory(categoria);
-                            id=getRandomQuestion(0,category);
-                            manager.getQuestion(category,"livello0",id);
+                            id=getRandomQuestion(1,category);
+                            manager.getQuestion(category,"livello1",id);
                         //id=getRandomQuestion(level,categoria);
                     }
 
                     //manager.getQuestion(categoria,livello,id);
                 }else if(giuste.get(categoria)>1){
                     String category=getRandomCategory(categoria);
-                    id=getRandomQuestion(0,category);
-                    manager.getQuestion(categoria,"livello0",id);
+                    id=getRandomQuestion(1,category);
+                    manager.getQuestion(categoria,"livello1",id);
                 }
             }else{
                 categories.add(categoria);
                 sbagliate.put(categoria,sbagliate.get(categoria)+1);
                 giuste.put(categoria,0);
                 if(sbagliate.get(categoria)==1){
+                    id=getRandomQuestion(level,categoria);
+                    while(id==null){
+                        level--;
+                        id=getRandomQuestion(level,categoria);
+                    }
                     manager.getQuestion(categoria,livello,id);
+                    return;
                 }else if(sbagliate.get(categoria)==2){
                     level--;
 
                 }else if(sbagliate.get(categoria)>=3){
                     String category=getRandomCategory(categoria);
-                    id=getRandomQuestion(0,category);
-                    manager.getQuestion(category,"livello0",id);
+                    id=getRandomQuestion(1,category);
+                    manager.getQuestion(category,"livello1",id);
                     return;
                 }
             }
@@ -116,7 +172,32 @@ public class IaModule {
         }
     }
 
-    public static int randInt(int min, int max) {
+    private Nodo changeCategory(String attuale){
+        Nodo result;
+        String cavia=getRandomCategory(attuale);
+        for(Nodo n:risposte){
+            if(n.getCategoria().equals(cavia)){
+                int livello=n.getLivello();
+                String q=getRandomQuestion(livello,cavia);
+                while(q==null){
+                    livello++;
+                    q=getRandomQuestion(livello,cavia);
+                }
+                result=new Nodo(q,cavia,livello);
+                return result;
+            }
+        }
+        String question=getRandomQuestion(1,cavia);
+        int i=1;
+        while(question==null){
+            i++;
+            question=getRandomQuestion(i,cavia);
+        }
+        result=new Nodo(question,cavia,i);
+        return result;
+    }
+
+    private static int randInt(int min, int max) {
 
         // Usually this can be a field rather than a method variable
         Random rand = new Random();
@@ -141,12 +222,17 @@ public class IaModule {
     }
 
    private String getRandomQuestion(int level,String categoria){
-        int max=(level+1)*4;
-        int min=(level+1)*4-(questions.length-1);
+        int max=(level)*4;
+        int min=(level)*4-3;
         int domanda=randInt(min,max);
         String result=categoria+domanda;
-        while((risposte.containsKey(result))) {
-            if(risposte.containsKey(categoria+min)&&risposte.containsKey(categoria+min+1)&&risposte.containsKey(categoria+min+2)&&risposte.containsKey(categoria+max)) {
+        Nodo nodo=new Nodo(result,categoria,level);
+        Nodo nodo1=new Nodo(categoria+min,categoria,level);
+        Nodo nodo2=new Nodo(categoria+(min+1),categoria,level);
+        Nodo nodo3=new Nodo(categoria+(min+2),categoria,level);
+        Nodo nodo4=new Nodo(categoria+max,categoria,level);
+        while((risposte.contains(nodo))) {
+            if(risposte.contains(nodo1)&&risposte.contains(nodo2)&&risposte.contains(nodo3)&&risposte.contains(nodo4)) {
                 return null;
             }
             domanda=randInt(min,max);
