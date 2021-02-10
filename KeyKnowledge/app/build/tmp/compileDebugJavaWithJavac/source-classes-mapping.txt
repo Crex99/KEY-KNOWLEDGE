@@ -54,6 +54,7 @@ com/example/keyknowledge/EndMatch.java
  com.example.keyknowledge.EndMatch$1
 com/example/keyknowledge/model/IaModule.java
  com.example.keyknowledge.model.IaModule
+ com.example.keyknowledge.model.IaModule$Nodo
 com/example/keyknowledge/control/EndMatchControl.java
  com.example.keyknowledge.control.EndMatchControl
 com/example/keyknowledge/model/EndMatchManager.java

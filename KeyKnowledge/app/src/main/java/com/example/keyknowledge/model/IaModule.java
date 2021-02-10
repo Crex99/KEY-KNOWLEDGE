@@ -1,19 +1,9 @@
 package com.example.keyknowledge.model;
 
-import android.os.Build;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Random;
 
 public class IaModule {
@@ -73,6 +63,7 @@ public class IaModule {
     private ArrayList<String> categories=new ArrayList<String>();
     private HashMap<String,Integer> giuste;
     private HashMap<String,Integer> sbagliate;
+    private static final String[] CATEGORIE={"arte","cultura generale","geografia","scienze","storia"};
     private String[] questions={"arte","generale","geo","scienze","storia"};
     private String[] levels={"livello1","livello2","livello3","livello4"};
     private ArrayList<Nodo> risposte;
@@ -86,115 +77,102 @@ public class IaModule {
         risposte=new ArrayList<Nodo>();
         giuste=new HashMap<String,Integer>();
         sbagliate=new HashMap<String,Integer>();
-        categories.add("arte");
-        categories.add("cultura generale");
-        categories.add("geografia");
-        categories.add("scienze");
-        categories.add("storia");
         for(int i=0;i<5;i++){
-            String curr=categories.get(i);
+            String curr=CATEGORIE[i];
             giuste.put(curr,0);
             sbagliate.put(curr,0);
+            categories.add(curr);
         }
     }
-
+/*
+* Questo algoritmo si ferma una volta che current_question raggiunge valore 10
+* ,il controllo però viene gestito dalla classe MainActivity  poichè quando current_question raggiunge 10
+* bisogna cambiare activity e quindi è inutile controllare anche qui il valore di current_question
+* */
     public  void nextQuestion(int current_question,boolean risposta){
         if(!id.equals("")){
             Nodo pre=new Nodo(id,categoria,level);
             risposte.add(pre);
         }
-        Random r=new Random();
         if(current_question==0){
-            int cat=r.nextInt(categories.size()-1);
-            level=randInt(1,4);
-            int max=(level)*4;
-            int min=(level)*4-(questions.length-1);
-            int domanda=randInt(min,max);
-            categoria=categories.get(cat);
-            id=questions[cat]+domanda;
-            livello="livello"+level;
-            manager.getQuestion(categoria,livello,id);
+            sendFirstQuestion();
             return;
         }else{
+            updateStory(risposta,categoria);
             if(risposta){
-                giuste.put(categoria,giuste.get(categoria)+1);
-                sbagliate.put(categoria,0);
-                for(String cat:categories){
-                    if(!cat.equals(categoria)){
-                        categories.add(cat);
-                    }
-                }
+                downProbability(categoria);
                 if(giuste.get(categoria)==1){
-                    if(level<4){
-                        level++;
-                        id=getRandomQuestion(level,categoria);
-                        manager.getQuestion(categoria,"livello"+level,id);
-                    }
-                    if(id==null){
-                            String category=getRandomCategory(categoria);
-                            id=getRandomQuestion(1,category);
-                            manager.getQuestion(category,"livello1",id);
-                        //id=getRandomQuestion(level,categoria);
-                    }
-
-                    //manager.getQuestion(categoria,livello,id);
-                }else if(giuste.get(categoria)>1){
-                    String category=getRandomCategory(categoria);
-                    id=getRandomQuestion(1,category);
-                    manager.getQuestion(categoria,"livello1",id);
+                    Nodo next=getRandomQuestionUp(level,categoria);
+                    sendQuestion(next);
+                    return;
+                }else if(giuste.get(categoria)==2){
+                    Nodo next=getRandomQuestionUp(level-1,categoria);
+                    sendQuestion(next);
+                    return;
+                }else if(giuste.get(categoria)>=3){
+                    Nodo next=changeCategoryUp(categoria);
+                    sendQuestion(next);
+                    return;
                 }
             }else{
-                categories.add(categoria);
-                sbagliate.put(categoria,sbagliate.get(categoria)+1);
-                giuste.put(categoria,0);
+                upProbability(categoria);
                 if(sbagliate.get(categoria)==1){
-                    id=getRandomQuestion(level,categoria);
-                    while(id==null){
-                        level--;
-                        id=getRandomQuestion(level,categoria);
-                    }
-                    manager.getQuestion(categoria,livello,id);
+                    Nodo next=getRandomQuestionDown(level,categoria);
+                    sendQuestion(next);
                     return;
                 }else if(sbagliate.get(categoria)==2){
-                    level--;
-
+                    Nodo next=getRandomQuestionDown(level-1,categoria);
+                    sendQuestion(next);
+                    return;
                 }else if(sbagliate.get(categoria)>=3){
-                    String category=getRandomCategory(categoria);
-                    id=getRandomQuestion(1,category);
-                    manager.getQuestion(category,"livello1",id);
+                    Nodo next=changeCategoryDown(categoria);
+                    sendQuestion(next);
                     return;
                 }
             }
-
-
-
-
         }
     }
 
-    private Nodo changeCategory(String attuale){
-        Nodo result;
+    private void sendFirstQuestion(){
+        Random r=new Random();
+        int cat=r.nextInt(categories.size()-1);
+        level=randInt(1,4);
+        int max=(level)*4;
+        int min=(level)*4-(questions.length-1);
+        int domanda=randInt(min,max);
+        categoria=categories.get(cat);
+        id=questions[cat]+domanda;
+        livello="livello"+level;
+        manager.getQuestion(categoria,livello,id);
+    }
+
+    private void sendQuestion(Nodo next){
+        categoria=next.getCategoria();
+        level=next.getLivello();
+        id=next.getId();
+        manager.getQuestion(categoria,"livello"+level,id);
+    }
+
+    private Nodo changeCategoryDown(String attuale){
         String cavia=getRandomCategory(attuale);
         for(Nodo n:risposte){
             if(n.getCategoria().equals(cavia)){
                 int livello=n.getLivello();
-                String q=getRandomQuestion(livello,cavia);
-                while(q==null){
-                    livello++;
-                    q=getRandomQuestion(livello,cavia);
-                }
-                result=new Nodo(q,cavia,livello);
-                return result;
+                return getRandomQuestionDown(livello,cavia);
             }
         }
-        String question=getRandomQuestion(1,cavia);
-        int i=1;
-        while(question==null){
-            i++;
-            question=getRandomQuestion(i,cavia);
+        return getRandomQuestionUp(1,cavia);
+    }
+
+    private Nodo changeCategoryUp(String attuale){
+        String cavia=getRandomCategory(attuale);
+        for(Nodo n:risposte){
+            if(n.getCategoria().equals(cavia)){
+                int livello=n.getLivello();
+                return getRandomQuestionUp(livello,cavia);
+            }
         }
-        result=new Nodo(question,cavia,i);
-        return result;
+        return getRandomQuestionUp(1,cavia);
     }
 
     private static int randInt(int min, int max) {
@@ -239,5 +217,67 @@ public class IaModule {
             result=categoria+domanda;
         }
         return result;
+    }
+
+    private Nodo getRandomQuestionUp(int level,String categoria){
+
+        String q=getRandomQuestion(level,categoria);
+        int livello=level;
+        while(q==null){
+            livello++;
+            if(livello>4){
+                return changeCategoryDown(categoria);
+
+            }
+            q=getRandomQuestion(livello,categoria);
+        }
+        Nodo result=new Nodo(q,categoria,livello);
+        return result;
+    }
+
+    private Nodo getRandomQuestionDown(int level,String categoria){
+        String q=getRandomQuestion(level,categoria);
+        int livello=level;
+        while(q==null){
+            livello--;
+            if(livello<1){
+                return changeCategoryUp(categoria);
+
+            }
+            q=getRandomQuestion(livello,categoria);
+        }
+        Nodo result=new Nodo(q,categoria,livello);
+        return result;
+    }
+
+    private void upProbability(String category){
+        categories.add(category);
+    }
+
+    private void downProbability(String category){
+        for(String s:categories){
+            if(s.equals(category)){
+                continue;
+            }
+            categories.add(s);
+        }
+    }
+
+    private void updateStory(boolean b,String category){
+        for(int i=0;i<5;i++){
+            String curr=CATEGORIE[i];
+            if(curr.equals(category)){
+                continue;
+            }
+            giuste.put(curr,0);
+            sbagliate.put(curr,0);
+        }
+        if(b){
+            giuste.put(category,giuste.get(category)+1);
+            sbagliate.put(category,0);
+        }else{
+            sbagliate.put(category,sbagliate.get(category)+1);
+            giuste.put(category,0);
+        }
     }
 }

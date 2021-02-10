@@ -24,12 +24,12 @@
         "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_cervello_foreground.png.flat",
-        "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\src\\main\\res\\mipmap-hdpi\\cervello_foreground.png"
-    },
-    {
         "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_cervello_background.png.flat",
         "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\cervello_background.png"
+    },
+    {
+        "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_cervello_foreground.png.flat",
+        "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\src\\main\\res\\mipmap-hdpi\\cervello_foreground.png"
     },
     {
         "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_logo_foreground.png.flat",
@@ -40,12 +40,12 @@
         "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\src\\main\\res\\layout\\home.xml"
     },
     {
-        "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher_background.png.flat",
-        "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_launcher_background.png"
-    },
-    {
         "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_cervello_foreground.png.flat",
         "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\src\\main\\res\\mipmap-xxhdpi\\cervello_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher_background.png.flat",
+        "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_launcher_background.png"
     },
     {
         "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_logout.png.flat",
@@ -64,24 +64,24 @@
         "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_logout.png.flat",
-        "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\logout.png"
-    },
-    {
         "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_logo_round.png.flat",
         "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\src\\main\\res\\mipmap-xhdpi\\logo_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_logout.png.flat",
+        "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\logout.png"
     },
     {
         "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ready_quiz2.jpg.flat",
         "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\src\\main\\res\\mipmap-xxxhdpi\\ready_quiz2.jpg"
     },
     {
-        "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_cervello_background.png.flat",
-        "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\cervello_background.png"
-    },
-    {
         "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
         "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_cervello_background.png.flat",
+        "source": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\cervello_background.png"
     },
     {
         "merged": "C:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_logo_background.xml.flat",
