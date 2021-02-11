@@ -1,1 +1,73 @@
-PSEUDOCODICE
+
+PSEUDOCODICE:
+
+list categorie: {arte,cultura generale,geografia,scienze,storia}
+list levels: {livello1, livello2, livello3, livello4}
+Inizializzo:
+-Insieme esplorato dei nodi{domanda, categoria, livello}, Ns = Ø
+-Insieme che mantiene il conteggio delle risposte giuste di ogni categoria, Rg = Ø
+-Insieme che mantiene il conteggio delle risposte sbagliate di ogni categoria, Rs = Ø
+ categoria_corrente = Ø, livello_corrente = 0, domanda_corrente = Ø
+	
+	function nextQuestion(indice_domanda_corrente, risposta){
+	
+		if domanda non è vuoto then aggiungi nodo{categoria_corrente, livello_corrente, domanda_corrente} in Ns
+		
+		if indice_domanda_corrente = 0 then //prima domanda
+		
+			seleziona domanda di livello 1 e categoria casuale; 
+			aggiorna categoria_corrente, livello_corrente, domanda_corrente;
+			
+		else //n-esima domanda
+		
+			if risposta è giusta then
+				
+				incrementa il conteggio di Rg<categoria_corrente>;
+				poni a 0 il conteggio di Rs<categoria_corrente>;
+				aumenta la probabilità che venghino selezionate tutte le categorie != categoria_corrente, nella scelta random;
+				
+				if conteggio di Rg<categoria_corrente> = 1 then
+					
+					return domanda d casuale di livello_corrente e categoria_corrente, con d non contenuta nei nodi in Ns;
+				
+				if conteggio di Rg<categoria_corrente> = 2 then
+					
+					livello_corrente <- livello_corrente + 1;
+					return domanda d casuale di livello_corrente e categoria_corrente, con d non contenuta nei nodi in Ns;
+					
+				if conteggio di Rg<categoria_corrente> >= 3 then
+					
+					categoria_corrente <- genera categoria random;
+					if categoria_corrente è contenuta in un nodo n, in Ns, con livello l then
+						return domanda casuale di categoria: categoria_corrente e livello l incrementato;
+					else
+						return domanda casuale di categoria: categoria_corrente e livello 1;
+						
+			else 
+				
+				incrementa il conteggio di Rs<categoria_corrente>;
+				poni a 0 il conteggio di Rg<categoria_corrente>;
+				aumenta la probabilità che viene seleazionata la categoria_corrente;
+				
+				if conteggio di Rs<categoria_corrente> = 1 then
+					
+					return domanda d casuale di livello_corrente e categoria_corrente, con d non contenuta nei nodi in Ns;
+					
+				if 	conteggio di Rs<categoria_corrente> = 2 then
+					
+					livello_corrente <- livello_corrente - 1;
+					return domanda d casuale di livello_corrente e categoria_corrente, con d non contenuta nei nodi in Ns;
+					
+				if conteggio di Rs<categoria_corrente> >= 3 then
+					
+					categoria_corrente <- genera categoria random;
+					if categoria_corrente è contenuta in un nodo n, in Ns, con livello l then
+						return domanda casuale di categoria: categoria_corrente e livello l decrementato;
+					else
+						return domanda casuale di categoria: categoria_corrente e livello 1;
+					
+	}		
+
+	
+	
+	
