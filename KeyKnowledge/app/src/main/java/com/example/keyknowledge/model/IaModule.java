@@ -108,34 +108,22 @@ public class IaModule {
             risposte.add(0,pre);
         }
         if(current_question==0){
-            System.out.println("PRIMA DOMANDA");
             sendFirstQuestion();
             return;
         }else{
-            System.out.println("categoria:");
-            System.out.println(categoria);
             updateStory(risposta,categoria);
             if(risposta){
                 downProbability(categoria);
                 if(giuste.get(categoria)==1){
                     Nodo next=getRandomQuestionUp(level,categoria);
-                    System.out.println(next.getId());
-                    System.out.println(next.getCategoria());
-                    System.out.println(next.getLivello());
                     sendQuestion(next);
                     return;
                 }else if(giuste.get(categoria)==2){
                     Nodo next=getRandomQuestionUp(level+1,categoria);
-                    System.out.println(next.getId());
-                    System.out.println(next.getCategoria());
-                    System.out.println(next.getLivello());
                     sendQuestion(next);
                     return;
                 }else if(giuste.get(categoria)>=3){
                     Nodo next=changeCategoryUp(categoria);
-                    System.out.println(next.getId());
-                    System.out.println(next.getCategoria());
-                    System.out.println(next.getLivello());
                     sendQuestion(next);
                     return;
                 }
@@ -143,23 +131,14 @@ public class IaModule {
                 upProbability(categoria);
                 if(sbagliate.get(categoria)==1){
                     Nodo next=getRandomQuestionDown(level,categoria);
-                    System.out.println(next.getId());
-                    System.out.println(next.getCategoria());
-                    System.out.println(next.getLivello());
                     sendQuestion(next);
                     return;
                 }else if(sbagliate.get(categoria)==2){
                     Nodo next=getRandomQuestionDown(level-1,categoria);
-                    System.out.println(next.getId());
-                    System.out.println(next.getCategoria());
-                    System.out.println(next.getLivello());
                     sendQuestion(next);
                     return;
                 }else if(sbagliate.get(categoria)>=3){
                     Nodo next=changeCategoryDown(categoria);
-                    System.out.println(next.getId());
-                    System.out.println(next.getCategoria());
-                    System.out.println(next.getLivello());
                     sendQuestion(next);
                     return;
                 }
@@ -185,7 +164,6 @@ public class IaModule {
     }
 
     private void sendQuestion(Nodo next){
-        System.out.println("sendQuestion");
         categoria=next.getCategoria();
         level=next.getLivello();
         id=next.getId();
@@ -193,7 +171,6 @@ public class IaModule {
     }
 
     private Nodo changeCategoryDown(String attuale){
-        System.out.println("changeCategoryDown");
         String cavia=getRandomCategory(attuale);
         for(int i=risposte.size()-1;i>=0;i--){
             Nodo n=risposte.get(i);
@@ -206,7 +183,6 @@ public class IaModule {
     }
 
     private Nodo changeCategoryUp(String attuale){
-        System.out.println("changeCategoryUp");
         String cavia=getRandomCategory(attuale);
         for(int i=risposte.size()-1;i>=0;i--){
             Nodo n=risposte.get(i);
@@ -232,7 +208,6 @@ public class IaModule {
 
     //prende in input la categoria che non deve essere ripescata
     private String getRandomCategory(String exclusive){
-        System.out.println("RandomCategory");
         int index=randInt(0,categories.size()-1);
         String result=categories.get(index);
         while(result.equals(exclusive)){
@@ -244,7 +219,6 @@ public class IaModule {
     }
 
    private String getRandomQuestion(int level,String categoria){
-       System.out.println("RandomQuestion");
         int max=(level)*4;
         int min=(level)*4-3;
         int domanda=randInt(min,max);
@@ -273,7 +247,6 @@ public class IaModule {
     }
 
     private Nodo getRandomQuestionUp(int level,String categoria){
-        System.out.println("RandomQuestionUp");
             if(level>4){
                 return changeCategoryDown(categoria);
             }
@@ -292,7 +265,6 @@ public class IaModule {
     }
 
     private Nodo getRandomQuestionDown(int level,String categoria){
-        System.out.println("RandomQuestionDown");
         if(level<1){
             return changeCategoryUp(categoria);
         }
@@ -311,12 +283,10 @@ public class IaModule {
     }
 
     private void upProbability(String category){
-        System.out.println("upProbability");
         categories.add(category);
     }
 
     private void downProbability(String category){
-        System.out.println("downProbability");
         for(int i=0;i<5;i++){
             String s=CATEGORIE[i];
             if(!s.equals(category)){

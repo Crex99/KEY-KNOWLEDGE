@@ -37,7 +37,6 @@ public class PairingManager {
                         String id = "" + i + "";
                         if (currentData.hasChild(id)) {
                             String status = currentData.child(id).child("status").getValue(String.class);
-                            //System.out.println(status);
                             if (status.equals("void")) {
                                 mDatabase.child(TABLE).child(mode).child(id).child("status").setValue("wait");
                                 mDatabase.child(TABLE).child(mode).child(id).child("user1").setValue(user.getNickname());
@@ -64,7 +63,6 @@ public class PairingManager {
                             } else if (status.equals("wait")) {
                                 mDatabase.child(TABLE).child(mode).child(id).child("status").setValue("full");
                                 mDatabase.child(TABLE).child(mode).child(id).child("user2").setValue(user.getNickname());
-                                String opponent = currentData.child(id).child("user1").getValue(String.class);
                                 mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener() {
 
                                     @Override
@@ -114,7 +112,6 @@ public class PairingManager {
 
                                 }
                             });
-                            //mDatabase.child(TABLE).child(mode).child(id).removeValue();
                             break;
                         }
                     }

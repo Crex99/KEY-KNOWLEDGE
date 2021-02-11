@@ -1,23 +1,16 @@
 package com.example.keyknowledge;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.drawable.Icon;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +38,6 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //System.out.println("main");
         super.onCreate(savedInstanceState);
         pref=getSharedPreferences("profile",MODE_PRIVATE);
         control.controlAccess(pref.getString("id",null));
@@ -96,7 +88,6 @@ public class MainActivity extends Activity {
 
 
     public void setContent(int x, User y) {
-        System.out.println("boh");
         setContentView(x);
         layout=x;
         textView=findViewById(R.id.profile);

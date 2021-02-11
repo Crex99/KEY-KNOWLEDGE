@@ -3,23 +3,15 @@ package com.example.keyknowledge;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.BlendMode;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import android.util.Log;
-
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
-
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
 
@@ -39,7 +31,6 @@ public class Match extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent i=getIntent();
         quiz=(Quiz)i.getSerializableExtra("quiz");
-        System.out.println(quiz.getNumQuesiti());
         player=i.getIntExtra("player",0);
         control=new MatchControl(quiz,this);
         control.setQuitListener(quiz,player);
@@ -105,7 +96,6 @@ public class Match extends Activity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void next(View view) {
-        System.out.println(quiz);
         if (quiz.getPunteggioG1() < 0) {
                         quiz.setPunteggioG1(0);
                     }
@@ -171,21 +161,18 @@ public class Match extends Activity {
     protected void onRestart() {
         super.onRestart();
         Log.d("LIFECYCLE","onRestart()");
-        System.out.println("restart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Log.d("LIFECYCLE","onResume()");
-        System.out.println("resume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         Log.d("LIFECYCLE","onPause()");
-        System.out.println("pause");
     }
 
     @Override
@@ -198,8 +185,6 @@ public class Match extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d("LIFECYCLE","onDestroy()");
-        System.out.println(currentQuestion);
-        System.out.println(quiz.getNumQuesiti());
         if (currentQuestion != quiz.getNumQuesiti()) {
             control.quit(quiz);
         }

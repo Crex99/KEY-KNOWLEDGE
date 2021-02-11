@@ -73,9 +73,7 @@ public class MatchManager {
                 if(q!=null&&!q.getStatus().equals("void")) {
                     String status = snapshot.child("" + quiz.getId() + "").child("status").getValue(String.class);
                     if (status.equals("quit")) {
-                        //mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("finished");
                         control.endMatch(quiz, player * -1);
-                        //mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
                     }
                 }else{
                     mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
