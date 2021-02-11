@@ -37,7 +37,7 @@ public class MatchManager {
         control=c;
         quiz=q;
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        module=new IaModule(quiz);
+        module=new IaModule(quiz,c);
         managerQuestion=new QuestionManager(c);
     }
 

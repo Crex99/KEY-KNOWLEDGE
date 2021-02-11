@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 
 public class Match extends Activity {
 
-    private GridLayout grid;
+    private LinearLayout grid;
     private TextView text,numero,categoria,livello;
     private Button b1,b2,b3,b4,confirm;
     private int currentQuestion=0,risposta_corrente=0,player;
@@ -42,8 +43,8 @@ public class Match extends Activity {
         player=i.getIntExtra("player",0);
         control=new MatchControl(quiz,this);
         control.setQuitListener(quiz,player);
-        //control.getQuestion(currentQuestion,false);
-        control.getQuestion();
+        control.getQuestion(currentQuestion,false);
+        //control.getQuestion();
         currentQuestion++;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.match);
