@@ -3,22 +3,20 @@ PSEUDOCODICE:
 
 list categorie: {arte,cultura generale,geografia,scienze,storia}
 list levels: {livello1, livello2, livello3, livello4}
-
 Inizializzo:
-
 -Insieme esplorato dei nodi{domanda, categoria, livello}: N = Ø
--Insieme che mantiene il conteggio delle risposte giuste consecutive di ogni categoria: Rg = Ø
+-Insieme che mantiene il conteggio delle risposte giuste consecutive di ogni categoria: Rg = Ø		
 -Insieme che mantiene il conteggio delle risposte sbagliate consecutive di ogni categoria: Rs = Ø
  categoria = Ø, livello = 0, domanda = Ø
-	
+ 
 	function nextQuestion(indice_domanda_corrente, risposta){
-	
+		
 		if domanda non è vuoto then aggiungi nodo{categoria, livello, domanda} in N
 		
 		if indice_domanda_corrente = 0 then //prima domanda
 		
-			seleziona domanda casuale di livello 1 e categoria random; 
-			aggiorna categoria, livello, domanda;
+			seleziona domanda casuale di livello 1 e categoria random; O(1)
+			aggiorna categoria, livello, domanda; O(1)
 			
 		else //n-esima domanda
 		
@@ -30,7 +28,7 @@ Inizializzo:
 				
 				if conteggio di Rg<categoria> = 1 then
 					
-					return domanda: d casuale di livello: livello e categoria: categoria, con d non contenuta nei nodi in N;
+					return domanda: d casuale di livello: livello e categoria: categoria, con d non contenuta nei nodi in N; O(n)
 				
 				if conteggio di Rg<categoria> = 2 then
 					
