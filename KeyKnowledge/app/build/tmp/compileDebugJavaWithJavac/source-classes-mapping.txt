@@ -1,29 +1,34 @@
 com/example/keyknowledge/model/KnowledgeManager.java
  com.example.keyknowledge.model.KnowledgeManager
-com/example/keyknowledge/control/KnowledgeControl.java
- com.example.keyknowledge.control.KnowledgeControl
+com/example/keyknowledge/control/QuestionControl.java
+ com.example.keyknowledge.control.QuestionControl
 com/example/keyknowledge/model/PairingManager.java
  com.example.keyknowledge.model.PairingManager
  com.example.keyknowledge.model.PairingManager$1
  com.example.keyknowledge.model.PairingManager$1$1
  com.example.keyknowledge.model.PairingManager$1$2
  com.example.keyknowledge.model.PairingManager$1$3
-com/example/keyknowledge/model/User.java
- com.example.keyknowledge.model.User
+com/example/keyknowledge/model/IaModule.java
+ com.example.keyknowledge.model.IaModule
+ com.example.keyknowledge.model.IaModule$Nodo
 com/example/keyknowledge/model/MainManager.java
  com.example.keyknowledge.model.MainManager
  com.example.keyknowledge.model.MainManager$1
 com/example/keyknowledge/Pairing.java
  com.example.keyknowledge.Pairing
+com/example/keyknowledge/control/KnowledgeControl.java
+ com.example.keyknowledge.control.KnowledgeControl
+com/example/keyknowledge/model/Quiz.java
+ com.example.keyknowledge.model.Quiz
+com/example/keyknowledge/model/EndMatchManager.java
+ com.example.keyknowledge.model.EndMatchManager
+ com.example.keyknowledge.model.EndMatchManager$1
+ com.example.keyknowledge.model.EndMatchManager$1$1
+ com.example.keyknowledge.model.EndMatchManager$1$2
+ com.example.keyknowledge.model.EndMatchManager$1$3
 com/example/keyknowledge/model/QuestionManager.java
  com.example.keyknowledge.model.QuestionManager
  com.example.keyknowledge.model.QuestionManager$1
-com/example/keyknowledge/model/Quiz.java
- com.example.keyknowledge.model.Quiz
-com/example/keyknowledge/Knowledge.java
- com.example.keyknowledge.Knowledge
-com/example/keyknowledge/control/PairingControl.java
- com.example.keyknowledge.control.PairingControl
 com/example/keyknowledge/model/LoginManager.java
  com.example.keyknowledge.model.LoginManager
  com.example.keyknowledge.model.LoginManager$1
@@ -35,8 +40,8 @@ com/example/keyknowledge/control/LoginControl.java
  com.example.keyknowledge.control.LoginControl
 com/example/keyknowledge/Login.java
  com.example.keyknowledge.Login
-com/example/keyknowledge/control/QuestionControl.java
- com.example.keyknowledge.control.QuestionControl
+com/example/keyknowledge/control/EndMatchControl.java
+ com.example.keyknowledge.control.EndMatchControl
 com/example/keyknowledge/BuildConfig.java
  com.example.keyknowledge.BuildConfig
 com/example/keyknowledge/Match.java
@@ -52,17 +57,12 @@ com/example/keyknowledge/MainActivity.java
 com/example/keyknowledge/EndMatch.java
  com.example.keyknowledge.EndMatch
  com.example.keyknowledge.EndMatch$1
-com/example/keyknowledge/model/IaModule.java
- com.example.keyknowledge.model.IaModule
- com.example.keyknowledge.model.IaModule$Nodo
-com/example/keyknowledge/control/EndMatchControl.java
- com.example.keyknowledge.control.EndMatchControl
-com/example/keyknowledge/model/EndMatchManager.java
- com.example.keyknowledge.model.EndMatchManager
- com.example.keyknowledge.model.EndMatchManager$1
- com.example.keyknowledge.model.EndMatchManager$1$1
- com.example.keyknowledge.model.EndMatchManager$1$2
- com.example.keyknowledge.model.EndMatchManager$1$3
+com/example/keyknowledge/model/User.java
+ com.example.keyknowledge.model.User
+com/example/keyknowledge/control/PairingControl.java
+ com.example.keyknowledge.control.PairingControl
+com/example/keyknowledge/Knowledge.java
+ com.example.keyknowledge.Knowledge
 com/example/keyknowledge/control/MatchControl.java
  com.example.keyknowledge.control.MatchControl
 com/example/keyknowledge/model/MatchManager.java

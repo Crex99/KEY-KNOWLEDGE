@@ -41,151 +41,152 @@
 25-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:11:9-54
 26        android:supportsRtl="true"
 26-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:12:9-35
-27        android:theme="@style/Theme.KeyKnowledge" >
-27-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:13:9-50
-28        <activity
-28-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:15:9-23:20
-29            android:name="com.example.keyknowledge.MainActivity"
-29-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:16:13-41
-30            android:screenOrientation="portrait" >
-30-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:17:13-49
-31            <intent-filter>
-31-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:19:13-22:29
-32                <action android:name="android.intent.action.MAIN" />
-32-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:20:17-69
-32-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:20:25-66
-33
-34                <category android:name="android.intent.category.LAUNCHER" />
-34-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:21:17-77
-34-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:21:27-74
-35            </intent-filter>
-36        </activity>
-37        <activity
-37-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:24:9-27:15
-38            android:name="com.example.keyknowledge.Login"
-38-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:25:13-34
-39            android:screenOrientation="portrait" />
-39-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:26:13-49
-40        <activity
-40-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:28:9-31:15
-41            android:name="com.example.keyknowledge.Knowledge"
-41-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:29:13-38
-42            android:screenOrientation="portrait" />
-42-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:30:13-49
-43        <activity
-43-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:32:9-35:15
-44            android:name="com.example.keyknowledge.Pairing"
-44-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:33:13-36
-45            android:screenOrientation="portrait" />
-45-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:34:13-49
-46        <activity
-46-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:36:9-39:15
-47            android:name="com.example.keyknowledge.Match"
-47-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:37:13-34
-48            android:screenOrientation="portrait" />
-48-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:38:13-49
-49        <activity
-49-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:40:9-43:15
-50            android:name="com.example.keyknowledge.EndMatch"
-50-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:41:13-37
-51            android:screenOrientation="portrait" />
-51-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:42:13-49
-52
-53        <service
-53-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:29:9-35:19
-54            android:name="com.google.firebase.components.ComponentDiscoveryService"
-54-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:30:13-84
-55            android:directBootAware="true"
-55-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
-56            android:exported="false" >
-56-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:31:13-37
-57            <meta-data
-57-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:32:13-34:85
-58                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-58-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:33:17-109
-59                android:value="com.google.firebase.components.ComponentRegistrar" />
-59-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:34:17-82
-60            <meta-data
-60-->[com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:30:13-32:85
-61                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-61-->[com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:31:17-139
-62                android:value="com.google.firebase.components.ComponentRegistrar" />
-62-->[com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:32:17-82
-63            <meta-data
-63-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\b7c07682c91341ab849188c1424f6c29\jetified-firebase-installations-16.3.5\AndroidManifest.xml:18:13-20:85
-64                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-64-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\b7c07682c91341ab849188c1424f6c29\jetified-firebase-installations-16.3.5\AndroidManifest.xml:19:17-127
-65                android:value="com.google.firebase.components.ComponentRegistrar" />
-65-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\b7c07682c91341ab849188c1424f6c29\jetified-firebase-installations-16.3.5\AndroidManifest.xml:20:17-82
-66            <!--
-67                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
-68                clients to use it as well, by defining this registrar in their own core/common library.
-69            -->
-70            <meta-data
-70-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
-71                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
-71-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
-72                android:value="com.google.firebase.components.ComponentRegistrar" />
-72-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
-73        </service>
-74
-75        <provider
-75-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
-76            android:name="com.google.firebase.provider.FirebaseInitProvider"
-76-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
-77            android:authorities="com.example.keyknowledge.firebaseinitprovider"
-77-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
-78            android:directBootAware="true"
-78-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
-79            android:exported="false"
-79-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
-80            android:initOrder="100" />
-80-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
-81
-82        <activity
-82-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\4d0717210b0687cad87212665e90c4c5\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-83            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-83-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\4d0717210b0687cad87212665e90c4c5\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-84            android:exported="false"
-84-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\4d0717210b0687cad87212665e90c4c5\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-85            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-85-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\4d0717210b0687cad87212665e90c4c5\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-86
-87        <receiver
-87-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:29:9-33:20
-88            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-88-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:30:13-85
-89            android:enabled="true"
-89-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:31:13-35
-90            android:exported="false" >
-90-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:32:13-37
-91        </receiver>
-92
-93        <service
-93-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:35:9-38:40
-94            android:name="com.google.android.gms.measurement.AppMeasurementService"
-94-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:36:13-84
-95            android:enabled="true"
-95-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:37:13-35
-96            android:exported="false" />
-96-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:38:13-37
-97        <service
-97-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:39:9-43:72
-98            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-98-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:40:13-87
-99            android:enabled="true"
-99-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:41:13-35
-100            android:exported="false"
-100-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:42:13-37
-101            android:permission="android.permission.BIND_JOB_SERVICE" />
-101-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:43:13-69
-102
-103        <meta-data
-103-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\c03ff831f337462821d0a5c03495569e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-104            android:name="com.google.android.gms.version"
-104-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\c03ff831f337462821d0a5c03495569e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-105            android:value="@integer/google_play_services_version" />
-105-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\c03ff831f337462821d0a5c03495569e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-106    </application>
-107
-108</manifest>
+27        android:testOnly="true"
+28        android:theme="@style/Theme.KeyKnowledge" >
+28-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:13:9-50
+29        <activity
+29-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:15:9-23:20
+30            android:name="com.example.keyknowledge.MainActivity"
+30-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:16:13-41
+31            android:screenOrientation="portrait" >
+31-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:17:13-49
+32            <intent-filter>
+32-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:19:13-22:29
+33                <action android:name="android.intent.action.MAIN" />
+33-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:20:17-69
+33-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:20:25-66
+34
+35                <category android:name="android.intent.category.LAUNCHER" />
+35-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:21:17-77
+35-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:21:27-74
+36            </intent-filter>
+37        </activity>
+38        <activity
+38-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:24:9-27:15
+39            android:name="com.example.keyknowledge.Login"
+39-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:25:13-34
+40            android:screenOrientation="portrait" />
+40-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:26:13-49
+41        <activity
+41-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:28:9-31:15
+42            android:name="com.example.keyknowledge.Knowledge"
+42-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:29:13-38
+43            android:screenOrientation="portrait" />
+43-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:30:13-49
+44        <activity
+44-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:32:9-35:15
+45            android:name="com.example.keyknowledge.Pairing"
+45-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:33:13-36
+46            android:screenOrientation="portrait" />
+46-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:34:13-49
+47        <activity
+47-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:36:9-39:15
+48            android:name="com.example.keyknowledge.Match"
+48-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:37:13-34
+49            android:screenOrientation="portrait" />
+49-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:38:13-49
+50        <activity
+50-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:40:9-43:15
+51            android:name="com.example.keyknowledge.EndMatch"
+51-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:41:13-37
+52            android:screenOrientation="portrait" />
+52-->C:\Users\Crescenzo\Desktop\UNI_PROJECT\KeyKnowledge\app\src\main\AndroidManifest.xml:42:13-49
+53
+54        <service
+54-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:29:9-35:19
+55            android:name="com.google.firebase.components.ComponentDiscoveryService"
+55-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:30:13-84
+56            android:directBootAware="true"
+56-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
+57            android:exported="false" >
+57-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:31:13-37
+58            <meta-data
+58-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:32:13-34:85
+59                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+59-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:33:17-109
+60                android:value="com.google.firebase.components.ComponentRegistrar" />
+60-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\1ac55671c19017fc13671c13ed97e475\jetified-firebase-database-19.6.0\AndroidManifest.xml:34:17-82
+61            <meta-data
+61-->[com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:30:13-32:85
+62                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+62-->[com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:31:17-139
+63                android:value="com.google.firebase.components.ComponentRegistrar" />
+63-->[com.google.android.gms:play-services-measurement-api:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\95bcf9c64028bb1b18c970f613638f23\jetified-play-services-measurement-api-18.0.1\AndroidManifest.xml:32:17-82
+64            <meta-data
+64-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\b7c07682c91341ab849188c1424f6c29\jetified-firebase-installations-16.3.5\AndroidManifest.xml:18:13-20:85
+65                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+65-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\b7c07682c91341ab849188c1424f6c29\jetified-firebase-installations-16.3.5\AndroidManifest.xml:19:17-127
+66                android:value="com.google.firebase.components.ComponentRegistrar" />
+66-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\b7c07682c91341ab849188c1424f6c29\jetified-firebase-installations-16.3.5\AndroidManifest.xml:20:17-82
+67            <!--
+68                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
+69                clients to use it as well, by defining this registrar in their own core/common library.
+70            -->
+71            <meta-data
+71-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
+72                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
+72-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
+73                android:value="com.google.firebase.components.ComponentRegistrar" />
+73-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
+74        </service>
+75
+76        <provider
+76-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
+77            android:name="com.google.firebase.provider.FirebaseInitProvider"
+77-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
+78            android:authorities="com.example.keyknowledge.firebaseinitprovider"
+78-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
+79            android:directBootAware="true"
+79-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
+80            android:exported="false"
+80-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
+81            android:initOrder="100" />
+81-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\d783eb5e4d25e462c5ff8a9ddfc544e8\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
+82
+83        <activity
+83-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\4d0717210b0687cad87212665e90c4c5\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+84            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+84-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\4d0717210b0687cad87212665e90c4c5\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+85            android:exported="false"
+85-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\4d0717210b0687cad87212665e90c4c5\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+86            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+86-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\4d0717210b0687cad87212665e90c4c5\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+87
+88        <receiver
+88-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:29:9-33:20
+89            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+89-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:30:13-85
+90            android:enabled="true"
+90-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:31:13-35
+91            android:exported="false" >
+91-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:32:13-37
+92        </receiver>
+93
+94        <service
+94-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:35:9-38:40
+95            android:name="com.google.android.gms.measurement.AppMeasurementService"
+95-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:36:13-84
+96            android:enabled="true"
+96-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:37:13-35
+97            android:exported="false" />
+97-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:38:13-37
+98        <service
+98-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:39:9-43:72
+99            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+99-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:40:13-87
+100            android:enabled="true"
+100-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:41:13-35
+101            android:exported="false"
+101-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:42:13-37
+102            android:permission="android.permission.BIND_JOB_SERVICE" />
+102-->[com.google.android.gms:play-services-measurement:18.0.1] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\3856f6f4c9513e407b37f033c5ae1615\jetified-play-services-measurement-18.0.1\AndroidManifest.xml:43:13-69
+103
+104        <meta-data
+104-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\c03ff831f337462821d0a5c03495569e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+105            android:name="com.google.android.gms.version"
+105-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\c03ff831f337462821d0a5c03495569e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+106            android:value="@integer/google_play_services_version" />
+106-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Crescenzo\.gradle\caches\transforms-2\files-2.1\c03ff831f337462821d0a5c03495569e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+107    </application>
+108
+109</manifest>
