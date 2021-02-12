@@ -1,5 +1,6 @@
 package com.example.keyknowledge.model;
 
+import com.example.keyknowledge.control.MatchControl;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
@@ -54,6 +55,15 @@ public class IaModule {
                 return false;
             }
         }
+
+        @Override
+        public String toString() {
+            return "Nodo{" +
+                    "id='" + id + '\'' +
+                    ", categoria='" + categoria + '\'' +
+                    ", livello=" + livello +
+                    '}';
+        }
     }
 
 
@@ -67,11 +77,14 @@ public class IaModule {
     private String[] questions={"arte","generale","geo","scienze","storia"};
     private String[] levels={"livello1","livello2","livello3","livello4"};
     private ArrayList<Nodo> risposte;
-    private String id="",categoria="",livello="";
+    private String id,categoria,livello;
     private int level=0;
 
-    public IaModule(Quiz q){
-        manager=new QuestionManager();
+    public IaModule(Quiz q, MatchControl c){
+        id="";
+        categoria="";
+        livello="";
+        manager=new QuestionManager(c);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         quiz=q;
         risposte=new ArrayList<Nodo>();
@@ -92,7 +105,7 @@ public class IaModule {
     public  void nextQuestion(int current_question,boolean risposta){
         if(!id.equals("")){
             Nodo pre=new Nodo(id,categoria,level);
-            risposte.add(pre);
+            risposte.add(0,pre);
         }
         if(current_question==0){
             sendFirstQuestion();
@@ -106,7 +119,7 @@ public class IaModule {
                     sendQuestion(next);
                     return;
                 }else if(giuste.get(categoria)==2){
-                    Nodo next=getRandomQuestionUp(level-1,categoria);
+                    Nodo next=getRandomQuestionUp(level+1,categoria);
                     sendQuestion(next);
                     return;
                 }else if(giuste.get(categoria)>=3){
@@ -135,14 +148,18 @@ public class IaModule {
 
     private void sendFirstQuestion(){
         Random r=new Random();
-        int cat=r.nextInt(categories.size()-1);
-        level=randInt(1,4);
+        int cat=r.nextInt(CATEGORIE.length-1);
+        level=1;
         int max=(level)*4;
-        int min=(level)*4-(questions.length-1);
+        int min=(level)*4-3;
+        System.out.println(questions.length-1);
         int domanda=randInt(min,max);
-        categoria=categories.get(cat);
+        categoria=CATEGORIE[cat];
+        System.out.println(categoria);
         id=questions[cat]+domanda;
+        System.out.println(id);
         livello="livello"+level;
+        System.out.println(livello);
         manager.getQuestion(categoria,livello,id);
     }
 
@@ -155,7 +172,8 @@ public class IaModule {
 
     private Nodo changeCategoryDown(String attuale){
         String cavia=getRandomCategory(attuale);
-        for(Nodo n:risposte){
+        for(int i=risposte.size()-1;i>=0;i--){
+            Nodo n=risposte.get(i);
             if(n.getCategoria().equals(cavia)){
                 int livello=n.getLivello();
                 return getRandomQuestionDown(livello,cavia);
@@ -166,7 +184,8 @@ public class IaModule {
 
     private Nodo changeCategoryUp(String attuale){
         String cavia=getRandomCategory(attuale);
-        for(Nodo n:risposte){
+        for(int i=risposte.size()-1;i>=0;i--){
+            Nodo n=risposte.get(i);
             if(n.getCategoria().equals(cavia)){
                 int livello=n.getLivello();
                 return getRandomQuestionUp(livello,cavia);
@@ -203,24 +222,34 @@ public class IaModule {
         int max=(level)*4;
         int min=(level)*4-3;
         int domanda=randInt(min,max);
-        String result=categoria+domanda;
+        String c="";
+        for(int i=0;i<5;i++){
+            if(CATEGORIE[i].equals(categoria)){
+                c=questions[i];
+            }
+        }
+        String result=c+domanda;
         Nodo nodo=new Nodo(result,categoria,level);
-        Nodo nodo1=new Nodo(categoria+min,categoria,level);
-        Nodo nodo2=new Nodo(categoria+(min+1),categoria,level);
-        Nodo nodo3=new Nodo(categoria+(min+2),categoria,level);
-        Nodo nodo4=new Nodo(categoria+max,categoria,level);
+        Nodo nodo1=new Nodo(c+min,categoria,level);
+        Nodo nodo2=new Nodo(c+(min+1),categoria,level);
+        Nodo nodo3=new Nodo(c+(min+2),categoria,level);
+        Nodo nodo4=new Nodo(c+max,categoria,level);
         while((risposte.contains(nodo))) {
+            System.out.println(nodo);
             if(risposte.contains(nodo1)&&risposte.contains(nodo2)&&risposte.contains(nodo3)&&risposte.contains(nodo4)) {
                 return null;
             }
             domanda=randInt(min,max);
-            result=categoria+domanda;
+            result=c+domanda;
+            nodo.setId(result);
         }
-        return result;
+        return nodo.getId();
     }
 
     private Nodo getRandomQuestionUp(int level,String categoria){
-
+            if(level>4){
+                return changeCategoryDown(categoria);
+            }
         String q=getRandomQuestion(level,categoria);
         int livello=level;
         while(q==null){
@@ -236,6 +265,9 @@ public class IaModule {
     }
 
     private Nodo getRandomQuestionDown(int level,String categoria){
+        if(level<1){
+            return changeCategoryUp(categoria);
+        }
         String q=getRandomQuestion(level,categoria);
         int livello=level;
         while(q==null){
@@ -255,11 +287,11 @@ public class IaModule {
     }
 
     private void downProbability(String category){
-        for(String s:categories){
-            if(s.equals(category)){
-                continue;
+        for(int i=0;i<5;i++){
+            String s=CATEGORIE[i];
+            if(!s.equals(category)){
+                categories.add(s);
             }
-            categories.add(s);
         }
     }
 

@@ -31,10 +31,6 @@ public class EndMatchManager {
             public Transaction.Result doTransaction(@NonNull MutableData currentData) {
                 if(currentData.getValue()!=null){
                     Quiz current=currentData.getValue(Quiz.class);
-                    System.out.println(current);
-                    System.out.println(quiz.getPunteggioG1());
-                    System.out.println(player);
-                    System.out.println(quiz.getPunteggioG2());
                     if(player==1){
                         currentData.child("punteggioG1").setValue(quiz.getPunteggioG1());
                     }else if(player==2){
@@ -43,8 +39,6 @@ public class EndMatchManager {
                      if(current.getStatus().equals("full")){
                          currentData.child("status").setValue("finishing");
                          control.waitOpponent();
-                         System.out.println(quiz.getMode());
-                         System.out.println(quiz.getId());
                          mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(new ValueEventListener() {
                              @Override
                              public void onDataChange(@NonNull DataSnapshot snapshot) {

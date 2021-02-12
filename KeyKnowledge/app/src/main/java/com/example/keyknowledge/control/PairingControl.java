@@ -5,7 +5,6 @@ import com.example.keyknowledge.*;
 import com.example.keyknowledge.model.*;
 
 public class PairingControl {
-    int x=0;
     PairingManager manager;
     Pairing pairing;
 

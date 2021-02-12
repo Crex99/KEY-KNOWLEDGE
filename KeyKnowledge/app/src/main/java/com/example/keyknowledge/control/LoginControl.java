@@ -1,14 +1,10 @@
 package com.example.keyknowledge.control;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-
 import com.example.keyknowledge.Login;
 import com.example.keyknowledge.MainActivity;
 import com.example.keyknowledge.model.LoginManager;
 import com.example.keyknowledge.model.User;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class LoginControl {
     Intent i;

@@ -1,20 +1,13 @@
 package com.example.keyknowledge;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 
 public class Login extends Activity {
     SharedPreferences pref;
