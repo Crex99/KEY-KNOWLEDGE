@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numDomanda"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:text="DOMANDA n.0"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/catDomanda"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="categoria 0"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/livDomanda"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="livello 0"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/domanda"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:text="DOMANDA"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/answers"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+        <Button
+            android:id="@+id/b1"
+            android:tag="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="risposta1"
+            android:backgroundTint="@color/white"
+            />
+        <Button
+            android:id="@+id/b2"
+            android:tag="2"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="risposta2"
+            android:backgroundTint="@color/white"
+            />
+        <Button
+            android:id="@+id/b3"
+            android:tag="3"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="risposta3"
+            android:backgroundTint="@color/white"
+            />
+        <Button
+            android:id="@+id/b4"
+            android:tag="4"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="risposta4"
+            android:backgroundTint="@color/white"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/result"
+        android:text="risultato"
+        android:visibility="invisible"
+        android:layout_below="@id/answers"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="80dp"
+        android:textSize="30sp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CONFERMA"
+        android:onClick="next"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        />
+
+</RelativeLayout>
