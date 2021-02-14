@@ -105,7 +105,7 @@ public class IaModule {
     public  void nextQuestion(int current_question,boolean risposta){
         if(!id.equals("")){
             Nodo pre=new Nodo(id,categoria,level);
-            risposte.add(0,pre);
+            risposte.add(risposte.size(),pre);
         }
         if(current_question==0){
             sendFirstQuestion();

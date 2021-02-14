@@ -32,9 +32,9 @@ com/example/keyknowledge/model/PairingManager.java
  com.example.keyknowledge.model.PairingManager$1$3
 com/example/keyknowledge/control/LoginControl.java
  com.example.keyknowledge.control.LoginControl
-com/example/keyknowledge/model/IaModule.java
- com.example.keyknowledge.model.IaModule
- com.example.keyknowledge.model.IaModule$Nodo
+com/example/keyknowledge/model/QuestionManager.java
+ com.example.keyknowledge.model.QuestionManager
+ com.example.keyknowledge.model.QuestionManager$1
 com/example/keyknowledge/Login.java
  com.example.keyknowledge.Login
 com/example/keyknowledge/control/EndMatchControl.java
@@ -62,10 +62,10 @@ com/example/keyknowledge/model/EndMatchManager.java
  com.example.keyknowledge.model.EndMatchManager$1$3
 com/example/keyknowledge/control/MatchControl.java
  com.example.keyknowledge.control.MatchControl
+com/example/keyknowledge/model/IaModule.java
+ com.example.keyknowledge.model.IaModule
+ com.example.keyknowledge.model.IaModule$Nodo
 com/example/keyknowledge/model/MatchManager.java
  com.example.keyknowledge.model.MatchManager
  com.example.keyknowledge.model.MatchManager$1
  com.example.keyknowledge.model.MatchManager$2
-com/example/keyknowledge/model/QuestionManager.java
- com.example.keyknowledge.model.QuestionManager
- com.example.keyknowledge.model.QuestionManager$1
