@@ -27,17 +27,18 @@ public class MatchManager {
     private String[] categories={"arte","cultura generale","geografia","scienze","storia"};
     private String[] questions={"arte","generale","geo","scienze","storia"};
     private String[] levels={"livello1","livello2","livello3","livello4"};
-    private Quiz quiz;
     private DatabaseReference mDatabase;
     private MatchControl control;
+    private Quiz quiz;
     private IaModule module;
+    private QuizManager managerQuiz;
     private QuestionManager managerQuestion;
     private ValueEventListener listener;
     public MatchManager(Quiz q,MatchControl c){
-        control=c;
         quiz=q;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        module=new IaModule(quiz,c);
+        control=c;
+        managerQuiz=new QuizManager(q);
+        module=new IaModule(q,c);
         managerQuestion=new QuestionManager(c);
     }
 
@@ -66,48 +67,12 @@ public class MatchManager {
     }
 
     public void setQuitListener(Quiz quiz,int player) {
-        listener=new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Quiz q=snapshot.child(""+quiz.getId()+"").getValue(Quiz.class);
-                if(q!=null&&!q.getStatus().equals("void")) {
-                    String status = snapshot.child("" + quiz.getId() + "").child("status").getValue(String.class);
-                    if (status.equals("quit")) {
-                        control.endMatch(quiz, player * -1);
-                    }
-                }else{
-                    mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        mDatabase.child(TABLE).child(quiz.getMode()).addValueEventListener(listener);
+        managerQuiz.setQuitListener(quiz,player,control);
         }
 
 
 
     public void quit(Quiz quiz) {
-        mDatabase.child(TABLE).child(quiz.getMode()).removeEventListener(listener);
-        mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addListenerForSingleValueEvent(new ValueEventListener(){
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.getValue(Quiz.class)!=null){
-                    String control=snapshot.child("status").getValue(String.class);
-                    if(!control.equals("void")){
-                        mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").child("status").setValue("quit");
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        managerQuiz.quit(quiz);
     }
 }
