@@ -117,6 +117,7 @@ public class QuizManager {
 
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        controller.setQuiz(snapshot.child(id).getValue(Quiz.class),control);
                                         String status=snapshot.child(id).child("status").getValue(String.class);
                                         if(status.equals("full")){
                                             Quiz quiz=snapshot.child(id).getValue(Quiz.class);

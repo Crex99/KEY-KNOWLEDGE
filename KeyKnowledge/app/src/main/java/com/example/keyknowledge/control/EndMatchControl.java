@@ -1,6 +1,10 @@
 package com.example.keyknowledge.control;
 
 import android.content.Intent;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.keyknowledge.*;
 import com.example.keyknowledge.model.*;
 
@@ -17,10 +21,12 @@ public class EndMatchControl {
         manager.updateMatch(q,p);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void waitOpponent() {
         endMatch.waitOpponent();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void finish(Quiz q) {
         endMatch.end(q);
     }

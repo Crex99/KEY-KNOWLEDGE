@@ -15,14 +15,14 @@
         android:layout_width="match_parent"
         android:textSize="15dp"
         android:fontFamily="sans-serif-black"
-        android:textColor="@color/grey_light"
+        android:textColor="@color/white"
         android:background="@color/color_app_background2"
         android:gravity="center"
         android:layout_height="50dp"
         android:text="Accedi"
         />
     <EditText
-        android:textColor="@color/grey_light"
+        android:textColor="@color/white"
         android:id="@+id/user"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:paddingBottom="16dp"/>
 
     <EditText
-        android:textColor="@color/grey_light"
+        android:textColor="@color/white"
         android:id="@+id/pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

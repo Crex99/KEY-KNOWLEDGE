@@ -1,32 +1,57 @@
 package com.example.keyknowledge;
 
+import android.animation.StateListAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 import androidx.annotation.RequiresApi;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
 
 import java.util.ArrayList;
 
+import static com.example.keyknowledge.R.color.answer_check;
+
 public class Match extends Activity {
 
     private LinearLayout grid;
-    private TextView text,numero,categoria,livello;
-    private Button b1,b2,b3,b4,confirm;
+    private TextView text,numero,categoria,livello, circleb1, circleb2, circleb3, circleb4, textb1, textb2, textb3, textb4, player1, player2;
+    private RelativeLayout b1,b2,b3,b4,confirm;
     private int currentQuestion=0,risposta_corrente=0,player;
+    private RelativeLayout[] risposte;
     private Quiz quiz;
     private Question question;
     private MatchControl control;
     private ArrayList<View> list;
+    private RelativeLayout answer_prec;
+    private LottieAnimationView lottieRight, lottieWrong;
+    private ProgressBar progressBar1;
+    private ImageView iconCat;
+    private ArrayList<AdapterWrapper> wrapperArrayList;
+    ViewDialog dialog;
+    public static final String BroadcastStringForAction = "checkinternet";
+    private IntentFilter mIntentFilter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i=getIntent();
@@ -39,16 +64,54 @@ public class Match extends Activity {
         currentQuestion++;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.match);
+        wrapperArrayList = new ArrayList<AdapterWrapper>();
+        iconCat = findViewById(R.id.iconCat);
+        progressBar1 = findViewById(R.id.progressBar1);
+        lottieRight = findViewById(R.id.lottieRight);
+        lottieWrong = findViewById(R.id.lottieWrong);
         grid=findViewById(R.id.answers);
+        player1 = findViewById(R.id.player1);
+        player2 = findViewById(R.id.player2);
+        if(player == 1){
+            player1.setText(quiz.getUser1());
+            player2.setText(quiz.getUser2());
+        }else{
+            player1.setText(quiz.getUser2());
+            player2.setText(quiz.getUser1());
+        }
         text=findViewById(R.id.domanda);
         b1=findViewById(R.id.b1);
         b2=findViewById(R.id.b2);
         b3=findViewById(R.id.b3);
         b4=findViewById(R.id.b4);
+        textb1=findViewById(R.id.textb1);
+        textb2=findViewById(R.id.textb2);
+        textb3=findViewById(R.id.textb3);
+        textb4=findViewById(R.id.textb4);
+        circleb1=findViewById(R.id.circleb1);
+        circleb2=findViewById(R.id.circleb2);
+        circleb3=findViewById(R.id.circleb3);
+        circleb4=findViewById(R.id.circleb4);
         numero=findViewById(R.id.numDomanda);
         categoria=findViewById(R.id.catDomanda);
         livello=findViewById(R.id.livDomanda);
-        list=grid.getTouchables();
+        risposte = new RelativeLayout[]{b1, b2, b3, b4};
+        answer_prec = null;
+        dialog = new ViewDialog(this, R.layout.alert_connection_layout, null);
+        mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction(BroadcastStringForAction);
+        Intent serviceIntent = new Intent(this, MyService.class);
+        startService(serviceIntent);
+        if(!isOnline(getApplicationContext())){
+            if(dialog != null && !dialog.isShowen()){
+                dialog.showAlertDialog();
+            }
+        }else{
+            if(dialog.isShowen()){
+                dialog.dismiss();
+            }
+        }
+        /*list=grid.getTouchables();
         for(View v:list){
             Button b=(Button)v;
             int id=Integer.parseInt(b.getTag().toString());
@@ -69,25 +132,71 @@ public class Match extends Activity {
                     }
                 }
             });
+        }*/
+    }
+
+    public BroadcastReceiver MyReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if(intent.getAction().equals(BroadcastStringForAction)){
+                if(!intent.getStringExtra("online_status").equals("true")){
+                    if(dialog != null && !dialog.isShowen()){
+                        dialog.showAlertDialog();
+                    }
+                }else{
+                    if(dialog.isShowen()){
+                        dialog.dismiss();
+                    }
+                }
+            }
         }
+    };
+
+    public boolean isOnline(Context c){
+
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if(ni != null && ni.isConnectedOrConnecting()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void onClickAnswer(View v){
+        if(answer_prec != null){
+            answer_prec.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+        }
+        RelativeLayout answer = (RelativeLayout)v;
+        answer.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(answer_check)));
+        answer_prec = answer;
+        risposta_corrente = Integer.parseInt(answer.getTag().toString());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setQuestion(Question q){
         question=q;
-        b1.setText(question.getRisposta1());
-        b2.setText(question.getRisposta2());
-        b3.setText(question.getRisposta3());
-        b4.setText(question.getRisposta4());
+        if(answer_prec != null){
+            answer_prec.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+        }
+        textb1.setText(question.getRisposta1());
+        textb2.setText(question.getRisposta2());
+        textb3.setText(question.getRisposta3());
+        textb4.setText(question.getRisposta4());
         text.setText(question.getTesto());
         categoria.setText(question.getCategoria());
-        livello.setText("LIVELLO "+question.getLivello());
-        numero.setText("DOMANDA n."+currentQuestion);
-        risposta_corrente=0;
-        for(View c:list){
+        setIcon(question.getCategoria());
+        livello.setText("Livello "+question.getLivello());
+        numero.setText("Domanda n."+currentQuestion);
+        risposta_corrente = 0;
+        /*for(View c:list){
             Button b2=(Button)c;
             b2.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
-        }
+        }*/
     }
 
     public void message(String x){
@@ -96,6 +205,7 @@ public class Match extends Activity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void next(View view) {
+        wrapperArrayList.add(new AdapterWrapper(currentQuestion, risposta_corrente, question));
         if (quiz.getPunteggioG1() < 0) {
                         quiz.setPunteggioG1(0);
                     }
@@ -128,7 +238,21 @@ public class Match extends Activity {
                         break;
                 }
                 control.getQuestion(currentQuestion,true);
-                //fare animazione di risposta giusta
+                progressBar1.setProgress(progressBar1.getProgress() + 10);
+                lottieRight.setVisibility(View.VISIBLE);
+                lottieRight.playAnimation();
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1500);
+                            lottieRight.setVisibility(View.INVISIBLE);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
             } else {
                 int color = getResources().getColor(R.color.red);
                 switch (risposta_corrente) {
@@ -146,32 +270,75 @@ public class Match extends Activity {
                         break;
                 }
                 control.getQuestion(currentQuestion,false);
-                //fare animazione di risposta sbagliata
+                lottieWrong.setVisibility(View.VISIBLE);
+                lottieWrong.playAnimation();
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                            lottieWrong.setVisibility(View.INVISIBLE);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
             }
             if (currentQuestion == quiz.getNumQuesiti()) {
+                System.out.println("1) Quiz prima di control.endMatch: " + quiz);
+                if(quiz.getPunteggioG1() == 10){
+                    progressBar1.setProgress(progressBar1.getWidth());
+                }
+                for(AdapterWrapper a: wrapperArrayList){
+                    System.out.println(a);
+                }
+                control.setList(wrapperArrayList);
                 control.endMatch(quiz, player);
+
             }else {
                 currentQuestion++;
-                //control.getQuestion();
             }
+        }
+
+    }
+
+    private void setIcon(String categoria){
+        if(categoria.equals("storia")){
+            iconCat.setImageDrawable(getResources().getDrawable(R.drawable.storia));
+        }
+        if(categoria.equals("scienze")){
+            iconCat.setImageDrawable(getResources().getDrawable(R.drawable.scienze));
+        }
+        if(categoria.equals("arte")){
+            iconCat.setImageDrawable(getResources().getDrawable(R.drawable.arte));
+        }
+        if(categoria.equals("geografia")){
+            iconCat.setImageDrawable(getResources().getDrawable(R.drawable.geografia));
+        }
+        if(categoria.equals("cultura generale")){
+            iconCat.setImageDrawable(getResources().getDrawable(R.drawable.cultura_generale));
         }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
+        registerReceiver(MyReceiver, mIntentFilter);
         Log.d("LIFECYCLE","onRestart()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        registerReceiver(MyReceiver, mIntentFilter);
         Log.d("LIFECYCLE","onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        unregisterReceiver(MyReceiver);
         Log.d("LIFECYCLE","onPause()");
     }
 
