@@ -15,4 +15,5 @@
     <color name="trans">#00000000 </color>
     <color name="rosa_acceso">#cd00d1</color>
     <color name="grey_light">#cab3ca</color>
+    <color name="answer_check">#E6D3DB</color>
 </resources>

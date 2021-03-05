@@ -1,5 +1,7 @@
 package com.example.keyknowledge.control;
 
+import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
 import com.example.keyknowledge.Knowledge;
 import com.example.keyknowledge.Login;
@@ -33,11 +35,11 @@ public class MainControl {
 
 
     public void controlAccess(String nick) {
-        System.out.println(nick);
         if(nick!=null){
             backHome(nick);
         }else{
             main.setContent(R.layout.activity_main,null);
+
         }
     }
 
@@ -48,7 +50,8 @@ public class MainControl {
     public void goKnowledge(User user) {
         i=new Intent(main.getApplicationContext(), Knowledge.class);
         i.putExtra("user",user);
-        main.startActivity(i);
+        ActivityOptions activityOptions = ActivityOptions.makeCustomAnimation(main.getApplicationContext(), R.anim.traslate_from_right, R.anim.translate_from_left);
+        main.startActivity(i, activityOptions.toBundle());
     }
 
     public void goLogin(){

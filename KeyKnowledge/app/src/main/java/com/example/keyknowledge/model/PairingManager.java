@@ -44,6 +44,7 @@ public class PairingManager {
 
                                     @Override
                                     public void onDataChange(DataSnapshot snapshot) {
+                                        System.out.println("Quiz 1: " + snapshot.child(id).getValue(Quiz.class));
                                         control.setQuiz(snapshot.child(id).getValue(Quiz.class));
                                         String status = snapshot.child(id).child("status").getValue(String.class);
                                         String opponent=snapshot.child(id).child("user2").getValue(String.class);
@@ -67,6 +68,8 @@ public class PairingManager {
 
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        System.out.println("Quiz 2: " + snapshot.child(id).getValue(Quiz.class));
+                                        control.setQuiz(snapshot.child(id).getValue(Quiz.class));
                                         String status=snapshot.child(id).child("status").getValue(String.class);
                                         if(status.equals("full")){
                                             Quiz quiz=snapshot.child(id).getValue(Quiz.class);
@@ -97,11 +100,13 @@ public class PairingManager {
 
                                 @Override
                                 public void onDataChange(DataSnapshot snapshot) {
+                                    System.out.println("Quiz 3: " + snapshot.child(id).getValue(Quiz.class));
                                     control.setQuiz(snapshot.child(id).getValue(Quiz.class));
                                     String status = snapshot.child(id).child("status").getValue(String.class);
                                     String opponent=snapshot.child(id).child("user2").getValue(String.class);
                                     if(status.equals("full")&&(!(opponent).equals("void"))) {
                                         Quiz quiz=snapshot.child(id).getValue(Quiz.class);
+                                        System.out.println("stampa 3: " + quiz);
                                         control.startMatch(quiz,1);
                                         mDatabase.child(TABLE).child(mode).removeEventListener(this);
                                     }

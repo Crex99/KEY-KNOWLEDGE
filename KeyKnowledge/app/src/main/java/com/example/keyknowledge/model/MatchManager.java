@@ -5,6 +5,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.example.keyknowledge.AdapterWrapper;
 import com.example.keyknowledge.control.MatchControl;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -65,7 +66,7 @@ public class MatchManager {
 
     }
 
-    public void setQuitListener(Quiz quiz,int player) {
+    public void setQuitListener(Quiz quiz, int player) {
         listener=new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
