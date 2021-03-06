@@ -23,7 +23,6 @@
         android:label="KeyKnowledge"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.KeyKnowledge" >
         <activity
             android:name="com.example.keyknowledge.MainActivity"
