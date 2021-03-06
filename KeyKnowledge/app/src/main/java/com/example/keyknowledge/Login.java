@@ -33,6 +33,7 @@ public class Login extends Activity {
         setContentView(R.layout.login);
         pref=getSharedPreferences("profile",MODE_PRIVATE);
         us=findViewById(R.id.user);
+        pass=findViewById(R.id.pass);
         dialog = new ViewDialog(this, R.layout.alert_connection_layout, null);
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(BroadcastStringForAction);
