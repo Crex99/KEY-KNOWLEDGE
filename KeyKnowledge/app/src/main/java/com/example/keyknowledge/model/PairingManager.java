@@ -18,9 +18,9 @@ public class PairingManager {
     }
 
     public void createMatch(User user,String mode) {
-        managerQuiz.createMatch(user,mode,control);
+        managerQuiz.createQuiz(user,mode,control);
     }
     public void resetMatch(Quiz quiz) {
-        managerQuiz.resetMatch(quiz);
+        managerQuiz.resetQuiz(quiz);
     }
 }

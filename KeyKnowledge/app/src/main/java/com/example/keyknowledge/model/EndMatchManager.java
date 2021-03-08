@@ -12,6 +12,6 @@ public class EndMatchManager {
     }
 
     public void updateMatch(Quiz quiz,int player) {
-        managerQuiz.updateMatch(quiz,player,control);
+        managerQuiz.updateQuiz(quiz,player,control);
     }
 }

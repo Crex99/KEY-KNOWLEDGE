@@ -1,5 +1,9 @@
 package com.example.keyknowledge.control;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.keyknowledge.model.*;
 
 public class QuizControl {
@@ -20,11 +24,13 @@ public class QuizControl {
         control.setQuiz(quiz);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void wait(EndMatchControl control){
         control.waitOpponent();
     }
 
-    public void finish(Quiz quiz,EndMatchControl control){
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void finish(Quiz quiz, EndMatchControl control){
         control.finish(quiz);
     }
 }
