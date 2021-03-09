@@ -21,7 +21,7 @@ public class MainControl {
     private MainManager manager;
     public MainControl(MainActivity a){
         main=a;
-        manager=new MainManager();
+        manager=new MainManager(this);
     }
 
     public void setMessage(String x){
@@ -29,7 +29,7 @@ public class MainControl {
     }
 
     public void backHome(String nick){
-        manager.accessUser(nick,this);
+        manager.accessUser(nick);
     }
 
     public void controlAccess(String nick) {

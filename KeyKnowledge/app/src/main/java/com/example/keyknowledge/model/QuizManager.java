@@ -1,7 +1,10 @@
 package com.example.keyknowledge.model;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.example.keyknowledge.control.*;
 import com.google.firebase.database.DataSnapshot;
@@ -78,7 +81,7 @@ public class QuizManager {
         });
     }
 
-    public void createMatch(User user,String mode,PairingControl control){
+    public void createQuiz(User user,String mode,PairingControl control){
         mDatabase.child(TABLE).child(mode).runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData currentData) {
@@ -178,14 +181,15 @@ public class QuizManager {
         });
     }
 
-    public void resetMatch(Quiz quiz){
+    public void resetQuiz(Quiz quiz){
         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("status").setValue("void");
         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("user1").setValue("void");
         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").child("user2").setValue("void");
     }
 
-    public void updateMatch(Quiz quiz,int player,EndMatchControl control){
+    public void updateQuiz(Quiz quiz,int player,EndMatchControl control){
         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").runTransaction(new Transaction.Handler() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData currentData) {
@@ -200,6 +204,7 @@ public class QuizManager {
                         currentData.child("status").setValue("finishing");
                         controller.wait(control);
                         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(new ValueEventListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.O)
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 Quiz q=snapshot.getValue(Quiz.class);
@@ -247,6 +252,7 @@ public class QuizManager {
                     }else if(current.getStatus().equals("quit")){
                         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addListenerForSingleValueEvent(new ValueEventListener(){
 
+                            @RequiresApi(api = Build.VERSION_CODES.O)
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 Quiz q=snapshot.getValue(Quiz.class);

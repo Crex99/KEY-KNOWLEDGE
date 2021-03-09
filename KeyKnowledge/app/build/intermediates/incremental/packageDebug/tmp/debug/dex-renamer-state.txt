@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 #Sat Mar 06 18:11:43 CET 2021
 base.0=C\:\\Users\\nicof\\OneDrive\\Desktop\\GITHUB\\KeyKnowledge\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+=======
+<<<<<<< HEAD
+#Mon Mar 08 19:56:30 CET 2021
+=======
+<<<<<<< HEAD
+#Sat Mar 06 18:06:17 CET 2021
+base.0=C\:\\Users\\nicof\\OneDrive\\Desktop\\GITHUB\\KeyKnowledge\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+=======
+#Fri Mar 05 19:07:16 CET 2021
+>>>>>>> 22695ba6ee5a0de9a54b1c52d82f0e4143bae50b
+base.0=C\:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+>>>>>>> ae521b998d029ddbcf8cea959886e59fc577b066
+>>>>>>> 0338723fb5b88fba6bba28ec182b2e7ef0ee60fd
 path.0=classes.dex
 renamed.0=classes.dex

@@ -29,10 +29,10 @@ public class MatchControl {
     }
 
     public void getQuestion(){
-        manager.getQuestion();
+        manager.getMatchQuestion();
     }
     public void getQuestion(int current,Boolean resp){
-        manager.getQuestion(current,resp);
+        manager.getMatchQuestion(current,resp);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
