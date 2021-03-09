@@ -12,7 +12,7 @@ public class LoginControl {
     private LoginManager manager;
     public LoginControl(Login x){
         login=x;
-        manager=new LoginManager();
+        manager=new LoginManager(this);
     }
 
     public void setMessage(String x){
@@ -20,7 +20,7 @@ public class LoginControl {
     }
 
     public void access(String nick,String pass){
-        manager.accessUser(nick,pass,this);
+        manager.accessUser(nick,pass);
     }
 
     public void saveUser(User user){

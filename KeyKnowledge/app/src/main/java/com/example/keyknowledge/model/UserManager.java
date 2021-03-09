@@ -1,5 +1,7 @@
 package com.example.keyknowledge.model;
 
+import androidx.annotation.NonNull;
+
 import com.example.keyknowledge.R;
 import com.example.keyknowledge.control.*;
 import com.google.firebase.database.DataSnapshot;
@@ -10,7 +12,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class UserManager {
 
-    private static String TABLE="users",OFFLINE="offline",ONLINE="online";
+    private static String TABLE="users";
+    public static String OFFLINE="offline",ONLINE="online";
     private DatabaseReference mDatabase;
     private UserControl controller;
 
@@ -19,6 +22,40 @@ public class UserManager {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
+    public void setState(String state,String nick){
+        mDatabase.child(TABLE).child(nick).child("stato").setValue(state);
+    }
+
+    public void getUser(String nick,String pass,LoginManager l){
+        mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user=snapshot.child(nick).getValue(User.class);
+                l.login(user,pass);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void getUser(String nick,MainManager main){
+        mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user=snapshot.child(nick).getValue(User.class);
+                main.accessUser(user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+/*
     public void login(String nick, String pass, LoginControl control){
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
 
@@ -73,8 +110,5 @@ public class UserManager {
             }
         });
     }
-
-    public void logout(User user){
-        mDatabase.child(TABLE).child(user.getNickname()).child("stato").setValue(OFFLINE);
-    }
+ */
 }

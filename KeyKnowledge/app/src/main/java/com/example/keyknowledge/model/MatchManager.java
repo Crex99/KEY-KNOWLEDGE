@@ -1,40 +1,23 @@
 package com.example.keyknowledge.model;
 
-import android.os.Build;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-
-import com.example.keyknowledge.AdapterWrapper;
 import com.example.keyknowledge.control.MatchControl;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
 import static com.example.keyknowledge.model.Quiz.CLASSIC_MODE;
 import static com.example.keyknowledge.model.Quiz.MISC_MODE;
 import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
 
 public class MatchManager {
 
-    private static final String TABLE="matches";
     private static final int CATEGORIES=5, LEVELS=4, QUESTIONS=4;
     private String[] categories={"arte","cultura generale","geografia","scienze","storia"};
     private String[] questions={"arte","generale","geo","scienze","storia"};
     private String[] levels={"livello1","livello2","livello3","livello4"};
-    private DatabaseReference mDatabase;
     private MatchControl control;
     private Quiz quiz;
     private IaModule module;
     private QuizManager managerQuiz;
     private QuestionManager managerQuestion;
-    private ValueEventListener listener;
     public MatchManager(Quiz q,MatchControl c){
         quiz=q;
         control=c;
@@ -43,7 +26,7 @@ public class MatchManager {
         managerQuestion=new QuestionManager(c);
     }
 
-    public void getQuestion(){
+    public void getMatchQuestion(){
         Random r=new Random();
         int categoria=r.nextInt(CATEGORIES-1);
         int level=r.nextInt(LEVELS-1);
@@ -54,7 +37,7 @@ public class MatchManager {
         managerQuestion.getQuestion(categories[categoria],levels[level],question);
     }
 
-    public void getQuestion(int current,Boolean resp){
+    public void getMatchQuestion(int current,Boolean resp){
         switch(quiz.getMode()){
             case RESTART_MODE:
                 module.nextQuestion(current,resp);
