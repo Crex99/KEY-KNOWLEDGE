@@ -7,7 +7,7 @@ public class UserControl {
     public UserControl(){
 
     }
-
+/*
     public void setMessage(String s,LoginControl control){
         control.setMessage(s);
     }
@@ -23,4 +23,6 @@ public class UserControl {
     public void saveUser(User user, LoginControl control){
         control.saveUser(user);
     }
+
+ */
 }
