@@ -9,10 +9,19 @@ com/example/keyknowledge/databinding/ActivityMainBinding.java
 com/example/keyknowledge/model/IaModule.java
  com.example.keyknowledge.model.IaModule
  com.example.keyknowledge.model.IaModule$Nodo
+<<<<<<< HEAD
 com/example/keyknowledge/model/EndMatchManager.java
  com.example.keyknowledge.model.EndMatchManager
 com/example/keyknowledge/control/QuizControl.java
  com.example.keyknowledge.control.QuizControl
+=======
+com/example/keyknowledge/model/MainManager.java
+ com.example.keyknowledge.model.MainManager
+com/example/keyknowledge/model/UserManager.java
+ com.example.keyknowledge.model.UserManager
+ com.example.keyknowledge.model.UserManager$1
+ com.example.keyknowledge.model.UserManager$2
+>>>>>>> master
 com/example/keyknowledge/databinding/EndMatchBinding.java
  com.example.keyknowledge.databinding.EndMatchBinding
 com/example/keyknowledge/databinding/VignettaLayoutBinding.java
@@ -50,8 +59,13 @@ com/example/keyknowledge/model/QuestionManager.java
  com.example.keyknowledge.model.QuestionManager$1
 com/example/keyknowledge/model/Question.java
  com.example.keyknowledge.model.Question
+<<<<<<< HEAD
 com/example/keyknowledge/control/KnowledgeControl.java
  com.example.keyknowledge.control.KnowledgeControl
+=======
+com/example/keyknowledge/model/LoginManager.java
+ com.example.keyknowledge.model.LoginManager
+>>>>>>> master
 com/example/keyknowledge/databinding/HomeBinding.java
  com.example.keyknowledge.databinding.HomeBinding
 com/example/keyknowledge/control/MainControl.java
@@ -120,6 +134,7 @@ com/example/keyknowledge/AdapterWrapper.java
  com.example.keyknowledge.AdapterWrapper
 com/example/keyknowledge/databinding/KnowledgeBinding.java
  com.example.keyknowledge.databinding.KnowledgeBinding
+<<<<<<< HEAD
 com/example/keyknowledge/model/UserManager.java
  com.example.keyknowledge.model.UserManager
  com.example.keyknowledge.model.UserManager$1
@@ -128,3 +143,11 @@ com/example/keyknowledge/model/LoginManager.java
  com.example.keyknowledge.model.LoginManager
 com/example/keyknowledge/model/MainManager.java
  com.example.keyknowledge.model.MainManager
+=======
+com/example/keyknowledge/model/EndMatchManager.java
+ com.example.keyknowledge.model.EndMatchManager
+com/example/keyknowledge/control/KnowledgeControl.java
+ com.example.keyknowledge.control.KnowledgeControl
+com/example/keyknowledge/control/QuizControl.java
+ com.example.keyknowledge.control.QuizControl
+>>>>>>> master

@@ -16,7 +16,6 @@ public class ExampleUnitTest {
     }
 
 
-
     //test di prova 1
     @Test
     public void login_isCorrect(){ assertEquals(1, 1); }
