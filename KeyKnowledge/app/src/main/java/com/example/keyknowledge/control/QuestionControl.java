@@ -4,7 +4,9 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.keyknowledge.Match;
 import com.example.keyknowledge.model.Question;
+import com.example.keyknowledge.model.Quiz;
 
 public class QuestionControl {
 
@@ -13,7 +15,7 @@ public class QuestionControl {
     }
 
     public QuestionControl(){
-
+        //control = new MatchControl(new Quiz(), new Match());
     }
 
     private MatchControl control;

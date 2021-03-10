@@ -9,5 +9,8 @@ public class UserTest extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
+        user = new User("nick", "password", "email", "offline");
     }
+
+
 }

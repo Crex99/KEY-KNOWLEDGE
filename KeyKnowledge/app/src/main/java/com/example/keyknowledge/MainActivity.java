@@ -47,6 +47,7 @@ import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.databinding.ActivityMainBinding;
 import com.example.keyknowledge.model.*;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseAppLifecycleListener;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.FirebaseOptions;
@@ -124,6 +125,7 @@ public class MainActivity extends Activity implements DrawerTopFragment.UserList
                 dialog.dismiss();
             }
         }
+
     }
 
 

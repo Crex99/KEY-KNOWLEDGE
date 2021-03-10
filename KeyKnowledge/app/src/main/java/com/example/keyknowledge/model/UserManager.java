@@ -16,21 +16,30 @@ public class UserManager {
     public static String OFFLINE="offline",ONLINE="online";
     private DatabaseReference mDatabase;
     private UserControl controller;
-
+    private User user;
     public UserManager(){
         controller=new UserControl();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    public UserManager(DatabaseReference reference){
+        mDatabase = reference;
     }
 
     public void setState(String state,String nick){
         mDatabase.child(TABLE).child(nick).child("stato").setValue(state);
     }
 
+    public User getUserInEvent(String nick,String pass,LoginManager l){
+        getUser(nick, pass, l);
+        return user;
+    }
+
     public void getUser(String nick,String pass,LoginManager l){
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user=snapshot.child(nick).getValue(User.class);
+                user=snapshot.child(nick).getValue(User.class);
                 l.login(user,pass);
             }
 
