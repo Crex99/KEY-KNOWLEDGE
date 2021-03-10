@@ -6,7 +6,7 @@ import com.example.keyknowledge.model.Quiz;
 import java.io.Serializable;
 
 public class AdapterWrapper implements Serializable {
-
+//ciao
     private int numDomanda;
     private int risposta_utente;
     private Question question;
