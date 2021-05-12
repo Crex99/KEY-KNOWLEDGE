@@ -15,6 +15,8 @@ public class LoginManager {
             control=con;
     }
 
+    public LoginManager(){}
+
     public void accessUser(String nick, String pass) {
         manager.getUser(nick,pass,this);
     }

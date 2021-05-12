@@ -19,6 +19,8 @@ public class MainManager {
         control=c;
     }
 
+    public MainManager(){}
+
     public void accessUser(String nick) {
         manager.getUser(nick,this);
     }

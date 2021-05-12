@@ -10,6 +10,8 @@ public class PairingControl {
     PairingManager manager;
     Pairing pairing;
 
+    public PairingControl(){}
+
     public PairingControl(Pairing p){
         pairing=p;
         manager=new PairingManager(this);

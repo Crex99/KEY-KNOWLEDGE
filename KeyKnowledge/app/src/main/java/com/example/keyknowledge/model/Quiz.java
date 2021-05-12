@@ -1,6 +1,11 @@
 package com.example.keyknowledge.model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Quiz implements Serializable {
 
@@ -28,6 +33,7 @@ public class Quiz implements Serializable {
         user2=e;
         punteggioG1=-1;
         punteggioG2=-1;
+        status = null;
     }
 
     public int getId() {
@@ -107,4 +113,21 @@ public class Quiz implements Serializable {
                 ", status='" + status + '\'' +
                 '}';
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Quiz quiz = (Quiz) o;
+        return id == quiz.id &&
+                numQuesiti == quiz.numQuesiti &&
+                punteggioG1 == quiz.punteggioG1 &&
+                punteggioG2 == quiz.punteggioG2 &&
+                Objects.equals(mode, quiz.mode) &&
+                Objects.equals(user1, quiz.user1) &&
+                Objects.equals(user2, quiz.user2) &&
+                Objects.equals(status, quiz.status);
+    }
+
 }

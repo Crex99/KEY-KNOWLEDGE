@@ -12,6 +12,7 @@ public class EndMatchControl {
 
     private EndMatch endMatch;
     private EndMatchManager manager;
+    public EndMatchControl(){}
     public EndMatchControl(EndMatch endMatch) {
         this.endMatch=endMatch;
         manager=new EndMatchManager(this);

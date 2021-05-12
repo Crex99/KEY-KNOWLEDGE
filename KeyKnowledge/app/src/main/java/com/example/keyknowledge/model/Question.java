@@ -1,6 +1,11 @@
 package com.example.keyknowledge.model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Question implements Serializable {
 
@@ -115,4 +120,22 @@ public class Question implements Serializable {
                 ", livello='" + livello + '\'' +
                 '}';
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Question question = (Question) o;
+        return risposta_esatta == question.risposta_esatta &&
+                livello == question.livello &&
+                Objects.equals(id, question.id) &&
+                Objects.equals(testo, question.testo) &&
+                Objects.equals(risposta1, question.risposta1) &&
+                Objects.equals(risposta2, question.risposta2) &&
+                Objects.equals(risposta3, question.risposta3) &&
+                Objects.equals(risposta4, question.risposta4) &&
+                Objects.equals(categoria, question.categoria);
+    }
+
 }

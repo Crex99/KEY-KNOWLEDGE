@@ -18,7 +18,7 @@ public class QuestionManager {
     private static String TABLE="questions";
     private DatabaseReference mDatabase;
     private QuestionControl control;
-
+    private Question q;
     public QuestionManager(MatchControl c){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         control=new QuestionControl(c);
@@ -28,13 +28,23 @@ public class QuestionManager {
         control=new QuestionControl();
     }
 
+    public Question getQuestionInEvent(){
+        return q;
+    }
+
+    public void setControl(QuestionControl control){
+        this.control = control;
+    }
+
     public void getQuestion(String categoria, String livello, String id){
+        //System.out.println("Sto in getQuestion");
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Question q=snapshot.child(categoria).child(livello).child(id).getValue(Question.class);
-                    control.setQuestion(q);
+                //System.out.println("Sto in onDataChange");
+                q=snapshot.child(categoria).child(livello).child(id).getValue(Question.class);
+                control.setQuestion(q);
             }
 
             @Override
