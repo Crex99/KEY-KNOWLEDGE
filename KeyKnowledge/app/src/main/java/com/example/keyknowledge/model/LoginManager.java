@@ -19,9 +19,9 @@ public class LoginManager {
         manager.getUser(nick,pass,this);
     }
 
-    public void login(User user,String pass){
+    public void login(User user,String nick,String pass){
         if(user==null){
-            control.setMessage("L'utente "+user.getNickname()+" non esiste");
+            control.setMessage("L'utente "+nick+" non esiste");
         }else{
             if(user.getPassword().equals(pass)){
                 if(user.getStato().equals(OFFLINE)){
