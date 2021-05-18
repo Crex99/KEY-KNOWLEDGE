@@ -31,7 +31,7 @@ public class UserManager {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user=snapshot.child(nick).getValue(User.class);
-                l.login(user,pass);
+                l.login(user,nick,pass);
             }
 
             @Override

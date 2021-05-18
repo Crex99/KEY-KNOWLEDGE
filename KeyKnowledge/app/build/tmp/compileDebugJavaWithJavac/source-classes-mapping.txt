@@ -21,6 +21,10 @@ com/example/keyknowledge/databinding/VignettaLayoutBinding.java
  com.example.keyknowledge.databinding.VignettaLayoutBinding
 com/example/keyknowledge/Pairing.java
  com.example.keyknowledge.Pairing
+ com.example.keyknowledge.Pairing$MyTask
+ com.example.keyknowledge.Pairing$MyTask$1
+ com.example.keyknowledge.Pairing$MyTask$1$1
+ com.example.keyknowledge.Pairing$MyTask$1$2
 com/example/keyknowledge/model/QuizManager.java
  com.example.keyknowledge.model.QuizManager
  com.example.keyknowledge.model.QuizManager$1

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GITHUB.KeyKnowledge.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GITHUB.KeyKnowledge.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/KeyKnowledge.iml" filepath="$PROJECT_DIR$/.idea/modules/KeyKnowledge.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/KeyKnowledge.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/KeyKnowledge.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/UNI_PROJECT.KeyKnowledge.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/UNI_PROJECT.KeyKnowledge.app.iml" />
