@@ -33,13 +33,14 @@ public class Pairing extends Activity {
     LottieAnimationView lottieConn;
     Animation fade_In, fade_Out;
     LottieAnimationView lottieCount;
+    Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i=getIntent();
         user=(User)i.getSerializableExtra("user");
         Log.d("INFO", "USER: " + user);
         mode=i.getStringExtra("mode");
-        Timer     timer = new Timer();
+         timer = new Timer();
         TimerTask task = new MyTask();
 
 // aspetta 20 secondi prima dell'esecuzione
@@ -151,5 +152,11 @@ public class Pairing extends Activity {
             System.out.println( "Running the task" );
         }
     }
-
+    protected void onDestroy() {
+        timer.cancel();
+        timer.purge();
+        super.onDestroy();
+    }
 }
+
+
