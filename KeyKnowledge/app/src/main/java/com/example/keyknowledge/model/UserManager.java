@@ -32,7 +32,7 @@ public class UserManager {
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user=snapshot.child(nick).getValue(User.class);
+                user=snapshot.child(nick).getValue(User.class);
                 l.login(user,pass);
             }
 
@@ -51,7 +51,6 @@ public class UserManager {
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                System.out.println("INFO: invocazione metodo onDataChange() in UserManager...");
                 user=snapshot.child(nick).getValue(User.class);
                 main.accessUser(user);
             }

@@ -34,6 +34,7 @@ public class Pairing extends Activity {
     LottieAnimationView lottieConn;
     Animation fade_In, fade_Out;
     LottieAnimationView lottieCount;
+    private boolean graphicFlag = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i=getIntent();
@@ -86,26 +87,36 @@ public class Pairing extends Activity {
         Toast.makeText(this,x, Toast.LENGTH_LONG).show();
     }
 
+    public void setGraphicFlag(boolean graphicFlag) {
+        this.graphicFlag = graphicFlag;
+    }
+
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
     public void setQuiz(Quiz x){
         quiz=x;
-        if(!quiz.getUser2().equals("void")){
-            if(quiz.getUser2().equals(user.getNickname())){
-                user1Nick.setText(quiz.getUser2());
-                user2Nick.setText(quiz.getUser1());
-            }else{
-                user1Nick.setText(quiz.getUser1());
-                user2Nick.setText(quiz.getUser2());
+        if(graphicFlag == true){
+            if(!quiz.getUser2().equals("void")){
+                if(quiz.getUser2().equals(user.getNickname())){
+                    user1Nick.setText(quiz.getUser2());
+                    user2Nick.setText(quiz.getUser1());
+                }else{
+                    user1Nick.setText(quiz.getUser1());
+                    user2Nick.setText(quiz.getUser2());
+                }
+                startMatch.setVisibility(View.VISIBLE);
+                linearSearch.setVisibility(View.INVISIBLE);
+                lottieConn.setVisibility(View.VISIBLE);
+                lottieConn.playAnimation();
+                user1Nick.startAnimation(fade_Out);
+                user2Nick.startAnimation(fade_Out);
+                user1Nick.setVisibility(View.VISIBLE);
+                user2Nick.setVisibility(View.VISIBLE);
+                lottieCount.setVisibility(View.VISIBLE);
+                lottieCount.playAnimation();
             }
-            startMatch.setVisibility(View.VISIBLE);
-            linearSearch.setVisibility(View.INVISIBLE);
-            lottieConn.setVisibility(View.VISIBLE);
-            lottieConn.playAnimation();
-            user1Nick.startAnimation(fade_Out);
-            user2Nick.startAnimation(fade_Out);
-            user1Nick.setVisibility(View.VISIBLE);
-            user2Nick.setVisibility(View.VISIBLE);
-            lottieCount.setVisibility(View.VISIBLE);
-            lottieCount.playAnimation();
         }
     }
 

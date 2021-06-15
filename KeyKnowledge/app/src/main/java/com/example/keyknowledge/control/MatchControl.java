@@ -21,6 +21,7 @@ public class MatchControl {
     private MatchManager manager;
     private Match match;
     private ArrayList<AdapterWrapper> wrapperArrayList;
+
     public MatchControl(Quiz q, Match m){
         match=m;
         quiz=q;
@@ -28,9 +29,14 @@ public class MatchControl {
         wrapperArrayList = new ArrayList<AdapterWrapper>();
     }
 
+    public MatchManager getManager() {
+        return manager;
+    }
+
     public void getQuestion(){
         manager.getMatchQuestion();
     }
+
     public void getQuestion(int current,Boolean resp){
         manager.getMatchQuestion(current,resp);
     }
@@ -39,7 +45,6 @@ public class MatchControl {
     public void setQuestion(Question question){
         match.setQuestion(question);
     }
-
 
     public void setList(ArrayList<AdapterWrapper> wrapperArrayList){
         this.wrapperArrayList = wrapperArrayList;

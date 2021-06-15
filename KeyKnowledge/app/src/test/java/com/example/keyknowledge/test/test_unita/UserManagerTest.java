@@ -1,4 +1,4 @@
-package com.example.keyknowledge;
+package com.example.keyknowledge.test.test_unita;
 
 import com.example.keyknowledge.model.MainManager;
 import com.example.keyknowledge.model.User;
@@ -22,8 +22,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
@@ -67,8 +65,8 @@ public class UserManagerTest extends TestCase {
         userManager.getUser("nick", mainManager);
         System.out.println("INVOCAZIONE METODO TESTING: userManager.getUser(\"nick\", mainManager)...");
         assertEquals(new User("nick", "password", "email", "offline"), userManager.getUserInEvent());
-        System.out.printf("UTENTE ASPETTATO: %s%n", new User("nick", "password", "email", "stato"));
-        System.out.printf("UTENTE ATTUALE: %s%n", userManager.getUserInEvent());
+        System.out.printf("UTENTE ASPETTATO:\n%s%n", new User("nick", "password", "email", "stato"));
+        System.out.printf("UTENTE ATTUALE:\n%s%n", userManager.getUserInEvent());
         System.out.println("TEST getUser() PASSED\n");
     }
     //mock methods->
@@ -91,18 +89,20 @@ public class UserManagerTest extends TestCase {
         }).when(mockedDatabaseReference).addListenerForSingleValueEvent(any(ValueEventListener.class));
     }
 
+
+
     @Test
     public void testSetState(){
         toMockGetUser();
         toMockSetState();
         userManager.getUser("nick", mainManager);
         assertEquals("offline", userManager.getUserInEvent().getStato());
-        System.out.println("UTENTE PRIMA setState(): " + userManager.getUserInEvent());
+        System.out.println("UTENTE PRIMA setState():\n" + userManager.getUserInEvent());
         userManager.setState("online", "nick");
         System.out.println("INVOCAZIONE METODO TESTING: userManager.setState(\"online\", \"nick\")...");
         userManager.getUser("nick", mainManager);
         assertEquals("online", userManager.getUserInEvent().getStato());
-        System.out.println("UTENTE DOPO setState(): " + userManager.getUserInEvent());
+        System.out.println("UTENTE DOPO setState():\n" + userManager.getUserInEvent());
         System.out.println("TEST setState() PASSED\n");
     }
     //mock methods->

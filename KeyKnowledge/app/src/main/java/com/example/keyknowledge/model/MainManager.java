@@ -10,10 +10,8 @@ import static com.example.keyknowledge.model.UserManager.ONLINE;
 
 public class MainManager {
 
-
     private UserManager manager;
     private MainControl control;
-
     public MainManager(MainControl c){
         manager=new UserManager();
         control=c;
@@ -29,9 +27,9 @@ public class MainManager {
         if(user==null){
             control.setMessage("L'utente "+user.getNickname()+" non esiste");
         }else{
+            user.setStato(ONLINE);
             manager.setState(ONLINE,user.getNickname());
             control.setView(R.layout.home,user);
-
         }
     }
 

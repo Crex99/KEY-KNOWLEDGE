@@ -1,9 +1,9 @@
-package com.example.keyknowledge;
+package com.example.keyknowledge.test.test_integrazione;
 
-import com.example.keyknowledge.control.QuestionControl;
+import com.example.keyknowledge.Match;
+import com.example.keyknowledge.control.MatchControl;
 import com.example.keyknowledge.model.Question;
-import com.example.keyknowledge.model.QuestionManager;
-import com.example.keyknowledge.model.User;
+import com.example.keyknowledge.model.Quiz;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -13,48 +13,43 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.junit.runners.model.FrameworkMethod;
-import org.junit.runners.model.Statement;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoRule;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Pattern;
-
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.endsWith;
 import static org.mockito.Matchers.matches;
-import static org.mockito.Matchers.refEq;
 import static org.mockito.Matchers.startsWith;
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(JUnit4.class)
 @PrepareForTest({ FirebaseDatabase.class})
-public class QuestionManagerTest extends TestCase {
+public class MatchTest extends TestCase {
 
+    public static junit.framework.Test suite(){
+        return new TestSuite(MatchTest.class);
+    }
+    private MatchControl matchControl;
+    private Match match;
+    private Quiz quiz;
     private DatabaseReference mockedDatabaseReference;
-    private QuestionManager questionManager;
-    private QuestionControl control;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         toMockSetUp();
-        questionManager = new QuestionManager();
-        questionManager.setControl(control);
+        match = new Match();
+        match.setFlagGraphic(false);
+        quiz = new Quiz(1, "restart", 10, "user1", "user2");
+        matchControl = new MatchControl(quiz, match);
     }
     //mock methods->
     private void toMockSetUp(){
@@ -63,37 +58,18 @@ public class QuestionManagerTest extends TestCase {
         when(mockedFirebaseDatabase.getReference()).thenReturn(mockedDatabaseReference);
         PowerMockito.mockStatic(FirebaseDatabase.class);
         when(FirebaseDatabase.getInstance()).thenReturn(mockedFirebaseDatabase);
-        control = mock(QuestionControl.class);
-        doNothing().when(control).setQuestion(any(Question.class));
     }
 
     @Test
-    public void testGetQuestion(){
+    public void testGetMatchQuestion(){
         toMockGetQuestion();
-        questionManager.getQuestion("storia", "livello1", "storia1");
-        System.out.println("INVOCAZIONE METODO TESTING: questionManager.getQuestion(\"storia\", \"livello1\", \"storia1\")...");
-        assertEquals(new Question("storia1",
-                                "testo_domanda",
-                                "r1",
-                                "r2",
-                                "r3",
-                                "r4",
-                                1,
-                                "storia",
-                                1),
-                                questionManager.getQuestionInEvent());
-        System.out.println("QUESTION ASPETTATA: " +
-                new Question("storia1",
-                "testo_domanda",
-                "r1",
-                "r2",
-                "r3",
-                "r4",
-                1,
-                "storia",
-                1));
-        System.out.println("QUESTION ATTUALE: " + questionManager.getQuestionInEvent());
-        System.out.println("TEST" + getName() + " PASSED\n");
+        matchControl.getQuestion();
+        Question questionInManager = matchControl.getManager().getManagerQuestion().getQuestionInEvent();
+        System.out.println("INFO: Question in QuestionManager =\n" + printQuestion(questionInManager));
+        Question question = match.getQuestion();
+        assertEquals(questionInManager, question);
+        System.out.println("INFO: Question in activity =\n" + printQuestion(question));
+        System.out.println("TEST testGetQuestion() PASSED\n");
     }
     //mock methods->
     private void toMockGetQuestion(){
@@ -101,12 +77,12 @@ public class QuestionManagerTest extends TestCase {
         doAnswer(invocation -> {
             ValueEventListener listener = (ValueEventListener) invocation.getArguments()[0];
             DataSnapshot dataSnapshot = mock(DataSnapshot.class);
-            when(dataSnapshot.child(matches("[a-z]+"))).thenAnswer(invocation1 -> {
+            when(dataSnapshot.child(matches("^[a-im-z]+"))).thenAnswer(invocation1 -> {
                 String categoria = (String) invocation1.getArguments()[0];
                 when(dataSnapshot.child(startsWith("l"))).thenAnswer(invocation2 -> {
                     String livArgument = (String) invocation2.getArguments()[0];
                     int livello = Integer.parseInt(String.valueOf(livArgument.charAt(livArgument.length()-1)));
-                    when(dataSnapshot.child(matches("^" + categoria + "[1-4]{1}"))).thenAnswer(invocation3 -> {
+                    when(dataSnapshot.child(matches("^[a-im-z]+[a-z]+[0-9]+"))).thenAnswer(invocation3 -> {
                         String id = (String) invocation3.getArguments()[0];
                         when(dataSnapshot.getValue(Question.class)).thenReturn(
                                 new Question(
@@ -130,8 +106,33 @@ public class QuestionManagerTest extends TestCase {
         }).when(mockedDatabaseReference).addListenerForSingleValueEvent(any(ValueEventListener.class));
     }
 
+    @Test
+    public void testQuit(){
+        quiz.setStatus("full");
+        System.out.println("INFO: Quiz prima dell'invocazione quit() =\n" + quiz);
+        toMockQuit();
+        matchControl.quit(quiz);
+        assertEquals("quit", quiz.getStatus());
+        System.out.println("INFO: Quiz dopo l'invocazione quit() =\n" + quiz);
+        System.out.println("TEST testQuit() PASSED\n");
+    }
+    //mock methods->
+    private void toMockQuit(){
+        when(mockedDatabaseReference.child(anyString())).thenReturn(mockedDatabaseReference);
+        doAnswer(invocation -> {
+            ValueEventListener listener = (ValueEventListener) invocation.getArguments()[0];
+            DataSnapshot dataSnapshot = mock(DataSnapshot.class);
+            when(dataSnapshot.getValue(Quiz.class)).thenReturn(quiz);
+            when(dataSnapshot.child(anyString())).thenReturn(dataSnapshot);
+            when(dataSnapshot.getValue(String.class)).thenReturn(quiz.getStatus());
+            when(mockedDatabaseReference.setValue(anyString())).thenReturn(null);
+            quiz.setStatus("quit");
+            listener.onDataChange(dataSnapshot);
+            return mockedDatabaseReference;
+        }).when(mockedDatabaseReference).addListenerForSingleValueEvent(any(ValueEventListener.class));
+    }
 
-    public static junit.framework.Test suite(){
-        return new TestSuite(QuestionManagerTest.class);
+    private String printQuestion(Question question){
+        return "Question{ id = " + question.getId() + ", categoria = " + question.getCategoria() + ", livello = " + question.getLivello() + "}";
     }
 }

@@ -1,6 +1,4 @@
-package com.example.keyknowledge;
-
-import android.provider.ContactsContract;
+package com.example.keyknowledge.test.test_unita;
 
 import com.example.keyknowledge.control.EndMatchControl;
 import com.example.keyknowledge.control.PairingControl;

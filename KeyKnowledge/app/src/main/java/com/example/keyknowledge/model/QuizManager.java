@@ -97,7 +97,6 @@ public class QuizManager {
                     for (int i = 0; i < MAX_ROOMS; i++) {
                         String id = "" + i + "";
                         if (currentData.hasChild(id)) {
-                            System.out.println("INFO: invocazione currentData.hasChild(id) in QuizMenager");
                             String status = currentData.child(id).child("status").getValue(String.class);
                             if (status.equals("void")) {
                                 mDatabase.child(TABLE).child(mode).child(id).child("status").setValue("wait");
@@ -106,7 +105,6 @@ public class QuizManager {
 
                                     @Override
                                     public void onDataChange(DataSnapshot snapshot) {
-                                        System.out.println("INFO: invocazione onDataChange() in QuizMenager");
                                         controller.setQuiz(snapshot.child(id).getValue(Quiz.class),control);
                                         String status = snapshot.child(id).child("status").getValue(String.class);
                                         String opponent=snapshot.child(id).child("user2").getValue(String.class);
