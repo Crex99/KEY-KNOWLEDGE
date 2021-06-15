@@ -1,34 +1,33 @@
 package com.example.keyknowledge;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.util.*;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.keyknowledge.control.*;
 import com.example.keyknowledge.model.*;
-
 import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
 
 public class Pairing extends Activity {
-
+    Context context=this;
     PairingControl control=new PairingControl(this);
     User user;
     String mode;
-    Quiz quiz;
+     Quiz quiz;
     TextView startMatch, user1Nick, user2Nick, userNick;
     LinearLayout linearSearch;
     LottieAnimationView lottieConn;
@@ -40,6 +39,11 @@ public class Pairing extends Activity {
         user=(User)i.getSerializableExtra("user");
         Log.d("INFO", "USER: " + user);
         mode=i.getStringExtra("mode");
+        Timer     timer = new Timer();
+        TimerTask task = new MyTask();
+
+// aspetta 20 secondi prima dell'esecuzione
+        timer.schedule(task,20000);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_player);
         control.createMatch(user,mode);
@@ -114,4 +118,38 @@ public class Pairing extends Activity {
         control.resetMatch(quiz);
         super.onBackPressed();
     }
+    //class timer
+    class MyTask extends TimerTask {
+        public void run() {
+            control.resetMatch(quiz);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                    builder.setTitle("ATTENZIONE");
+                    builder.setMessage("Nessun avversario trovato,riprova più tardi");
+
+                    builder.setPositiveButton("TORNA ALLA HOME", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing but close the dialog
+                            onBackPressed();
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+            });
+            System.out.println( "Running the task" );
+        }
+    }
+
 }
