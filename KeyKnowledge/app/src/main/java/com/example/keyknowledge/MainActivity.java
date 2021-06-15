@@ -78,6 +78,8 @@ public class MainActivity extends Activity implements DrawerTopFragment.UserList
     ViewDialog dialog;
     public static final String BroadcastStringForAction = "checkinternet";
     private IntentFilter mIntentFilter;
+    private boolean graphicFlag = true;
+
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +159,10 @@ public class MainActivity extends Activity implements DrawerTopFragment.UserList
         //InternetConnection.checkConnection(this);
     }
 
+
+    public int getLayout() {
+        return layout;
+    }
 
     private void showDialog(){
         new AlertDialog.Builder(this)
@@ -315,38 +321,49 @@ public class MainActivity extends Activity implements DrawerTopFragment.UserList
         navigationView.startAnimation(translate_from_left);
     }
 
+    public void setGraphicFlag(boolean graphicFlag) {
+        this.graphicFlag = graphicFlag;
+    }
+
     public void setContent(int x, User y) {
-        setContentView(x);
+        if(graphicFlag == true) {
+            setContentView(x);
+        }
         layout=x;
         if(layout == R.layout.activity_main){
             readyForQuiz = findViewById(R.id.readyForQuiz);
         }
         if(layout == R.layout.home){
-            navigationView = findViewById(R.id.menulaterale);
-            miscTv = findViewById(R.id.miscMode);
-            classicTv = findViewById(R.id.classicMode);
-            restartTv = findViewById(R.id.restartMode);
-            lottieClassic = findViewById(R.id.lottieClassic);
-            lottieMisc = findViewById(R.id.lottieMisc);
-            lottieRestart = findViewById(R.id.lottieRestart);
-            lottieStart = findViewById(R.id.lottieStart);
-            layoutModes = findViewById(R.id.layoutModes);
+            if(graphicFlag == true){
+                navigationView = findViewById(R.id.menulaterale);
+                miscTv = findViewById(R.id.miscMode);
+                classicTv = findViewById(R.id.classicMode);
+                restartTv = findViewById(R.id.restartMode);
+                lottieClassic = findViewById(R.id.lottieClassic);
+                lottieMisc = findViewById(R.id.lottieMisc);
+                lottieRestart = findViewById(R.id.lottieRestart);
+                lottieStart = findViewById(R.id.lottieStart);
+                layoutModes = findViewById(R.id.layoutModes);
+            }
             user=y;
             if(user!=null) {
                 nickname = user.getNickname();
-                System.out.println("nickname è " + nickname);
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                DrawerTopFragment fragment = new DrawerTopFragment();
-                ft.add(R.id.drawerTop, fragment);
-                ft.commit();
-                setNavigationActions();
-                restartTv.setSelected(true);
-                restartTv.setTextSize(40);
-                lottieRestart.setVisibility(View.VISIBLE);
+                if(graphicFlag == true){
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    DrawerTopFragment fragment = new DrawerTopFragment();
+                    ft.add(R.id.drawerTop, fragment);
+                    ft.commit();
+                    setNavigationActions();
+                    restartTv.setSelected(true);
+                    restartTv.setTextSize(40);
+                    lottieRestart.setVisibility(View.VISIBLE);
+                }
             }
         }
-        checkSmallPhone();
+        if(graphicFlag == true){
+            checkSmallPhone();
+        }
     }
 
     private void checkSmallPhone(){

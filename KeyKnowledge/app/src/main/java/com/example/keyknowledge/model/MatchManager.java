@@ -26,6 +26,10 @@ public class MatchManager {
         managerQuestion=new QuestionManager(c);
     }
 
+    public QuestionManager getManagerQuestion() {
+        return managerQuestion;
+    }
+
     public void getMatchQuestion(){
         Random r=new Random();
         int categoria=r.nextInt(CATEGORIES-1);

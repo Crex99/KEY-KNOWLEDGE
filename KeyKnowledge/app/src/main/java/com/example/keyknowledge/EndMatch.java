@@ -30,6 +30,7 @@ public class EndMatch extends Activity implements Animation.AnimationListener{
     private int player;
     private EndMatchControl control;
     private TextView text;
+    private boolean graphicFlag = true;
     LottieAnimationView lottieWait, lottieConfetti1, lottieConfetti2, lottieWin, lottieLose, lottiePareggio;
     LinearLayout returnHome;
     ImageView hai_vinto, pareggio, hai_perso;
@@ -66,6 +67,9 @@ public class EndMatch extends Activity implements Animation.AnimationListener{
         fade_Out.setAnimationListener(this);
     }
 
+    public void setGraphicFlag(boolean graphicFlag) {
+        this.graphicFlag = graphicFlag;
+    }
 
     public void waitOpponent() {
         text.setVisibility(View.VISIBLE);
@@ -77,7 +81,6 @@ public class EndMatch extends Activity implements Animation.AnimationListener{
             setText("Aspettando il giocatore\n"+quiz.getUser1() + "...");
             System.out.println(quiz.getUser1());
         }
-
     }
 
     public void end(Quiz q) {
@@ -147,8 +150,6 @@ public class EndMatch extends Activity implements Animation.AnimationListener{
             lottieConfetti1.setVisibility(View.VISIBLE);
             lottieConfetti2.setVisibility(View.VISIBLE);
         }
-
-
     }
 
     public void setText(String x){

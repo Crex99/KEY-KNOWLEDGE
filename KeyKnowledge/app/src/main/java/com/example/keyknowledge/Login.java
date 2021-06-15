@@ -22,8 +22,10 @@ public class Login extends Activity {
     ViewDialog dialog;
     public static final String BroadcastStringForAction = "checkinternet";
     private IntentFilter mIntentFilter;
-
-
+    private User user;
+    private boolean flagEditor = true;
+    private boolean flagGraphic = true;
+    private String message = "";
     public Login()  {
     }
 
@@ -97,8 +99,19 @@ public class Login extends Activity {
         registerReceiver(MyReceiver, mIntentFilter);
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public void message(String x){
-        Toast.makeText(this,x, Toast.LENGTH_LONG).show();
+        this.message = x;
+        if(flagGraphic == true){
+            Toast.makeText(this,x, Toast.LENGTH_LONG).show();
+        }else return;
+    }
+
+    public void setFlagGraphic(boolean flagGraphic) {
+        this.flagGraphic = flagGraphic;
     }
 
     public void access(View view) {
@@ -109,9 +122,24 @@ public class Login extends Activity {
         Toast.makeText(this,"funzionalità ancora non disponibile", Toast.LENGTH_LONG).show();
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void saveUser(User user) {
-        SharedPreferences.Editor editor=pref.edit();
-        editor.putString("id",user.getNickname());
-        editor.commit();
+        this.user = user;
+        setUserInEditor();
+    }
+
+    public void setFlagEditor(boolean flagEditor) {
+        this.flagEditor = flagEditor;
+    }
+
+    private void setUserInEditor(){
+        if(flagEditor == true){
+            SharedPreferences.Editor editor=pref.edit();
+            editor.putString("id",user.getNickname());
+            editor.commit();
+        }else return;
     }
 }

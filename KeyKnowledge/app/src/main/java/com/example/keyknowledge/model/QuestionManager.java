@@ -42,7 +42,6 @@ public class QuestionManager {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //System.out.println("Sto in onDataChange");
                 q=snapshot.child(categoria).child(livello).child(id).getValue(Question.class);
                 control.setQuestion(q);
             }

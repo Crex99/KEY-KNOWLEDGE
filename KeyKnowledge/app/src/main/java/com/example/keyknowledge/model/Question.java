@@ -108,16 +108,16 @@ public class Question implements Serializable {
 
     @Override
     public String toString() {
-        return "Question{" +
-                "id='" + id + '\'' +
-                ", testo='" + testo + '\'' +
-                ", risposta1='" + risposta1 + '\'' +
-                ", risposta2='" + risposta2 + '\'' +
-                ", risposta3='" + risposta3 + '\'' +
-                ", risposta4='" + risposta4 + '\'' +
-                ", risposta_esatta=" + risposta_esatta +
-                ", categoria='" + categoria + '\'' +
-                ", livello='" + livello + '\'' +
+        return "Question{\n" +
+                "id='" + id + '\n' +
+                "testo='" + testo + '\n' +
+                "risposta1='" + risposta1 + '\n' +
+                "risposta2='" + risposta2 + '\n' +
+                "risposta3='" + risposta3 + '\n' +
+                "risposta4='" + risposta4 + '\n' +
+                "risposta_esatta=" + risposta_esatta + '\n' +
+                "categoria='" + categoria + '\n' +
+                "livello='" + livello + '\n' +
                 '}';
     }
 

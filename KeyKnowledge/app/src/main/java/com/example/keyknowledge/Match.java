@@ -52,6 +52,7 @@ public class Match extends Activity {
     ViewDialog dialog;
     public static final String BroadcastStringForAction = "checkinternet";
     private IntentFilter mIntentFilter;
+    private boolean flagGraphic = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i=getIntent();
@@ -178,20 +179,35 @@ public class Match extends Activity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setQuestionGraphic(){
+        if(flagGraphic == true){
+            if(answer_prec != null){
+                answer_prec.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+            }
+            textb1.setText(question.getRisposta1());
+            textb2.setText(question.getRisposta2());
+            textb3.setText(question.getRisposta3());
+            textb4.setText(question.getRisposta4());
+            text.setText(question.getTesto());
+            categoria.setText(question.getCategoria());
+            setIcon(question.getCategoria());
+            livello.setText("Livello "+question.getLivello());
+            numero.setText("Domanda n."+currentQuestion);
+        }else return;
+    }
+
+    public void setFlagGraphic(boolean flagGraphic) {
+        this.flagGraphic = flagGraphic;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setQuestion(Question q){
         question=q;
-        if(answer_prec != null){
-            answer_prec.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
-        }
-        textb1.setText(question.getRisposta1());
-        textb2.setText(question.getRisposta2());
-        textb3.setText(question.getRisposta3());
-        textb4.setText(question.getRisposta4());
-        text.setText(question.getTesto());
-        categoria.setText(question.getCategoria());
-        setIcon(question.getCategoria());
-        livello.setText("Livello "+question.getLivello());
-        numero.setText("Domanda n."+currentQuestion);
+        setQuestionGraphic();
         risposta_corrente = 0;
         /*for(View c:list){
             Button b2=(Button)c;

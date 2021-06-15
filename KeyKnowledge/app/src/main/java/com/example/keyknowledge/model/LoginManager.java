@@ -17,16 +17,21 @@ public class LoginManager {
 
     public LoginManager(){}
 
+    public UserManager getManager() {
+        return manager;
+    }
+
     public void accessUser(String nick, String pass) {
         manager.getUser(nick,pass,this);
     }
 
-    public void login(User user,String nick,String pass){
+    public void login(User user,String pass){
         if(user==null){
-            control.setMessage("L'utente "+nick+" non esiste");
+            control.setMessage("L'utente non esiste");
         }else{
             if(user.getPassword().equals(pass)){
                 if(user.getStato().equals(OFFLINE)){
+                    user.setStato(ONLINE);
                     manager.setState(ONLINE,user.getNickname());
                     control.saveUser(user);
                 }else{
