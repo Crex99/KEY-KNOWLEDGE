@@ -1,7 +1,7 @@
-#Tue Jun 15 16:40:59 CEST 2021
-base.0=C\:\\Users\\nicof\\OneDrive\\Desktop\\GITHUB\\KeyKnowledge\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+#Wed Jun 16 15:28:33 CEST 2021
+base.0=C\:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=C\:\\Users\\nicof\\OneDrive\\Desktop\\GITHUB\\KeyKnowledge\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.1=C\:\\Users\\Crescenzo\\Desktop\\UNI_PROJECT\\KeyKnowledge\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
