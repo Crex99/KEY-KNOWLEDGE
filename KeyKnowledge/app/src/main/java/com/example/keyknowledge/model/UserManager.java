@@ -12,11 +12,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class UserManager {
 
-    private static String TABLE="users";
+    public static String TABLE="users";
     public static String OFFLINE="offline",ONLINE="online";
     private DatabaseReference mDatabase;
     private UserControl controller;
-
+    private User user = null;
     public UserManager(){
         controller=new UserControl();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -30,8 +30,8 @@ public class UserManager {
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user=snapshot.child(nick).getValue(User.class);
-                l.login(user,nick,pass);
+                user=snapshot.child(nick).getValue(User.class);
+                l.login(user,pass);
             }
 
             @Override
@@ -41,11 +41,15 @@ public class UserManager {
         });
     }
 
+    public User getUserInEvent(){
+        return user;
+    }
+
     public void getUser(String nick,MainManager main){
         mDatabase.child(TABLE).addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user=snapshot.child(nick).getValue(User.class);
+            public void onDataChange(DataSnapshot snapshot) {
+                user=snapshot.child(nick).getValue(User.class);
                 main.accessUser(user);
             }
 

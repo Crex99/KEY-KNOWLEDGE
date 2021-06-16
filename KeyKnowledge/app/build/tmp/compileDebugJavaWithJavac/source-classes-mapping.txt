@@ -42,6 +42,8 @@ com/example/keyknowledge/ViewDialog.java
  com.example.keyknowledge.ViewDialog$1
  com.example.keyknowledge.ViewDialog$2
  com.example.keyknowledge.ViewDialog$3
+com/google/firebase/database/DataSnapshotMock.java
+ com.google.firebase.database.DataSnapshotMock
 com/example/keyknowledge/control/MatchControl.java
  com.example.keyknowledge.control.MatchControl
  com.example.keyknowledge.control.MatchControl$1

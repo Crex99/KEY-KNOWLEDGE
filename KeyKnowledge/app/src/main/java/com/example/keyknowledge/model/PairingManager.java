@@ -17,7 +17,11 @@ public class PairingManager {
         control=c;
     }
 
-    public void createMatch(User user,String mode) {
+    public QuizManager getManagerQuiz() {
+        return managerQuiz;
+    }
+
+    public void createMatch(User user, String mode) {
         managerQuiz.createQuiz(user,mode,control);
     }
     public void resetMatch(Quiz quiz) {

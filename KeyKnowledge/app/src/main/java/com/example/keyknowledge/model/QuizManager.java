@@ -20,10 +20,10 @@ import static com.example.keyknowledge.model.Quiz.RESTART_MODE;
 public class QuizManager {
 
     private static final int MAX_ROOMS=100;
-    private static String TABLE="matches";
+    public static String TABLE="matches";
     private DatabaseReference mDatabase;
     private ValueEventListener listener;
-    private Quiz quiz;
+    private Quiz quiz, quizInEvent;
     private QuizControl controller;
 
     public QuizManager(){
@@ -81,6 +81,14 @@ public class QuizManager {
         });
     }
 
+    public Quiz getQuizInEvent(){
+        return quizInEvent;
+    }
+
+    public void setController(QuizControl controller){
+        this.controller = controller;
+    }
+
     public void createQuiz(User user,String mode,PairingControl control){
         mDatabase.child(TABLE).child(mode).runTransaction(new Transaction.Handler() {
             @Override
@@ -101,7 +109,7 @@ public class QuizManager {
                                         String status = snapshot.child(id).child("status").getValue(String.class);
                                         String opponent=snapshot.child(id).child("user2").getValue(String.class);
                                         if(status.equals("full")&&(!(opponent).equals("void"))) {
-                                            Quiz quiz=snapshot.child(id).getValue(Quiz.class);
+                                            quizInEvent =snapshot.child(id).getValue(Quiz.class);
                                             controller.startMatch(quiz,1,control);
                                             mDatabase.child(TABLE).child(mode).removeEventListener(this);
                                         }
@@ -114,6 +122,7 @@ public class QuizManager {
                                 });
                                 break;
                             } else if (status.equals("wait")) {
+                                System.out.println("status è wait");
                                 mDatabase.child(TABLE).child(mode).child(id).child("status").setValue("full");
                                 mDatabase.child(TABLE).child(mode).child(id).child("user2").setValue(user.getNickname());
                                 mDatabase.child(TABLE).child(mode).addValueEventListener(new ValueEventListener() {
@@ -138,6 +147,7 @@ public class QuizManager {
                                 break;
                             }
                         }else{
+                            System.out.println("sono nell'else");
                             String us=user.getNickname();
                             Quiz quiz=new Quiz();
                             quiz.setId(i);
@@ -196,19 +206,22 @@ public class QuizManager {
                 if(currentData.getValue()!=null){
                     Quiz current=currentData.getValue(Quiz.class);
                     if(player==1){
+                        //System.out.println("sono a player == 1");
                         currentData.child("punteggioG1").setValue(quiz.getPunteggioG1());
                     }else if(player==2){
                         currentData.child("punteggioG2").setValue(quiz.getPunteggioG2());
                     }
                     if(current.getStatus().equals("full")){
+                        //System.out.println("sto nell'if equals full");
                         currentData.child("status").setValue("finishing");
                         controller.wait(control);
                         mDatabase.child(TABLE).child(quiz.getMode()).child(""+quiz.getId()+"").addValueEventListener(new ValueEventListener() {
                             @RequiresApi(api = Build.VERSION_CODES.O)
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                quizInEvent = snapshot.getValue(Quiz.class);
                                 Quiz q=snapshot.getValue(Quiz.class);
-                                System.out.println("MAMMA MIA");
+                                //System.out.println("MAMMA MIA");
                                 if (q.getStatus().equals("finished")) {
                                     controller.finish(q,control);
                                     mDatabase.child(TABLE).child(quiz.getMode()).child("" + quiz.getId() + "").removeEventListener(this);

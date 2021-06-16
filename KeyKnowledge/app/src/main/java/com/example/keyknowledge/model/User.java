@@ -1,6 +1,11 @@
 package com.example.keyknowledge.model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class User implements Serializable {
 
@@ -12,7 +17,9 @@ public class User implements Serializable {
     private int numPartiteVinte;
     private int numPartiteGiocate;
 
-    public User(){ }
+    public User(){}
+
+    public User(User user, String password, String email, String offline){ }
 
     public User(String a,String b,String c,String d){
         nickname=a;
@@ -92,4 +99,20 @@ public class User implements Serializable {
                 ", partite giocate='" + numPartiteGiocate + '\'' +
                 '}';
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return numPartiteVinte == user.numPartiteVinte &&
+                numPartiteGiocate == user.numPartiteGiocate &&
+                Objects.equals(nickname, user.nickname) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(stato, user.stato) &&
+                Objects.equals(ruolo, user.ruolo);
+    }
+
 }

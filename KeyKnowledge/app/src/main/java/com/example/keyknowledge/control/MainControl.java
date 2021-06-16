@@ -19,6 +19,7 @@ public class MainControl {
     private Intent i;
     private MainActivity main;
     private MainManager manager;
+    private boolean intentFlag = true;
     public MainControl(MainActivity a){
         main=a;
         manager=new MainManager(this);
@@ -37,7 +38,6 @@ public class MainControl {
             backHome(nick);
         }else{
             main.setContent(R.layout.activity_main,null);
-
         }
     }
 
@@ -57,11 +57,17 @@ public class MainControl {
         main.startActivity(i);
     }
 
+    public void setIntentFlag(boolean intentFlag) {
+        this.intentFlag = intentFlag;
+    }
+
     public void logout(User user){
         manager.logout(user);
-        i = new Intent(main.getApplicationContext(), MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        main.startActivity(i);
+        if(intentFlag == true){
+            i = new Intent(main.getApplicationContext(), MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            main.startActivity(i);
+        }
     }
 
 
