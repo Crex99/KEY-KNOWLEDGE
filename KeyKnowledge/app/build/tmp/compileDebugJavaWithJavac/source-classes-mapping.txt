@@ -2,27 +2,41 @@ com/example/keyknowledge/model/KnowledgeManager.java
  com.example.keyknowledge.model.KnowledgeManager
 com/example/keyknowledge/control/QuestionControl.java
  com.example.keyknowledge.control.QuestionControl
-com/example/keyknowledge/control/LoginControl.java
- com.example.keyknowledge.control.LoginControl
+com/example/keyknowledge/model/PairingManager.java
+ com.example.keyknowledge.model.PairingManager
 com/example/keyknowledge/databinding/ActivityMainBinding.java
  com.example.keyknowledge.databinding.ActivityMainBinding
 com/example/keyknowledge/model/IaModule.java
  com.example.keyknowledge.model.IaModule
  com.example.keyknowledge.model.IaModule$Nodo
-com/example/keyknowledge/databinding/KnowledgeBinding.java
- com.example.keyknowledge.databinding.KnowledgeBinding
-com/example/keyknowledge/Knowledge.java
- com.example.keyknowledge.Knowledge
- com.example.keyknowledge.Knowledge$1
- com.example.keyknowledge.Knowledge$2
+com/example/keyknowledge/model/MainManager.java
+ com.example.keyknowledge.model.MainManager
+com/example/keyknowledge/model/UserManager.java
+ com.example.keyknowledge.model.UserManager
+ com.example.keyknowledge.model.UserManager$1
+ com.example.keyknowledge.model.UserManager$2
 com/example/keyknowledge/databinding/EndMatchBinding.java
  com.example.keyknowledge.databinding.EndMatchBinding
 com/example/keyknowledge/databinding/VignettaLayoutBinding.java
  com.example.keyknowledge.databinding.VignettaLayoutBinding
-com/example/keyknowledge/model/LoginManager.java
- com.example.keyknowledge.model.LoginManager
-com/example/keyknowledge/AdapterWrapper.java
- com.example.keyknowledge.AdapterWrapper
+com/example/keyknowledge/Pairing.java
+ com.example.keyknowledge.Pairing
+ com.example.keyknowledge.Pairing$MyTask
+ com.example.keyknowledge.Pairing$MyTask$1
+ com.example.keyknowledge.Pairing$MyTask$1$1
+ com.example.keyknowledge.Pairing$MyTask$1$2
+com/example/keyknowledge/model/QuizManager.java
+ com.example.keyknowledge.model.QuizManager
+ com.example.keyknowledge.model.QuizManager$1
+ com.example.keyknowledge.model.QuizManager$2
+ com.example.keyknowledge.model.QuizManager$3
+ com.example.keyknowledge.model.QuizManager$3$1
+ com.example.keyknowledge.model.QuizManager$3$2
+ com.example.keyknowledge.model.QuizManager$3$3
+ com.example.keyknowledge.model.QuizManager$4
+ com.example.keyknowledge.model.QuizManager$4$1
+ com.example.keyknowledge.model.QuizManager$4$2
+ com.example.keyknowledge.model.QuizManager$4$3
 com/example/keyknowledge/ViewDialog.java
  com.example.keyknowledge.ViewDialog
  com.example.keyknowledge.ViewDialog$1
@@ -42,17 +56,17 @@ com/example/keyknowledge/model/QuestionManager.java
  com.example.keyknowledge.model.QuestionManager$1
 com/example/keyknowledge/model/Question.java
  com.example.keyknowledge.model.Question
-com/example/keyknowledge/control/KnowledgeControl.java
- com.example.keyknowledge.control.KnowledgeControl
+com/example/keyknowledge/model/LoginManager.java
+ com.example.keyknowledge.model.LoginManager
 com/example/keyknowledge/databinding/HomeBinding.java
  com.example.keyknowledge.databinding.HomeBinding
-com/example/keyknowledge/model/MainManager.java
- com.example.keyknowledge.model.MainManager
+com/example/keyknowledge/control/MainControl.java
+ com.example.keyknowledge.control.MainControl
 com/example/keyknowledge/MyService.java
  com.example.keyknowledge.MyService
  com.example.keyknowledge.MyService$1
-com/example/keyknowledge/model/EndMatchManager.java
- com.example.keyknowledge.model.EndMatchManager
+com/example/keyknowledge/control/LoginControl.java
+ com.example.keyknowledge.control.LoginControl
 com/example/keyknowledge/databinding/MatchBinding.java
  com.example.keyknowledge.databinding.MatchBinding
 com/example/keyknowledge/control/UserControl.java
@@ -99,36 +113,22 @@ com/example/keyknowledge/model/User.java
  com.example.keyknowledge.model.User
 com/example/keyknowledge/databinding/SearchPlayerBinding.java
  com.example.keyknowledge.databinding.SearchPlayerBinding
-com/example/keyknowledge/model/UserManager.java
- com.example.keyknowledge.model.UserManager
- com.example.keyknowledge.model.UserManager$1
- com.example.keyknowledge.model.UserManager$2
-com/example/keyknowledge/databinding/DrawerTopBinding.java
- com.example.keyknowledge.databinding.DrawerTopBinding
-com/example/keyknowledge/control/MainControl.java
- com.example.keyknowledge.control.MainControl
-com/example/keyknowledge/model/PairingManager.java
- com.example.keyknowledge.model.PairingManager
-com/example/keyknowledge/Pairing.java
- com.example.keyknowledge.Pairing
- com.example.keyknowledge.Pairing$MyTask
- com.example.keyknowledge.Pairing$MyTask$1
- com.example.keyknowledge.Pairing$MyTask$1$1
- com.example.keyknowledge.Pairing$MyTask$1$2
 com/example/keyknowledge/control/PairingControl.java
  com.example.keyknowledge.control.PairingControl
  com.example.keyknowledge.control.PairingControl$1
-com/example/keyknowledge/model/QuizManager.java
- com.example.keyknowledge.model.QuizManager
- com.example.keyknowledge.model.QuizManager$1
- com.example.keyknowledge.model.QuizManager$2
- com.example.keyknowledge.model.QuizManager$3
- com.example.keyknowledge.model.QuizManager$3$1
- com.example.keyknowledge.model.QuizManager$3$2
- com.example.keyknowledge.model.QuizManager$3$3
- com.example.keyknowledge.model.QuizManager$4
- com.example.keyknowledge.model.QuizManager$4$1
- com.example.keyknowledge.model.QuizManager$4$2
- com.example.keyknowledge.model.QuizManager$4$3
+com/example/keyknowledge/databinding/DrawerTopBinding.java
+ com.example.keyknowledge.databinding.DrawerTopBinding
+com/example/keyknowledge/Knowledge.java
+ com.example.keyknowledge.Knowledge
+ com.example.keyknowledge.Knowledge$1
+ com.example.keyknowledge.Knowledge$2
+com/example/keyknowledge/AdapterWrapper.java
+ com.example.keyknowledge.AdapterWrapper
+com/example/keyknowledge/databinding/KnowledgeBinding.java
+ com.example.keyknowledge.databinding.KnowledgeBinding
+com/example/keyknowledge/model/EndMatchManager.java
+ com.example.keyknowledge.model.EndMatchManager
+com/example/keyknowledge/control/KnowledgeControl.java
+ com.example.keyknowledge.control.KnowledgeControl
 com/example/keyknowledge/control/QuizControl.java
  com.example.keyknowledge.control.QuizControl
