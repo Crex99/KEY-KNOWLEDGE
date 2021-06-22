@@ -82,7 +82,7 @@ public class QuestionManagerTest extends TestCase {
                 "storia",
                 1));
         System.out.println("QUESTION ATTUALE: " + questionManager.getQuestionInEvent());
-        System.out.println("TEST" + getName() + " PASSED\n");
+        System.out.println("TEST testGetQuestion PASSED\n");
     }
     //mock methods->
     private void toMockGetQuestion(){
